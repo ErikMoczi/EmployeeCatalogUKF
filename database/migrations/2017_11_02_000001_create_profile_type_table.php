@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePublicationTypeTable extends Migration
+class CreateProfileTypeTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'publication_type';
+    public $set_schema_table = 'profile_type';
 
     /**
      * Run the migrations.
-     * @table publication_type
+     * @table profile_type
      *
      * @return void
      */
@@ -23,11 +23,10 @@ class CreatePublicationTypeTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id_publication_type');
-            $table->string('name', 50);
+            $table->increments('id');
+            $table->string('name', 45);
 
             $table->unique(["name"], 'name_UNIQUE');
-
             $table->timestamps();
         });
     }

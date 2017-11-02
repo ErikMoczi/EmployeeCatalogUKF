@@ -23,30 +23,29 @@ class CreateEmployeeTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id_employee');
+            $table->increments('id');
             $table->string('first_name', 45);
             $table->string('middle_name', 45)->nullable();
             $table->string('last_name', 45);
             $table->string('full_name', 45);
-            $table->unsignedInteger('id_position');
-            $table->unsignedInteger('id_departmen');
+            $table->unsignedInteger('position_id');
+            $table->unsignedInteger('departmen_id');
 
-            $table->index(["id_departmen"], 'fk_employee_departmen1_idx');
+            $table->index(["departmen_id"], 'fk_employee_departmen1_idx');
 
-            $table->index(["id_position"], 'fk_employee_position_idx');
-
-
-            $table->foreign('id_position', 'fk_employee_position_idx')
-                ->references('id_position')->on('position')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
-            $table->foreign('id_departmen', 'fk_employee_departmen1_idx')
-                ->references('id_departmen')->on('departmen')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
+            $table->index(["position_id"], 'fk_employee_position_idx');
             $table->timestamps();
+
+
+            $table->foreign('position_id', 'fk_employee_position_idx')
+                ->references('id')->on('position')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('departmen_id', 'fk_employee_departmen1_idx')
+                ->references('id')->on('departmen')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

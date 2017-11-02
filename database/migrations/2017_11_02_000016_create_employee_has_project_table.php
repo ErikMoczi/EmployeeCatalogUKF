@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmployeePublicationTable extends Migration
+class CreateEmployeeHasProjectTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'employee_publication';
+    public $set_schema_table = 'employee_has_project';
 
     /**
      * Run the migrations.
-     * @table employee_publication
+     * @table employee_has_project
      *
      * @return void
      */
@@ -23,25 +23,25 @@ class CreateEmployeePublicationTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id_employee');
-            $table->unsignedInteger('id_publication');
+            $table->unsignedInteger('employee_id');
+            $table->unsignedInteger('project_id');
 
-            $table->index(["id_publication"], 'fk_employee_publication_publication1_idx');
+            $table->index(["employee_id"], 'fk_employee_has_project_employee1_idx');
 
-            $table->index(["id_employee"], 'fk_employee_publication_employee1_idx');
+            $table->index(["project_id"], 'fk_employee_has_project_project1_idx');
 
 
-            $table->foreign('id_employee', 'fk_employee_publication_employee1_idx')
-                ->references('id_employee')->on('employee')
+            $table->foreign('employee_id', 'fk_employee_has_project_employee1_idx')
+                ->references('id')->on('employee')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('id_publication', 'fk_employee_publication_publication1_idx')
-                ->references('id_publication')->on('publication')
+            $table->foreign('project_id', 'fk_employee_has_project_project1_idx')
+                ->references('id')->on('project')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->timestamps();
+            $table->primary(['employee_id', 'project_id']);
         });
     }
 

@@ -23,33 +23,32 @@ class CreatePublicationTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id_publication');
+            $table->increments('id');
             $table->string('ISBN', 25)->nullable();
             $table->string('title');
             $table->string('sub_titile', 100)->nullable();
             $table->decimal('page', 4, 0)->default('0');
             $table->decimal('year', 4, 0)->nullable();
-            $table->unsignedInteger('id_publication_type');
-            $table->unsignedInteger('id_publisher');
+            $table->unsignedInteger('publisher_id');
+            $table->unsignedInteger('publication_type_id');
 
-            $table->index(["id_publisher"], 'fk_publication_publisher1_idx');
+            $table->index(["publisher_id"], 'fk_publication_publisher1_idx');
 
-            $table->index(["id_publication_type"], 'fk_publication_publication_type1_idx');
+            $table->index(["publication_type_id"], 'fk_publication_publication_type1_idx');
 
             $table->unique(["title"], 'title_UNIQUE');
-
-
-            $table->foreign('id_publication_type', 'fk_publication_publication_type1_idx')
-                ->references('id_publication_type')->on('publication_type')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
-            $table->foreign('id_publisher', 'fk_publication_publisher1_idx')
-                ->references('id_publisher')->on('publisher')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
             $table->timestamps();
+
+
+            $table->foreign('publisher_id', 'fk_publication_publisher1_idx')
+                ->references('id')->on('publisher')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('publication_type_id', 'fk_publication_publication_type1_idx')
+                ->references('id')->on('publication_type')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

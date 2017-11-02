@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePublisherTable extends Migration
+class CreatePositionTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'publisher';
+    public $set_schema_table = 'position';
 
     /**
      * Run the migrations.
-     * @table publisher
+     * @table position
      *
      * @return void
      */
@@ -23,11 +23,10 @@ class CreatePublisherTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id_publisher');
-            $table->string('name', 50);
+            $table->increments('id');
+            $table->string('name', 45);
 
             $table->unique(["name"], 'name_UNIQUE');
-
             $table->timestamps();
         });
     }
@@ -37,8 +36,8 @@ class CreatePublisherTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists($this->set_schema_table);
-    }
+     public function down()
+     {
+       Schema::dropIfExists($this->set_schema_table);
+     }
 }
