@@ -3,7 +3,6 @@
 namespace App\Models\UKF;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
 
 /**
  * @property int $id
