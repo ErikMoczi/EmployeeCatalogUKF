@@ -2,6 +2,7 @@
 
 namespace App\Models\UKF;
 
+use App\Models\UKF\Traits\Relationship\EmployeeHasTitleRelationship;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -13,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class EmployeeHasTitle extends Model
 {
+    use EmployeeHasTitleRelationship;
+
     /**
      * The table associated with the model.
      * 
@@ -24,20 +27,4 @@ class EmployeeHasTitle extends Model
      * @var array
      */
     protected $fillable = ['order'];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function employee()
-    {
-        return $this->belongsTo(Employee::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function title()
-    {
-        return $this->belongsTo(Title::class);
-    }
 }

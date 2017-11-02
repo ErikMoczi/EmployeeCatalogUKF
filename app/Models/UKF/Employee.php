@@ -2,6 +2,7 @@
 
 namespace App\Models\UKF;
 
+use App\Models\UKF\Traits\Relationship\EmployeeRelationship;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -21,6 +22,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Employee extends Model
 {
+    use EmployeeRelationship;
+
     /**
      * The table associated with the model.
      * 
@@ -32,52 +35,4 @@ class Employee extends Model
      * @var array
      */
     protected $fillable = ['position_id', 'department_id', 'first_name', 'middle_name', 'last_name', 'full_name'];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function department()
-    {
-        return $this->belongsTo(Department::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function position()
-    {
-        return $this->belongsTo(Position::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function employeeHasProfileTypes()
-    {
-        return $this->hasMany(EmployeeHasProfileType::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function projects()
-    {
-        return $this->belongsToMany(Project::class, EmployeeHasProject::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function publications()
-    {
-        return $this->belongsToMany(Publication::class, EmployeeHasProject::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function employeeHasTitles()
-    {
-        return $this->hasMany(EmployeeHasTitle::class);
-    }
 }

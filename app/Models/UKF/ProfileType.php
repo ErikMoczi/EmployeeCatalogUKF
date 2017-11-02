@@ -2,6 +2,7 @@
 
 namespace App\Models\UKF;
 
+use App\Models\UKF\Traits\Relationship\ProfileTypeRelationship;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ProfileType extends Model
 {
+    use ProfileTypeRelationship;
+
     /**
      * The table associated with the model.
      * 
@@ -22,12 +25,4 @@ class ProfileType extends Model
      * @var array
      */
     protected $fillable = ['name'];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function employeeHasProfileTypes()
-    {
-        return $this->hasMany(EmployeeHasProfileType::class);
-    }
 }

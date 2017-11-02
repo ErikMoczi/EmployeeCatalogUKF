@@ -2,6 +2,7 @@
 
 namespace App\Models\UKF;
 
+use App\Models\UKF\Traits\Relationship\FacultyRelationship;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -13,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Faculty extends Model
 {
+    use FacultyRelationship;
+
     /**
      * The table associated with the model.
      * 
@@ -24,12 +27,4 @@ class Faculty extends Model
      * @var array
      */
     protected $fillable = ['name', 'short', 'acronym'];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function departments()
-    {
-        return $this->hasMany(Department::class);
-    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models\UKF;
 
+use App\Models\UKF\Traits\Relationship\ProjectRelationship;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -14,6 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Project extends Model
 {
+    use ProjectRelationship;
+
     /**
      * The table associated with the model.
      * 
@@ -25,12 +28,4 @@ class Project extends Model
      * @var array
      */
     protected $fillable = ['title', 'year_from', 'year_to', 'reg_number'];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function employees()
-    {
-        return $this->belongsToMany(Employee::class, EmployeeHasProject::class);
-    }
 }

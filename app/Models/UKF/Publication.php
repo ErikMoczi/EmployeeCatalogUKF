@@ -2,6 +2,7 @@
 
 namespace App\Models\UKF;
 
+use App\Models\UKF\Traits\Relationship\PublicationRelationship;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -20,6 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Publication extends Model
 {
+    use PublicationRelationship;
+
     /**
      * The table associated with the model.
      * 
@@ -31,36 +34,4 @@ class Publication extends Model
      * @var array
      */
     protected $fillable = ['publisher_id', 'publication_type_id', 'ISBN', 'title', 'sub_titile', 'page', 'year'];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function publicationType()
-    {
-        return $this->belongsTo(PublicationType::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function publisher()
-    {
-        return $this->belongsTo(Publisher::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function employees()
-    {
-        return $this->belongsToMany(Employee::class, EmployeeHasPublication::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function autors()
-    {
-        return $this->belongsToMany(Autor::class, PublicationHasAutor::class);
-    }
 }

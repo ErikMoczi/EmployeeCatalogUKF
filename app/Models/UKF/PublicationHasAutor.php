@@ -2,6 +2,7 @@
 
 namespace App\Models\UKF;
 
+use App\Models\UKF\Traits\Relationship\PublicationHasAutorRelationship;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -12,6 +13,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PublicationHasAutor extends Model
 {
+    use PublicationHasAutorRelationship;
+
     /**
      * The table associated with the model.
      * 
@@ -23,20 +26,4 @@ class PublicationHasAutor extends Model
      * @var array
      */
     protected $fillable = [];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function autor()
-    {
-        return $this->belongsTo(Autor::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function publication()
-    {
-        return $this->belongsTo(Publication::class);
-    }
 }

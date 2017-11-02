@@ -2,6 +2,7 @@
 
 namespace App\Models\UKF;
 
+use App\Models\UKF\Traits\Relationship\PublicationTypeRelationship;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class PublicationType extends Model
 {
+    use PublicationTypeRelationship;
+
     /**
      * The table associated with the model.
      * 
@@ -22,12 +25,4 @@ class PublicationType extends Model
      * @var array
      */
     protected $fillable = ['name'];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function publications()
-    {
-        return $this->hasMany(Publication::class);
-    }
 }

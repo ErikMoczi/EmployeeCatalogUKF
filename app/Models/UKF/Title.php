@@ -2,6 +2,7 @@
 
 namespace App\Models\UKF;
 
+use App\Models\UKF\Traits\Relationship\TitleRelationship;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -13,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Title extends Model
 {
+    use TitleRelationship;
+
     /**
      * The table associated with the model.
      * 
@@ -24,20 +27,4 @@ class Title extends Model
      * @var array
      */
     protected $fillable = ['title_type_id', 'name'];
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function titleType()
-    {
-        return $this->belongsTo(TitleType::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function employeeHasTitles()
-    {
-        return $this->hasMany(EmployeeHasTitle::class);
-    }
 }
