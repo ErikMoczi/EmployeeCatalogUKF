@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDepartmenTable extends Migration
+class CreateDepartmentTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'departmen';
+    public $set_schema_table = 'department';
 
     /**
      * Run the migrations.
-     * @table departmen
+     * @table department
      *
      * @return void
      */
@@ -28,13 +28,13 @@ class CreateDepartmenTable extends Migration
             $table->string('acronym', 45)->nullable();
             $table->unsignedInteger('faculty_id');
 
-            $table->index(["faculty_id"], 'fk_departmen_faculty1_idx');
+            $table->index(["faculty_id"], 'fk_department_faculty1_idx');
 
             $table->unique(["name"], 'name_UNIQUE');
             $table->timestamps();
 
 
-            $table->foreign('faculty_id', 'fk_departmen_faculty1_idx')
+            $table->foreign('faculty_id', 'fk_department_faculty1_idx')
                 ->references('id')->on('faculty')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

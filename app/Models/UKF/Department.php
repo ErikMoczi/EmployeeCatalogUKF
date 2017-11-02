@@ -13,14 +13,14 @@ use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
  * @property Faculty $faculty
  * @property Employee[] $employees
  */
-class Departmen extends Model
+class Department extends Model
 {
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'departmen';
+    protected $table = 'department';
 
     /**
      * @var array

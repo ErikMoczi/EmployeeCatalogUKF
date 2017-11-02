@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $id
  * @property int $position_id
- * @property int $departmen_id
+ * @property int $department_id
  * @property string $first_name
  * @property string $middle_name
  * @property string $last_name
  * @property string $full_name
- * @property Departman $departman
+ * @property Department $department
  * @property Position $position
  * @property EmployeeHasProfileType[] $employeeHasProfileTypes
  * @property Project[] $projects
@@ -31,14 +31,14 @@ class Employee extends Model
     /**
      * @var array
      */
-    protected $fillable = ['position_id', 'departmen_id', 'first_name', 'middle_name', 'last_name', 'full_name'];
+    protected $fillable = ['position_id', 'department_id', 'first_name', 'middle_name', 'last_name', 'full_name'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function departman()
+    public function department()
     {
-        return $this->belongsTo(Departman::class);
+        return $this->belongsTo(Department::class);
     }
 
     /**

@@ -29,9 +29,9 @@ class CreateEmployeeTable extends Migration
             $table->string('last_name', 45);
             $table->string('full_name', 45);
             $table->unsignedInteger('position_id');
-            $table->unsignedInteger('departmen_id');
+            $table->unsignedInteger('department_id');
 
-            $table->index(["departmen_id"], 'fk_employee_departmen1_idx');
+            $table->index(["department_id"], 'fk_employee_department1_idx');
 
             $table->index(["position_id"], 'fk_employee_position_idx');
             $table->timestamps();
@@ -42,8 +42,8 @@ class CreateEmployeeTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('departmen_id', 'fk_employee_departmen1_idx')
-                ->references('id')->on('departmen')
+            $table->foreign('department_id', 'fk_employee_department1_idx')
+                ->references('id')->on('department')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

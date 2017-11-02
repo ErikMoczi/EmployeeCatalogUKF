@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $short
  * @property string $acronym
- * @property Departman[] $departmens
+ * @property Department[] $departments
  */
 class Faculty extends Model
 {
@@ -28,8 +28,8 @@ class Faculty extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function departmens()
+    public function departments()
     {
-        return $this->hasMany(Departmen::class);
+        return $this->hasMany(Department::class);
     }
 }
