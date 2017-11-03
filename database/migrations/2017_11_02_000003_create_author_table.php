@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAutorTable extends Migration
+class CreateAuthorTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'autor';
+    public $set_schema_table = 'author';
 
     /**
      * Run the migrations.
-     * @table autor
+     * @table author
      *
      * @return void
      */

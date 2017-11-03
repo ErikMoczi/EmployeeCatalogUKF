@@ -2,7 +2,7 @@
 
 namespace App\Models\UKF;
 
-use App\Models\UKF\Traits\Relationship\AutorRelationship;
+use App\Models\UKF\Traits\Relationship\AuthorRelationship;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -10,16 +10,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property Publication[] $publications
  */
-class Autor extends Model
+class Author extends Model
 {
-    use AutorRelationship;
+    use AuthorRelationship;
 
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'autor';
+    protected $table = 'author';
 
     /**
      * @var array

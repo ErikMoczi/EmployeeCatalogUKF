@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property PublicationType $publicationType
  * @property Publisher $publisher
  * @property Employee[] $employees
- * @property Autor[] $autors
+ * @property Author[] $authors
  */
 class Publication extends Model
 {

@@ -2,15 +2,15 @@
 namespace App\Models\UKF\Traits\Relationship;
 
 use App\Models\UKF\Publication;
-use App\Models\UKF\PublicationHasAutor;
+use App\Models\UKF\PublicationHasAuthor;
 
-trait AutorRelationship
+trait AuthorRelationship
 {
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function publications()
     {
-        return $this->belongsToMany(Publication::class, PublicationHasAutor::class);
+        return $this->belongsToMany(Publication::class, PublicationHasAuthor::class);
     }
 }

@@ -1,17 +1,17 @@
 <?php
 namespace App\Models\UKF\Traits\Relationship;
 
-use App\Models\UKF\Autor;
+use App\Models\UKF\Author;
 use App\Models\UKF\Publication;
 
-trait PublicationHasAutorRelationship
+trait PublicationHasAuthorRelationship
 {
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function autor()
+    public function author()
     {
-        return $this->belongsTo(Autor::class);
+        return $this->belongsTo(Author::class);
     }
 
     /**
