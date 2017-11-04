@@ -47,7 +47,7 @@ class ApiCommunication
         }
     }
 
-    private function transformToJSON($data)
+    private function transformToJSON(string $data)
     {
         return json_decode($data);
     }

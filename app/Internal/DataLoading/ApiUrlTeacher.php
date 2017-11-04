@@ -6,7 +6,7 @@ class ApiUrlTeacher implements IApiUrlUKF
 {
     private $id;
 
-    public function __construct($id)
+    public function __construct(int $id = 0)
     {
         $this->id = $id;
     }
