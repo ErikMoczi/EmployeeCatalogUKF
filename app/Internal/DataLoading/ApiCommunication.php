@@ -29,7 +29,7 @@ class ApiCommunication
             $responseData = $response->getBody();
         } catch (ClientException $e) {
             echo $e->getMessage();
-        } catch (\Exception $e) {
+        } catch (GeneralException $e) {
             echo $e->getMessage();
         }
 
@@ -39,11 +39,11 @@ class ApiCommunication
     private function checkRightContentType(ResponseInterface $response)
     {
         if (!$response->hasHeader('Content-Type')) {
-            throw new \Exception('Missing header Content-Type!');
+            throw new GeneralException('Missing header Content-Type!');
         }
 
         if ($response->getHeaderLine('Content-Type') !== 'application/json') {
-            throw new \Exception('The file is too big!');
+            throw new GeneralException('The file is too big!');
         }
     }
 
