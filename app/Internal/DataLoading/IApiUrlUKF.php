@@ -9,7 +9,7 @@ namespace App\Internal\DataLoading;
 interface IApiUrlUKF
 {
     /**
-     * @return mixed
+     * @return string
      */
-    public function getUrl();
+    public function getUrl() : string ;
 }

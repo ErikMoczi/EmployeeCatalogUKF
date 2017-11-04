@@ -25,7 +25,7 @@ class ApiUrlTeacher implements IApiUrlUKF
     /**
      * @return string
      */
-    public function getUrl()
+    public function getUrl() : string
     {
         return config('datapump.api_url.teacher') . $this->id;
     }

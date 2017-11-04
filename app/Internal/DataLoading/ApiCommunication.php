@@ -28,9 +28,9 @@ class ApiCommunication
 
     /**
      * @param IApiUrlUKF $apiUrlUKF
-     * @return mixed
+     * @return object
      */
-    public function requestData(IApiUrlUKF $apiUrlUKF)
+    public function requestData(IApiUrlUKF $apiUrlUKF) : object
     {
         $responseData = array();
 
@@ -67,9 +67,9 @@ class ApiCommunication
 
     /**
      * @param string $data
-     * @return mixed
+     * @return object
      */
-    private function transformToJSON(string $data)
+    private function transformToJSON(string $data) : object
     {
         return json_decode($data);
     }

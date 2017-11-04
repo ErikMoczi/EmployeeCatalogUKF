@@ -9,9 +9,9 @@ namespace App\Internal\DataLoading;
 class ApiUrlTeachers implements IApiUrlUKF
 {
     /**
-     * @return \Illuminate\Config\Repository|mixed
+     * @return string
      */
-    public function getUrl()
+    public function getUrl() : string
     {
         return config('datapump.api_url.teachers');
     }
