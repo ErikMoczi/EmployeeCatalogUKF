@@ -6,15 +6,30 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Class ApiCommunication
+ * @package App\Internal\DataLoading
+ */
 class ApiCommunication
 {
+    /**
+     * @var Client
+     */
     private $client;
 
+    /**
+     * ApiCommunication constructor.
+     * @param Client $client
+     */
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
+    /**
+     * @param IApiUrlUKF $apiUrlUKF
+     * @return mixed
+     */
     public function requestData(IApiUrlUKF $apiUrlUKF)
     {
         $responseData = array();
@@ -36,6 +51,9 @@ class ApiCommunication
         return $this->transformToJSON($responseData);
     }
 
+    /**
+     * @param ResponseInterface $response
+     */
     private function checkRightContentType(ResponseInterface $response)
     {
         if (!$response->hasHeader('Content-Type')) {
@@ -47,6 +65,10 @@ class ApiCommunication
         }
     }
 
+    /**
+     * @param string $data
+     * @return mixed
+     */
     private function transformToJSON(string $data)
     {
         return json_decode($data);
