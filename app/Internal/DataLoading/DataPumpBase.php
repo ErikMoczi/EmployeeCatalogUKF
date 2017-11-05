@@ -71,7 +71,15 @@ abstract class DataPumpBase implements IDataPump
      */
     private function mapJsonToObject($jsonData, string $className) : array
     {
-        $jsonMapper = new \JsonMapper();
-        return $jsonMapper->mapArray($jsonData, array(), $className);
+        $mapArray = array();
+
+        try {
+            $jsonMapper = new \JsonMapper();
+            $mapArray = $jsonMapper->mapArray($jsonData, array(), $className);
+        } catch (\Exception $e) {
+            echo $e->getMessage() . PHP_EOL;
+        }
+
+        return $mapArray;
     }
 }
