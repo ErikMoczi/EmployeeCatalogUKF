@@ -13,12 +13,12 @@ class DataPumpCreate extends DataPumpBase
 {
     public function run()
     {
-        $teachers = $this->getTeachers();
+        $teachers = $this->getApiTeachers();
 
         foreach ($teachers->getTeachers() as $index => $item)
         {
             $teacher = $teachers->getTeacher($index);
-            $teacherDetails = $this->getTeacherDetails($teacher->getId());
+            $teacherDetails = $this->getApiTeacherDetails($teacher->getId());
             dump($teacherDetails);
             break;
 

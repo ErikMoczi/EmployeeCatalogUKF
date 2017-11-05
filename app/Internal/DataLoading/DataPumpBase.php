@@ -32,9 +32,9 @@ abstract class DataPumpBase implements IDataPump
     /**
      * @return ApiTeachersContainer
      */
-    protected function getTeachers() : ApiTeachersContainer
+    protected function getApiTeachers() : ApiTeachersContainer
     {
-        $teachers = $this->apiCommunication->requestData(new ApiUrlTeachersContainer());
+        $teachers = $this->apiRequest(new ApiUrlTeachersContainer());
 
         $jsonMapper = new \JsonMapper();
 
@@ -47,9 +47,9 @@ abstract class DataPumpBase implements IDataPump
         );
     }
 
-    protected function getTeacherDetails(int $id) : ApiTeacherDetailsContainer
+    protected function getApiTeacherDetails(int $id) : ApiTeacherDetailsContainer
     {
-        $teacher = $this->apiCommunication->requestData(new ApiUrlTeacherContainer($id));
+        $teacher = $this->apiRequest(new ApiUrlTeacherContainer($id));
 
         $jsonMapper = new \JsonMapper();
 
@@ -60,5 +60,10 @@ abstract class DataPumpBase implements IDataPump
                 TeacherDetails::class
             )
         );
+    }
+
+    private function apiRequest(IApiUrlContainer $apiUrlContainer)
+    {
+        return $this->apiCommunication->requestData($apiUrlContainer);
     }
 }
