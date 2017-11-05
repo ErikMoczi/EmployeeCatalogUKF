@@ -8,6 +8,7 @@ use App\Internal\DataLoading\Containsers\Api\RawData\Teacher;
 use App\Internal\DataLoading\Containsers\Api\RawData\TeacherDetails;
 use App\Internal\DataLoading\Containsers\Url\ApiUrlTeacherContainer;
 use App\Internal\DataLoading\Containsers\Url\ApiUrlTeachersContainer;
+use App\Internal\DataLoading\Containsers\Url\IApiUrlContainer;
 
 /**
  * Class DataPumpBase
