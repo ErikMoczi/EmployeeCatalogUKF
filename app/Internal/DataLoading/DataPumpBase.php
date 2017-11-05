@@ -57,19 +57,19 @@ abstract class DataPumpBase implements IDataPump
 
     /**
      * @param IApiUrlContainer $apiUrlContainer
-     * @return array
+     * @return mixed
      */
-    private function apiRequest(IApiUrlContainer $apiUrlContainer) : array
+    private function apiRequest(IApiUrlContainer $apiUrlContainer)
     {
         return $this->apiCommunication->requestData($apiUrlContainer);
     }
 
     /**
-     * @param array $jsonData
+     * @param mixed $jsonData
      * @param string $className
      * @return array
      */
-    private function mapJsonToObject(array $jsonData, string $className) : array
+    private function mapJsonToObject($jsonData, string $className) : array
     {
         $jsonMapper = new \JsonMapper();
         return $jsonMapper->mapArray($jsonData, array(), $className);

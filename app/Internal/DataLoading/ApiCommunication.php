@@ -30,9 +30,9 @@ class ApiCommunication
 
     /**
      * @param IApiUrlContainer $apiUrlContainer
-     * @return array
+     * @return mixed
      */
-    public function requestData(IApiUrlContainer $apiUrlContainer) : array
+    public function requestData(IApiUrlContainer $apiUrlContainer)
     {
         $responseData = array();
 
