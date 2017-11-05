@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Internal\DataLoading\DataPump;
+use App\Internal\DataLoading\IDataPump;
 use Illuminate\Console\Command;
 
 abstract class DataPumpBaseCommand extends Command
@@ -16,12 +16,7 @@ abstract class DataPumpBaseCommand extends Command
 
     protected $dataPump;
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct(DataPump $dataPump)
+    public function __construct(IDataPump $dataPump)
     {
         parent::__construct();
 
@@ -35,6 +30,6 @@ abstract class DataPumpBaseCommand extends Command
      */
     public function handle()
     {
-        $this->info('Ahoj ja som'. DataPumpBaseCommand::class);
+        $this->dataPump->run();
     }
 }

@@ -2,6 +2,10 @@
 
 namespace App\Console\Commands;
 
+/**
+ * Class DataPumpDeleteCommand
+ * @package App\Console\Commands
+ */
 class DataPumpDeleteCommand extends DataPumpBaseCommand
 {
     /**
@@ -17,14 +21,4 @@ class DataPumpDeleteCommand extends DataPumpBaseCommand
      * @var string
      */
     protected $description = 'Command description';
-
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    {
-
-    }
 }

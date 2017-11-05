@@ -2,6 +2,10 @@
 
 namespace App\Console\Commands;
 
+/**
+ * Class DataPumpCreateCommand
+ * @package App\Console\Commands
+ */
 class DataPumpCreateCommand extends DataPumpBaseCommand
 {
     /**
@@ -17,14 +21,4 @@ class DataPumpCreateCommand extends DataPumpBaseCommand
      * @var string
      */
     protected $description = 'Command description';
-
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    {
-
-    }
 }
