@@ -2,6 +2,7 @@
 
 namespace App\Internal\DataLoading;
 
+use App\Exceptions\GeneralException;
 use App\Internal\DataLoading\Containsers\Api\ApiTeacherDetailsContainer;
 use App\Internal\DataLoading\Containsers\Api\ApiTeachersContainer;
 use App\Internal\DataLoading\Containsers\Api\RawData\Teacher;
@@ -30,25 +31,28 @@ abstract class DataPumpBase implements IDataPump
         $this->apiCommunication = $apiCommunication;
     }
 
-    /**
-     * @return ApiTeachersContainer
-     */
     protected function getApiTeachers(): ApiTeachersContainer
     {
         $teachers = $this->apiRequest(new ApiUrlTeachersContainer());
 
+        if(is_null($teachers))
+        {
+            throw new GeneralException('Missing request data for teachers!');
+        }
+
         return new ApiTeachersContainer(
-            $this->mapJsonToObject($teachers, Teacher::class)
+            $this->mapJsonToObject($teachers, Teacher::class, true)
         );
     }
 
-    /**
-     * @param int $id
-     * @return ApiTeacherDetailsContainer
-     */
     protected function getApiTeacherDetails(int $id): ApiTeacherDetailsContainer
     {
         $teacher = $this->apiRequest(new ApiUrlTeacherContainer($id));
+
+        if(is_null($teacher))
+        {
+            throw new GeneralException('Missing request data for teacher id {' . $id . '}!');
+        }
 
         return new ApiTeacherDetailsContainer(
             $this->mapJsonToObject($teacher, TeacherDetails::class)
@@ -65,17 +69,27 @@ abstract class DataPumpBase implements IDataPump
     }
 
     /**
-     * @param mixed $jsonData
+     * @param $jsonData
      * @param string $className
-     * @return array
+     * @param bool $isArray
+     * @return array|mixed|object
      */
-    private function mapJsonToObject($jsonData, string $className): array
+    private function mapJsonToObject($jsonData, string $className, bool $isArray = false)
     {
         $mapArray = array();
 
         try {
             $jsonMapper = new \JsonMapper();
-            $mapArray = $jsonMapper->mapArray($jsonData, array(), $className);
+
+            if($isArray)
+            {
+                $mapArray = $jsonMapper->mapArray($jsonData, array(), $className);
+            }
+            else
+            {
+                $mapArray = $jsonMapper->map($jsonData, new $className);
+            }
+
         } catch (\Exception $e) {
             echo $e->getMessage() . PHP_EOL;
         }

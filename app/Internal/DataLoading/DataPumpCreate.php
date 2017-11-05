@@ -13,17 +13,25 @@ class DataPumpCreate extends DataPumpBase
 {
     public function run()
     {
-        $teachers = $this->getApiTeachers();
+        try {
+            $teachers = $this->getApiTeachers();
 
-        foreach ($teachers->getTeachers() as $index => $item) {
-            $teacher = $teachers->getTeacher($index);
-            $teacherDetails = $this->getApiTeacherDetails($teacher->getId());
-            dump($teacherDetails);
-            break;
+            foreach ($teachers->getTeachers() as $index => $item) {
+                $teacher = $teachers->getTeacher($index);
 
+                try {
+                    $teacherDetails = $this->getApiTeacherDetails($teacher->getId());
+
+                    if ($teacherDetails->getActivities() !== null) {
+                        dump($teacher->getId());
+                    }
+                } catch (\Exception $e) {
+                    echo $e->getMessage() . PHP_EOL;
+                }
+
+            }
+        } catch (\Exception $e) {
+            echo $e->getMessage() . PHP_EOL;
         }
-        return;
-        $b = $a->getTeachers();
-        dump($a->getTeacher(500));
     }
 }

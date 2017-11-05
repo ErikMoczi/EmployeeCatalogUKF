@@ -189,16 +189,16 @@ class Publication
     /**
      * @return null|string
      */
-    public function getYear()
+    public function getYear(): ?string
     {
         return $this->year;
     }
 
     /**
-     * @param $year
+     * @param null|string $year
      * @return $this
      */
-    public function setYear($year)
+    public function setYear(?string $year)
     {
         $this->year = $year;
         return $this;

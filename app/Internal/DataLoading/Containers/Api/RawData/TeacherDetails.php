@@ -8,7 +8,6 @@
 
 namespace App\Internal\DataLoading\Containsers\Api\RawData;
 
-
 /**
  * Class TeacherDetails
  * @package App\Internal\DataLoading\Containsers\Api\RawData
@@ -16,92 +15,92 @@ namespace App\Internal\DataLoading\Containsers\Api\RawData;
 class TeacherDetails
 {
     /**
-     * @var Profile
+     * @var Profile|null
      */
     private $profile;
 
     /**
-     * @var \ArrayObject[Publication]
+     * @var Publication[]|null
      */
     private $publications;
 
     /**
-     * @var \ArrayObject[Project]
+     * @var Project[]|null
      */
     private $projects;
 
     /**
-     * @var \ArrayObject[Activity]
+     * @var Activity[]|null
      */
     private $activities;
 
     /**
-     * @return Profile
+     * @return Profile|null
      */
-    public function getProfile(): Profile
+    public function getProfile(): ?Profile
     {
         return $this->profile;
     }
 
     /**
-     * @param Profile $profile
+     * @param Profile|null $profile
      * @return $this
      */
-    public function setProfile(Profile $profile)
+    public function setProfile(?Profile $profile)
     {
         $this->profile = $profile;
         return $this;
     }
 
     /**
-     * @return \ArrayObject[Publication]
+     * @return Publication[]|null
      */
-    public function getPublications(): \ArrayObject
+    public function getPublications(): ?array
     {
         return $this->publications;
     }
 
     /**
-     * @param \ArrayObject $publications
+     * @param Publication[]|null $publications
      * @return $this
      */
-    public function setPublications(\ArrayObject $publications)
+    public function setPublications(?array $publications)
     {
         $this->publications = $publications;
         return $this;
     }
 
     /**
-     * @return \ArrayObject[Project]
+     * @return Project[]|null
      */
-    public function getProjects(): \ArrayObject
+    public function getProjects(): ?array
     {
         return $this->projects;
     }
 
     /**
-     * @param \ArrayObject $projects
+     * @param Project[]|null $projects
      * @return $this
      */
-    public function setProjects(\ArrayObject $projects)
+    public function setProjects(?array $projects)
     {
         $this->projects = $projects;
         return $this;
     }
 
     /**
-     * @return \ArrayObject[Activity]
+     * @return Activity[]|null
      */
-    public function getActivities(): \ArrayObject
+    public function getActivities(): ?array
     {
         return $this->activities;
     }
 
     /**
-     * @param \ArrayObject $activities
+     * @param Activity[]|null $activities
      * @return $this
      */
-    public function setActivities(\ArrayObject $activities)
+    public function setActivities(?array $activities)
     {
         $this->activities = $activities;
         return $this;

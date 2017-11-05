@@ -34,7 +34,7 @@ class ApiCommunication
      */
     public function requestData(IApiUrlContainer $apiUrlContainer)
     {
-        $responseData = array();
+        $responseData = '';
 
         try {
             $response = $this->client->request('GET', $apiUrlContainer->getUrl(), [
@@ -44,13 +44,11 @@ class ApiCommunication
             ]);
 
             $responseData = $response->getBody();
-        } catch (ClientException $e) {
-            echo $e->getMessage() . PHP_EOL;
-        } catch (GeneralException $e) {
+        } catch (\Exception $e) {
             echo $e->getMessage() . PHP_EOL;
         }
 
-        return json_decode($responseData);
+        return $this->adjustJsonData($responseData);
     }
 
     /**
@@ -64,7 +62,22 @@ class ApiCommunication
         }
 
         if ($response->getHeaderLine('Content-Type') !== 'application/json') {
-            throw new GeneralException('The file is too big!');
+            throw new GeneralException('Missing Content-Type application/json!');
         }
+    }
+
+    private function adjustJsonData($jsonData)
+    {
+        $jsonData = json_decode($jsonData);
+
+        if (!is_null($jsonData)) {
+            foreach ($jsonData as $key => &$value) {
+                if (is_array($value) && empty($value)) {
+                    $value = null;
+                }
+            }
+        }
+
+        return $jsonData;
     }
 }

@@ -2,22 +2,58 @@
 
 namespace App\Internal\DataLoading\Containsers\Api;
 
+use App\Internal\DataLoading\Containsers\Api\RawData\Profile;
 use App\Internal\DataLoading\Containsers\Api\RawData\TeacherDetails;
 
+/**
+ * Class ApiTeacherDetailsContainer
+ * @package App\Internal\DataLoading\Containsers\Api
+ */
 class ApiTeacherDetailsContainer
 {
     /**
-     * @var array
+     * @var TeacherDetails
      */
     private $teacherDetails;
 
-    public function __construct(array $teacherDetails)
+    /**
+     * ApiTeacherDetailsContainer constructor.
+     * @param $teacherDetails
+     */
+    public function __construct($teacherDetails)
     {
         $this->teacherDetails = $teacherDetails;
     }
 
-    public function getTeacherDetails(): TeacherDetails
+    /**
+     * @return Profile|null
+     */
+    public function getProfile(): ?Profile
     {
-        return $this->teacherDetails;
+        return $this->teacherDetails->getProfile();
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getActivities(): ?array
+    {
+        return $this->teacherDetails->getActivities();
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getProjects(): ?array
+    {
+        return $this->teacherDetails->getProjects();
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getPublications(): ?array
+    {
+        return $this->teacherDetails->getPublications();
     }
 }

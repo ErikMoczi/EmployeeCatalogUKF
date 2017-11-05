@@ -31,7 +31,7 @@ class Project
     private $yearEnd;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $regNumber;
 
@@ -90,18 +90,18 @@ class Project
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRegNumber(): string
+    public function getRegNumber(): ?string
     {
         return $this->regNumber;
     }
 
     /**
-     * @param string $regNumber
+     * @param string|null $regNumber
      * @return $this
      */
-    public function setRegNumber(string $regNumber)
+    public function setRegNumber(?string $regNumber)
     {
         $this->regNumber = $regNumber;
         return $this;
