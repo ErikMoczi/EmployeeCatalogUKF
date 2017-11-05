@@ -38,7 +38,7 @@ class Project
     /**
      * @return string
      */
-    public function getTitle() : string
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -56,7 +56,7 @@ class Project
     /**
      * @return int
      */
-    public function getYearFrom() : int
+    public function getYearFrom(): int
     {
         return $this->yearFrom;
     }
@@ -74,7 +74,7 @@ class Project
     /**
      * @return int
      */
-    public function getYearEnd() : int
+    public function getYearEnd(): int
     {
         return $this->yearEnd;
     }
@@ -92,7 +92,7 @@ class Project
     /**
      * @return string
      */
-    public function getRegNumber() : string
+    public function getRegNumber(): string
     {
         return $this->regNumber;
     }

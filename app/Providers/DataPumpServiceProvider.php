@@ -30,9 +30,9 @@ class DataPumpServiceProvider extends ServiceProvider
      */
     public function register()
     {
-       $this->app->when(DataPumpCreateCommand::class)
-           ->needs(IDataPump::class)
-           ->give(DataPumpCreate::class);
+        $this->app->when(DataPumpCreateCommand::class)
+            ->needs(IDataPump::class)
+            ->give(DataPumpCreate::class);
 
         $this->app->when(DataPumpDeleteCommand::class)
             ->needs(IDataPump::class)

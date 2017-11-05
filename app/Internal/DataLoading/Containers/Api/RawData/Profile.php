@@ -33,7 +33,7 @@ class Profile
     /**
      * @return string
      */
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return $this->description;
     }
@@ -51,7 +51,7 @@ class Profile
     /**
      * @return string
      */
-    public function getConsultationHours() : string
+    public function getConsultationHours(): string
     {
         return $this->consultationHours;
     }
@@ -69,7 +69,7 @@ class Profile
     /**
      * @return string
      */
-    public function getEducation() : string
+    public function getEducation(): string
     {
         return $this->education;
     }

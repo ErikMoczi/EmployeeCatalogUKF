@@ -17,5 +17,5 @@ interface IApiUrlContainer
     /**
      * @return string
      */
-    public function getUrl() : string;
+    public function getUrl(): string;
 }

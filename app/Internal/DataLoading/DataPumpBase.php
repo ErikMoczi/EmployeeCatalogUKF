@@ -33,7 +33,7 @@ abstract class DataPumpBase implements IDataPump
     /**
      * @return ApiTeachersContainer
      */
-    protected function getApiTeachers() : ApiTeachersContainer
+    protected function getApiTeachers(): ApiTeachersContainer
     {
         $teachers = $this->apiRequest(new ApiUrlTeachersContainer());
 
@@ -46,7 +46,7 @@ abstract class DataPumpBase implements IDataPump
      * @param int $id
      * @return ApiTeacherDetailsContainer
      */
-    protected function getApiTeacherDetails(int $id) : ApiTeacherDetailsContainer
+    protected function getApiTeacherDetails(int $id): ApiTeacherDetailsContainer
     {
         $teacher = $this->apiRequest(new ApiUrlTeacherContainer($id));
 
@@ -69,7 +69,7 @@ abstract class DataPumpBase implements IDataPump
      * @param string $className
      * @return array
      */
-    private function mapJsonToObject($jsonData, string $className) : array
+    private function mapJsonToObject($jsonData, string $className): array
     {
         $mapArray = array();
 

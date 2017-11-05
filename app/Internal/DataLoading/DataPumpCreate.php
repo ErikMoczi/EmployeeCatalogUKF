@@ -15,8 +15,7 @@ class DataPumpCreate extends DataPumpBase
     {
         $teachers = $this->getApiTeachers();
 
-        foreach ($teachers->getTeachers() as $index => $item)
-        {
+        foreach ($teachers->getTeachers() as $index => $item) {
             $teacher = $teachers->getTeacher($index);
             $teacherDetails = $this->getApiTeacherDetails($teacher->getId());
             dump($teacherDetails);

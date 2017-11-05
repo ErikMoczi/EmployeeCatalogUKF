@@ -17,7 +17,7 @@ class ApiUrlTeachersContainer implements IApiUrlContainer
     /**
      * @return string
      */
-    public function getUrl() : string
+    public function getUrl(): string
     {
         return config('datapump.api_url.teachers') . '';
     }

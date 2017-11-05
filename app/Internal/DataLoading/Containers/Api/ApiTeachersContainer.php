@@ -19,7 +19,7 @@ class ApiTeachersContainer
     /**
      * @return array
      */
-    public function getTeachers() : array
+    public function getTeachers(): array
     {
         return $this->teachers;
     }
@@ -38,10 +38,9 @@ class ApiTeachersContainer
      * @return Teacher
      * @throws GeneralException
      */
-    public function getTeacher(int $index) : Teacher
+    public function getTeacher(int $index): Teacher
     {
-        if(!isset($this->teachers[$index]))
-        {
+        if (!isset($this->teachers[$index])) {
             throw new GeneralException('Incorect index of teacher!');
         }
 
