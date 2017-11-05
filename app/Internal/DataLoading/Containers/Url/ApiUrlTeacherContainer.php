@@ -1,12 +1,18 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Erik
+ * Date: 4.11.2017
+ * Time: 19:47
+ */
 
-namespace App\Internal\DataLoading;
+namespace App\Internal\DataLoading\Containsers\Url;
 
 /**
- * Class ApiUrlTeacher
- * @package App\Internal\DataLoading
+ * Class ApiUrlTeacherContainer
+ * @package App\Internal\DataLoading\Containsers\Url
  */
-class ApiUrlTeacher implements IApiUrlUKF
+class ApiUrlTeacherContainer implements IApiUrlContainer
 {
     /**
      * @var int
@@ -14,7 +20,7 @@ class ApiUrlTeacher implements IApiUrlUKF
     private $id;
 
     /**
-     * ApiUrlTeacher constructor.
+     * ApiUrlTeacherContainer constructor.
      * @param int $id
      */
     public function __construct(int $id = 0)
