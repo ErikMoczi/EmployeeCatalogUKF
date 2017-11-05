@@ -2,6 +2,8 @@
 
 namespace App\Internal\DataLoading;
 
+use App\Exceptions\GeneralException;
+use App\Internal\DataLoading\Containsers\Url\IApiUrlContainer;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
@@ -27,15 +29,15 @@ class ApiCommunication
     }
 
     /**
-     * @param IApiUrlUKF $apiUrlUKF
-     * @return object
+     * @param IApiUrlContainer $apiUrlContainer
+     * @return mixed
      */
-    public function requestData(IApiUrlUKF $apiUrlUKF) : object
+    public function requestData(IApiUrlContainer $apiUrlContainer)
     {
         $responseData = array();
 
         try {
-            $response = $this->client->request('GET', $apiUrlUKF->getUrl(), [
+            $response = $this->client->request('GET', $apiUrlContainer->getUrl(), [
                 'on_headers' => function (ResponseInterface $response) {
                     $this->checkRightContentType($response);
                 }
@@ -48,11 +50,12 @@ class ApiCommunication
             echo $e->getMessage();
         }
 
-        return $this->transformToJSON($responseData);
+        return json_decode($responseData);
     }
 
     /**
      * @param ResponseInterface $response
+     * @throws GeneralException
      */
     private function checkRightContentType(ResponseInterface $response)
     {
@@ -63,14 +66,5 @@ class ApiCommunication
         if ($response->getHeaderLine('Content-Type') !== 'application/json') {
             throw new GeneralException('The file is too big!');
         }
-    }
-
-    /**
-     * @param string $data
-     * @return object
-     */
-    private function transformToJSON(string $data) : object
-    {
-        return json_decode($data);
     }
 }
