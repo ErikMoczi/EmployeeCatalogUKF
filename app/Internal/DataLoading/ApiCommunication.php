@@ -45,9 +45,9 @@ class ApiCommunication
 
             $responseData = $response->getBody();
         } catch (ClientException $e) {
-            echo $e->getMessage();
+            echo $e->getMessage() . PHP_EOL;
         } catch (GeneralException $e) {
-            echo $e->getMessage();
+            echo $e->getMessage() . PHP_EOL;
         }
 
         return json_decode($responseData);
