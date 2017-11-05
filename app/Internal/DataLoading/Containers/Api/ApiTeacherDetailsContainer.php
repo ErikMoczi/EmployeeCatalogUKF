@@ -18,6 +18,6 @@ class ApiTeacherDetailsContainer
 
     public function getTeacherDetails(): TeacherDetails
     {
-        return $this->getTeacherDetails();
+        return $this->teacherDetails;
     }
 }
