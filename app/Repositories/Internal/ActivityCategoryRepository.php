@@ -2,20 +2,21 @@
 
 namespace App\Repositories\Internal;
 
-use App\Models\UKF\Faculty;
+
+use App\Models\UKF\ActivityCategory;
 use App\Repositories\BaseRepository;
 
 /**
- * Class FacultyRepository
+ * Class ActivityCategoryRepository
  * @package App\Repositories\Internal
  */
-class FacultyRepository extends BaseRepository
+class ActivityCategoryRepository extends BaseRepository
 {
     /**
      * @return string
      */
     public function model()
     {
-        return Faculty::class;
+        return ActivityCategory::class;
     }
 }
