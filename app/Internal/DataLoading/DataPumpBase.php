@@ -5,8 +5,8 @@ namespace App\Internal\DataLoading;
 use App\Exceptions\GeneralException;
 use App\Internal\DataLoading\Containsers\Api\ApiTeacherDetailsContainer;
 use App\Internal\DataLoading\Containsers\Api\ApiTeachersContainer;
-use App\Internal\DataLoading\Containsers\Api\RawData\Teacher;
-use App\Internal\DataLoading\Containsers\Api\RawData\TeacherDetails;
+use App\Internal\DataLoading\Containsers\Api\RawData\RDTeacher;
+use App\Internal\DataLoading\Containsers\Api\RawData\RDTeacherDetails;
 use App\Internal\DataLoading\Containsers\Url\ApiUrlTeacherContainer;
 use App\Internal\DataLoading\Containsers\Url\ApiUrlTeachersContainer;
 use App\Internal\DataLoading\Containsers\Url\IApiUrlContainer;
@@ -41,7 +41,7 @@ abstract class DataPumpBase implements IDataPump
         }
 
         return new ApiTeachersContainer(
-            $this->mapJsonToObject($teachers, Teacher::class, true)
+            $this->mapJsonToObject($teachers, RDTeacher::class, true)
         );
     }
 
@@ -55,7 +55,7 @@ abstract class DataPumpBase implements IDataPump
         }
 
         return new ApiTeacherDetailsContainer(
-            $this->mapJsonToObject($teacher, TeacherDetails::class)
+            $this->mapJsonToObject($teacher, RDTeacherDetails::class)
         );
     }
 

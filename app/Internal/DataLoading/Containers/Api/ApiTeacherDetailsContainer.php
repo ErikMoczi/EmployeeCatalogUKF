@@ -2,8 +2,8 @@
 
 namespace App\Internal\DataLoading\Containsers\Api;
 
-use App\Internal\DataLoading\Containsers\Api\RawData\Profile;
-use App\Internal\DataLoading\Containsers\Api\RawData\TeacherDetails;
+use App\Internal\DataLoading\Containsers\Api\RawData\RDProfile;
+use App\Internal\DataLoading\Containsers\Api\RawData\RDTeacherDetails;
 
 /**
  * Class ApiTeacherDetailsContainer
@@ -12,7 +12,7 @@ use App\Internal\DataLoading\Containsers\Api\RawData\TeacherDetails;
 class ApiTeacherDetailsContainer
 {
     /**
-     * @var TeacherDetails
+     * @var RDTeacherDetails
      */
     private $teacherDetails;
 
@@ -26,9 +26,9 @@ class ApiTeacherDetailsContainer
     }
 
     /**
-     * @return Profile|null
+     * @return RDProfile|null
      */
-    public function getProfile(): ?Profile
+    public function getProfile(): ?RDProfile
     {
         return $this->teacherDetails->getProfile();
     }

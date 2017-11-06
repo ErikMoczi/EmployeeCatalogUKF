@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Erik
- * Date: 4.11.2017
- * Time: 19:46
- */
 
 namespace App\Internal\DataLoading\Containsers\Url;
 

@@ -1,59 +1,53 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Erik
- * Date: 4.11.2017
- * Time: 22:21
- */
 
 namespace App\Internal\DataLoading\Containsers\Api\RawData;
 
 /**
- * Class TeacherDetails
+ * Class RDTeacherDetails
  * @package App\Internal\DataLoading\Containsers\Api\RawData
  */
-class TeacherDetails
+class RDTeacherDetails
 {
     /**
-     * @var Profile|null
+     * @var RDProfile|null
      */
     private $profile;
 
     /**
-     * @var Publication[]|null
+     * @var RDPublication[]|null
      */
     private $publications;
 
     /**
-     * @var Project[]|null
+     * @var RDProject[]|null
      */
     private $projects;
 
     /**
-     * @var Activity[]|null
+     * @var RDActivity[]|null
      */
     private $activities;
 
     /**
-     * @return Profile|null
+     * @return RDProfile|null
      */
-    public function getProfile(): ?Profile
+    public function getProfile(): ?RDProfile
     {
         return $this->profile;
     }
 
     /**
-     * @param Profile|null $profile
+     * @param RDProfile|null $profile
      * @return $this
      */
-    public function setProfile(?Profile $profile)
+    public function setProfile(?RDProfile $profile)
     {
         $this->profile = $profile;
         return $this;
     }
 
     /**
-     * @return Publication[]|null
+     * @return RDPublication[]|null
      */
     public function getPublications(): ?array
     {
@@ -61,7 +55,7 @@ class TeacherDetails
     }
 
     /**
-     * @param Publication[]|null $publications
+     * @param RDPublication[]|null $publications
      * @return $this
      */
     public function setPublications(?array $publications)
@@ -71,7 +65,7 @@ class TeacherDetails
     }
 
     /**
-     * @return Project[]|null
+     * @return RDProject[]|null
      */
     public function getProjects(): ?array
     {
@@ -79,7 +73,7 @@ class TeacherDetails
     }
 
     /**
-     * @param Project[]|null $projects
+     * @param RDProject[]|null $projects
      * @return $this
      */
     public function setProjects(?array $projects)
@@ -89,7 +83,7 @@ class TeacherDetails
     }
 
     /**
-     * @return Activity[]|null
+     * @return RDActivity[]|null
      */
     public function getActivities(): ?array
     {
@@ -97,7 +91,7 @@ class TeacherDetails
     }
 
     /**
-     * @param Activity[]|null $activities
+     * @param RDActivity[]|null $activities
      * @return $this
      */
     public function setActivities(?array $activities)

@@ -1,19 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Erik
- * Date: 4.11.2017
- * Time: 22:29
- */
 
 namespace App\Internal\DataLoading\Containsers\Api\RawData;
 
-
 /**
- * Class Profile
+ * Class RDProfile
  * @package App\Internal\DataLoading\Containsers\Api\RawData
  */
-class Profile
+class RDProfile
 {
     /**
      * @var string

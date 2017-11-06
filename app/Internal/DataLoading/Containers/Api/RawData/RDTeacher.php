@@ -3,14 +3,10 @@
 namespace App\Internal\DataLoading\Containsers\Api\RawData;
 
 /**
- * Class Teacher
- * @package App\Internal\DataLoading\Containsers\Api
+ * Class RDTeacher
+ * @package App\Internal\DataLoading\Containsers\Api\RawData
  */
-/**
- * Class Teacher
- * @package App\Internal\DataLoading\Containsers\Api
- */
-class Teacher
+class RDTeacher
 {
     /**
      * @var int

@@ -3,7 +3,7 @@
 namespace App\Internal\DataLoading\Containsers\Api;
 
 use App\Exceptions\GeneralException;
-use App\Internal\DataLoading\Containsers\Api\RawData\Teacher;
+use App\Internal\DataLoading\Containsers\Api\RawData\RDTeacher;
 
 /**
  * Class ApiTeachersContainer
@@ -35,10 +35,10 @@ class ApiTeachersContainer
 
     /**
      * @param int $index
-     * @return Teacher
+     * @return RDTeacher
      * @throws GeneralException
      */
-    public function getTeacher(int $index): Teacher
+    public function getTeacher(int $index): RDTeacher
     {
         if (!isset($this->teachers[$index])) {
             throw new GeneralException('Incorect index of teacher!');
