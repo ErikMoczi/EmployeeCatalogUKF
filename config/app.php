@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel '.app()->version().' Boilerplate'),
+    'name' => env('APP_NAME', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'UTC'),
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -91,18 +91,7 @@ return [
     |
     */
 
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | PHP Locale Code
-    |--------------------------------------------------------------------------
-    |
-    | The PHP locale determines the default locale that will be used
-    | by the Carbon library when setting Carbon's localization.
-    |
-    */
-    'locale_php' => env('APP_LOCALE_PHP', 'en_US'),
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -132,7 +121,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'daily'),
+    'log' => env('APP_LOG', 'single'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
@@ -178,18 +167,13 @@ return [
         /*
          * Package Service Providers...
          */
-        Appstract\BladeDirectives\BladeDirectivesServiceProvider::class,
-        Creativeorange\Gravatar\GravatarServiceProvider::class,
-        HieuLe\Active\ActiveServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        App\Providers\BladeServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\ComposerServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\DataPumpServiceProvider::class,
@@ -242,14 +226,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
-        /*
-         * Package Aliases
-         */
-        'Active' => HieuLe\Active\Facades\Active::class,
-        'Captcha' => Arcanedev\NoCaptcha\Facades\NoCaptcha::class,
-        'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

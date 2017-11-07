@@ -11,15 +11,5 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.sass('resources/assets/sass/frontend/app.scss', 'public/css/frontend.css')
-    .sass('resources/assets/sass/backend/app.scss', 'public/css/backend.css')
-    .js('resources/assets/js/frontend/app.js', 'public/js/frontend.js')
-    .js([
-        'resources/assets/js/backend/before.js',
-        'resources/assets/js/backend/app.js',
-        'resources/assets/js/backend/after.js'
-    ], 'public/js/backend.js');
-
-if(mix.inProduction){
-    mix.version();
-}
+mix.js('resources/assets/js/app.js', 'public/js')
+   .sass('resources/assets/sass/app.scss', 'public/css');

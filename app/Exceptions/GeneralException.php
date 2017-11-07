@@ -48,9 +48,11 @@ class GeneralException extends Exception
         /*
          * All instances of GeneralException redirect back with a flash message to show a bootstrap alert-error
          */
+        /*
         return redirect()
             ->back()
             ->withInput($request->except('password', 'password_confirmation'))
             ->withFlashDanger($this->message);
+        */            
     }
 }
