@@ -36,7 +36,7 @@ class CreatePublicationTable extends Migration
 
             $table->index(["publication_type_id"], 'fk_publication_publication_type1_idx');
 
-            $table->unique(["title"], 'title_UNIQUE');
+            $table->unique(["title", "ISBN"], 'name_UNIQUE');
             $table->timestamps();
 
 

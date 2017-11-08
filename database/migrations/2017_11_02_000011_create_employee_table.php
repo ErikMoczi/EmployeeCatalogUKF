@@ -34,6 +34,8 @@ class CreateEmployeeTable extends Migration
             $table->index(["department_id"], 'fk_employee_department1_idx');
 
             $table->index(["position_id"], 'fk_employee_position_idx');
+
+            $table->unique(["first_name", "middle_name", "last_name"], 'name_UNIQUE');
             $table->timestamps();
 
 
