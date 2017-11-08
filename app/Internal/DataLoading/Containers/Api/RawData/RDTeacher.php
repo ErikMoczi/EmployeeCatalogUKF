@@ -2,11 +2,12 @@
 
 namespace App\Internal\DataLoading\Containsers\Api\RawData;
 
+
 /**
  * Class RDTeacher
  * @package App\Internal\DataLoading\Containsers\Api\RawData
  */
-class RDTeacher
+class RDTeacher implements IRDTeacher
 {
     /**
      * @var int
@@ -168,5 +169,122 @@ class RDTeacher
     {
         $this->description = $description;
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFacultyData(): array
+    {
+        return [
+            'name' => $this->getFaculty(),
+            'short' => $this->getFacultyShort(),
+            'acronym' => !empty($this->getFacultyAcronym()) ? $this->getFacultyAcronym() : null
+        ];
+    }
+
+    /**
+     * @param int $facultyId
+     * @return array
+     */
+    public function getDepartmentData(int $facultyId): array
+    {
+        return [
+            'name' => $this->getDepartmentName(),
+            'acronym' => !empty($this->getDepAcronym()) ? $this->getDepAcronym() : null,
+            'faculty_id' => $facultyId
+        ];
+    }
+
+    /**
+     * @param int $departmentId
+     * @param int $positionId
+     * @return array
+     */
+    public function getEmployeeData(int $departmentId, int $positionId): array
+    {
+        return array_merge(
+            $this->getEmployeeExplodeName(),
+            [
+                'full_name' => $this->getName(),
+                'position_id' => $positionId,
+                'department_id' => $departmentId
+            ]);
+    }
+
+    /**
+     * @return null|string
+     */
+    private function getFacultyShort(): ?string
+    {
+        $facultyShort = null;
+
+        $regular = preg_split('/[ .-]+/', trim($this->getDepartment()));
+        if (count($regular) >= 2) {
+            $facultyShort = $regular[0];
+        }
+
+        return $facultyShort;
+    }
+
+    /**
+     * @return string
+     */
+    private function getDepartmentName(): string
+    {
+        $departmentName = null;
+
+        $regular = preg_replace('/^(' . $this->getFacultyShort() . ')[ .-]+/', '', $this->getDepartment());
+        if (!empty($regular)) {
+            $departmentName = $regular;
+        }
+
+        return $departmentName;
+    }
+
+    /**
+     * @return array
+     */
+    private function getEmployeeExplodeName(): array
+    {
+        $explodeName = [
+            'first_name' => null,
+            'middle_name' => null,
+            'last_name' => null
+        ];
+
+        $fullName = preg_replace('(\w+\.)', '', $this->getName());
+        $fullName = rtrim(trim($fullName), ',');
+        $names = preg_replace('/[[:blank:]]+/', ' ', $fullName);
+        $names = explode(' ', $names);
+
+        switch (count($names)) {
+            case 0: {
+                break;
+            }
+            case 1: {
+                $explodeName['last_name'] = $names[0];
+                break;
+            }
+            case 2: {
+                $explodeName['first_name'] = $names[0];
+                $explodeName['last_name'] = $names[1];
+                break;
+            }
+            case 3: {
+                $explodeName['first_name'] = $names[0];
+                $explodeName['middle_name'] = $names[1];
+                $explodeName['last_name'] = $names[2];
+                break;
+            }
+            default: {
+                $explodeName['first_name'] = $names[0];
+                $explodeName['middle_name'] = $names[1];
+                $explodeName['last_name'] = $names[2];
+                break;
+            }
+        }
+
+        return $explodeName;
     }
 }
