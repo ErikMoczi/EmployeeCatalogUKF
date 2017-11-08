@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Internal;
+namespace App\Repositories\DataLoading;
 
 
 use App\Models\UKF\Project;
@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 
 /**
  * Class ProjectRepository
- * @package App\Repositories\Internal
+ * @package App\Repositories\DataLoading
  */
 class ProjectRepository extends BaseRepository
 {

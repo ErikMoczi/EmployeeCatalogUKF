@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories\Internal;
+namespace App\Repositories\DataLoading;
 
 use App\Models\UKF\Activity;
 use App\Repositories\BaseRepository;
 
 /**
  * Class ActivityRepository
- * @package App\Repositories\Internal
+ * @package App\Repositories\DataLoading
  */
 class ActivityRepository extends BaseRepository
 {

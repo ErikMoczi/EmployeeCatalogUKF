@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories\Internal;
+namespace App\Repositories\DataLoading;
 
 use App\Models\UKF\ProfileType;
 use App\Repositories\BaseRepository;
 
 /**
  * Class ProfileTypeRepository
- * @package App\Repositories\Internal
+ * @package App\Repositories\DataLoading
  */
 class ProfileTypeRepository extends BaseRepository
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Internal;
+namespace App\Repositories\DataLoading;
 
 
 use App\Models\UKF\PublicationType;
@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 
 /**
  * Class PublicationTypeRepository
- * @package App\Repositories\Internal
+ * @package App\Repositories\DataLoading
  */
 class PublicationTypeRepository extends BaseRepository
 {

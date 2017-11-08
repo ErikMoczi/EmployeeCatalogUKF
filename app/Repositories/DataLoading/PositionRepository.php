@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Repositories\Internal;
+namespace App\Repositories\DataLoading;
 
 
 use App\Models\UKF\Position;
 use App\Repositories\BaseRepository;
 
+/**
+ * Class PositionRepository
+ * @package App\Repositories\DataLoading
+ */
 class PositionRepository extends BaseRepository
 {
     /**

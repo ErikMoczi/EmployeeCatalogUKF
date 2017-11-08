@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories\Internal;
+namespace App\Repositories\DataLoading;
 
 use App\Models\UKF\Publisher;
 use App\Repositories\BaseRepository;
 
 /**
  * Class PublisherRepository
- * @package App\Repositories\Internal
+ * @package App\Repositories\DataLoading
  */
 class PublisherRepository extends BaseRepository
 {

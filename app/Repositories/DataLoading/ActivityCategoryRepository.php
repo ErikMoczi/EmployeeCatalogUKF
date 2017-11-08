@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Internal;
+namespace App\Repositories\DataLoading;
 
 
 use App\Models\UKF\ActivityCategory;
@@ -8,7 +8,7 @@ use App\Repositories\BaseRepository;
 
 /**
  * Class ActivityCategoryRepository
- * @package App\Repositories\Internal
+ * @package App\Repositories\DataLoading
  */
 class ActivityCategoryRepository extends BaseRepository
 {
