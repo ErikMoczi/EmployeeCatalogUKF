@@ -27,4 +27,11 @@ class EmployeeHasProfileType extends Model
      * @var array
      */
     protected $fillable = ['value'];
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 }

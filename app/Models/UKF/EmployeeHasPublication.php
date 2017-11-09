@@ -26,4 +26,11 @@ class EmployeeHasPublication extends Model
      * @var array
      */
     protected $fillable = [];
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 }

@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePositionTable extends Migration
+class CreateEmployeeTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'position';
+    public $set_schema_table = 'employee';
 
     /**
      * Run the migrations.
-     * @table position
+     * @table employee
      *
      * @return void
      */
@@ -24,9 +24,17 @@ class CreatePositionTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('name', 45);
+            $table->string('first_name', 25);
+            $table->string('middle_name', 25)->nullable();
+            $table->string('last_name', 25);
+            $table->string('full_name', 100);
+            $table->string('position', 50)->default('Neuvedené');
+            $table->string('dep_name', 50)->default('Neuvedené');
+            $table->string('dep_acronym', 50)->nullable();
+            $table->string('faculty_name', 50)->default('Neuvedené');
+            $table->string('faculty_acronym', 50)->nullable();
 
-            $table->unique(["name"], 'name_UNIQUE');
+            $table->unique(["first_name", "middle_name", "last_name"], 'name_UNIQUE');
             $table->timestamps();
         });
     }

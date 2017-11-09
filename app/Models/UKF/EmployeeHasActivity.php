@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $employee_id
- * @property int $activity_id
+ * @property string $activity_id
  * @property Activity $activity
  * @property Employee $employee
  */
@@ -26,4 +26,11 @@ class EmployeeHasActivity extends Model
      * @var array
      */
     protected $fillable = [];
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
 }

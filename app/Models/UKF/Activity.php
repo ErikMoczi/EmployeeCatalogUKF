@@ -6,17 +6,13 @@ use App\Models\UKF\Traits\Relationship\ActivityRelationship;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * @property int $id
- * @property int $activity_type_id
- * @property int $country_id
- * @property int $activity_category_id
- * @property string $key
+ * @property string $id
  * @property string $title
  * @property string $date
- * @property ActivityCategory $activityCategory
- * @property ActivityType $activityType
- * @property Country $country
- * @property Author[] $authors
+ * @property string $country
+ * @property string $type
+ * @property string $category
+ * @property string $authors
  * @property Employee[] $employees
  */
 class Activity extends Model
@@ -31,7 +27,21 @@ class Activity extends Model
     protected $table = 'activity';
 
     /**
+     * The "type" of the auto-incrementing ID.
+     * 
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     * 
+     * @var bool
+     */
+    protected $incrementing = false;
+
+    /**
      * @var array
      */
-    protected $fillable = ['activity_type_id', 'country_id', 'activity_category_id', 'key', 'title', 'date'];
+    protected $fillable = ['title', 'date', 'country', 'type', 'category', 'authors'];
 }

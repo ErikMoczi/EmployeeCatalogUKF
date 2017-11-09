@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTitleTable extends Migration
+class CreateProfileTypeTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'title';
+    public $set_schema_table = 'profile_type';
 
     /**
      * Run the migrations.
-     * @table title
+     * @table profile_type
      *
      * @return void
      */
@@ -24,19 +24,10 @@ class CreateTitleTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('name', 45);
-            $table->unsignedInteger('title_type_id');
-
-            $table->index(["title_type_id"], 'fk_title_title_type1_idx');
+            $table->string('name', 50);
 
             $table->unique(["name"], 'name_UNIQUE');
             $table->timestamps();
-
-
-            $table->foreign('title_type_id', 'fk_title_title_type1_idx')
-                ->references('id')->on('title_type')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
         });
     }
 

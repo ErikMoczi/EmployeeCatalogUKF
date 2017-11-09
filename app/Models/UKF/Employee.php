@@ -7,18 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property int $position_id
- * @property int $department_id
  * @property string $first_name
  * @property string $middle_name
  * @property string $last_name
  * @property string $full_name
- * @property Department $department
- * @property Position $position
+ * @property string $position
+ * @property string $dep_name
+ * @property string $dep_acronym
+ * @property string $faculty_name
+ * @property string $faculty_acronym
+ * @property Activity[] $activities
  * @property EmployeeHasProfileType[] $employeeHasProfileTypes
  * @property Project[] $projects
  * @property Publication[] $publications
- * @property EmployeeHasTitle[] $employeeHasTitles
  */
 class Employee extends Model
 {
@@ -26,7 +27,7 @@ class Employee extends Model
 
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'employee';
@@ -34,5 +35,15 @@ class Employee extends Model
     /**
      * @var array
      */
-    protected $fillable = ['position_id', 'department_id', 'first_name', 'middle_name', 'last_name', 'full_name'];
+    protected $fillable = [
+        'first_name',
+        'middle_name',
+        'last_name',
+        'full_name',
+        'position',
+        'dep_name',
+        'dep_acronym',
+        'faculty_name',
+        'faculty_acronym'
+    ];
 }

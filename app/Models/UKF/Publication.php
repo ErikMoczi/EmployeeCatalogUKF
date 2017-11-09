@@ -7,17 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
- * @property int $publisher_id
- * @property int $publication_type_id
  * @property string $ISBN
  * @property string $title
  * @property string $sub_titile
- * @property float $page
+ * @property string $authors
+ * @property string $type
+ * @property string $publisher
+ * @property float $pages
  * @property float $year
- * @property PublicationType $publicationType
- * @property Publisher $publisher
+ * @property string $code
  * @property Employee[] $employees
- * @property Author[] $authors
  */
 class Publication extends Model
 {
@@ -33,5 +32,15 @@ class Publication extends Model
     /**
      * @var array
      */
-    protected $fillable = ['publisher_id', 'publication_type_id', 'ISBN', 'title', 'sub_titile', 'page', 'year'];
+    protected $fillable = [
+        'ISBN',
+        'title',
+        'sub_titile',
+        'authors',
+        'type',
+        'publisher',
+        'pages',
+        'year',
+        'code'
+    ];
 }

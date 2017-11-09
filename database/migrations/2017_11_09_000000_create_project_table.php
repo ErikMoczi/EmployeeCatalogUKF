@@ -27,7 +27,7 @@ class CreateProjectTable extends Migration
             $table->string('title', 150);
             $table->decimal('year_from', 4, 0);
             $table->decimal('year_to', 4, 0);
-            $table->string('reg_number', 45)->nullable();
+            $table->string('reg_number', 50)->nullable();
 
             $table->unique(["title"], 'title_UNIQUE');
             $table->timestamps();

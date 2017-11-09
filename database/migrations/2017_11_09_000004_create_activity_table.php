@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfileTypeTable extends Migration
+class CreateActivityTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'profile_type';
+    public $set_schema_table = 'activity';
 
     /**
      * Run the migrations.
-     * @table profile_type
+     * @table activity
      *
      * @return void
      */
@@ -23,10 +23,15 @@ class CreateProfileTypeTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('id');
-            $table->string('name', 45);
+            $table->string('id', 20);
+            $table->string('title')->default('Neuvedené');
+            $table->date('date')->nullable();
+            $table->string('country', 50)->nullable();
+            $table->string('type', 50)->default('Neuvedené');
+            $table->string('category', 50)->default('Neuvedené');
+            $table->text('authors')->nullable();
 
-            $table->unique(["name"], 'name_UNIQUE');
+            $table->primary(['id']);
             $table->timestamps();
         });
     }
