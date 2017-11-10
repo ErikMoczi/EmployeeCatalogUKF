@@ -21,13 +21,13 @@ class ActivityRepository extends BaseRepository
     {
         return DB::transaction(function () use ($data, $forceCreate) {
             $activity = parent::create([
-                'id' => $this->getIfEmptyNull($data['id']),
-                'title' => $this->getIfEmptyNull($data['title']),
-                'date' => $this->getIfEmptyNull($data['date']),
-                'country' => $this->getIfEmptyNull($data['country']),
-                'type' => $this->getIfEmptyNull($data['type']),
-                'category' => $this->getIfEmptyNull($data['category']),
-                'authors' => $this->getIfEmptyNull($data['authors'])
+                'id' => $data['id'],
+                'title' => $data['title'],
+                'date' => $data['date'],
+                'country' => $data['country'],
+                'type' => $data['type'],
+                'category' => $data['category'],
+                'authors' => $data['authors']
             ], $forceCreate);
 
             return $activity;

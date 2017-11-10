@@ -22,10 +22,10 @@ class ProjectRepository extends BaseRepository
     {
         return DB::transaction(function () use ($data, $forceCreate) {
             $project = parent::create([
-                'title' => $this->getIfEmptyNull($data['title']),
-                'year_from' => $this->getIfEmptyNull($data['year_from']),
-                'year_to' => $this->getIfEmptyNull($data['year_to']),
-                'reg_number' => $this->getIfEmptyNull($data['reg_number'])
+                'title' => $data['title'],
+                'year_from' => $data['year_from'],
+                'year_to' => $data['year_to'],
+                'reg_number' => $data['reg_number']
             ], $forceCreate);
 
             return $project;

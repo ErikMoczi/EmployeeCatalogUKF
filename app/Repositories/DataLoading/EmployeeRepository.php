@@ -22,16 +22,16 @@ class EmployeeRepository extends BaseRepository
     {
         return DB::transaction(function () use ($data, $forceCreate) {
             $employee = parent::create([
-                'id' => $this->getIfEmptyNull($data['id']),
-                'first_name' => $this->getIfEmptyNull($data['first_name']),
-                'middle_name' => $this->getIfEmptyNull($data['middle_name']),
-                'last_name' => $this->getIfEmptyNull($data['last_name']),
-                'full_name' => $this->getIfEmptyNull($data['full_name']),
-                'position' => $this->getIfEmptyNull($data['position']),
-                'dep_name' => $this->getIfEmptyNull($data['dep_name']),
-                'dep_acronym' => $this->getIfEmptyNull($data['dep_acronym']),
-                'faculty_name' => $this->getIfEmptyNull($data['faculty_name']),
-                'faculty_acronym' => $this->getIfEmptyNull($data['faculty_acronym'])
+                'id' =>  $data['id'],
+                'first_name' =>  $data['first_name'],
+                'middle_name' =>  $data['middle_name'],
+                'last_name' =>  $data['last_name'],
+                'full_name' =>  $data['full_name'],
+                'position' =>  $data['position'],
+                'dep_name' =>  $data['dep_name'],
+                'dep_acronym' =>  $data['dep_acronym'],
+                'faculty_name' =>  $data['faculty_name'],
+                'faculty_acronym' =>  $data['faculty_acronym']
             ], $forceCreate);
 
             return $employee;

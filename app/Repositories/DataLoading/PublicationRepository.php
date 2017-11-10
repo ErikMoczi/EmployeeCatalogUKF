@@ -21,16 +21,16 @@ class PublicationRepository extends BaseRepository
     public function create(array $data, bool $forceCreate = false)
     {
         return DB::transaction(function () use ($data, $forceCreate) {
-            $publication = parent::createOrGet([
-                'ISBN' => $this->getIfEmptyNull($data['ISBN']),
-                'title' => $this->getIfEmptyNull($data['title']),
-                'sub_title' => $this->getIfEmptyNull($data['sub_title']),
-                'authors' => $this->getIfEmptyNull($data['authors']),
-                'type' => $this->getIfEmptyNull($data['type']),
-                'publisher' => $this->getIfEmptyNull($data['publisher']),
-                'pages' => $this->getIfEmptyNull($data['pages']),
-                'year' => $this->getIfEmptyNull($data['year']),
-                'code' => $this->getIfEmptyNull($data['code'])
+            $publication = parent::create([
+                'ISBN' => $data['ISBN'],
+                'title' => $data['title'],
+                'sub_title' => $data['sub_title'],
+                'authors' => $data['authors'],
+                'type' => $data['type'],
+                'publisher' => $data['publisher'],
+                'pages' => $data['pages'],
+                'year' => $data['year'],
+                'code' => $data['code']
             ], $forceCreate);
 
             return $publication;
