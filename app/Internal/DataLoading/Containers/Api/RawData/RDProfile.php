@@ -6,7 +6,7 @@ namespace App\Internal\DataLoading\Containsers\Api\RawData;
  * Class RDProfile
  * @package App\Internal\DataLoading\Containsers\Api\RawData
  */
-class RDProfile
+class RDProfile implements IRDProfile
 {
     /**
      * @var string
@@ -75,5 +75,17 @@ class RDProfile
     {
         $this->education = $education;
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getProfileData(): array
+    {
+        return [
+            'description' => $this->getDescription(),
+            'consultation_hours' => $this->getConsultationHours(),
+            'education' => $this->getEducation()
+        ];
     }
 }

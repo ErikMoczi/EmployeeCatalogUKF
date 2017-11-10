@@ -6,7 +6,7 @@ namespace App\Internal\DataLoading\Containsers\Api\RawData;
  * Class RDProject
  * @package App\Internal\DataLoading\Containsers\Api\RawData
  */
-class RDProject
+class RDProject implements IRDProject
 {
     /**
      * @var string
@@ -98,5 +98,18 @@ class RDProject
     {
         $this->regNumber = $regNumber;
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getProjectData(): array
+    {
+        return [
+            'title' => $this->getTitle(),
+            'year_from' => $this->getYearFrom(),
+            'year_to' => $this->getYearEnd(),
+            'reg_number' => $this->getRegNumber()
+        ];
     }
 }

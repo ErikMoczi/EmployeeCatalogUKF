@@ -174,72 +174,19 @@ class RDTeacher implements IRDTeacher
     /**
      * @return array
      */
-    public function getFacultyData(): array
-    {
-        return [
-            'name' => $this->getFaculty(),
-            'short' => $this->getFacultyShort(),
-            'acronym' => !empty($this->getFacultyAcronym()) ? $this->getFacultyAcronym() : null
-        ];
-    }
-
-    /**
-     * @param int $facultyId
-     * @return array
-     */
-    public function getDepartmentData(int $facultyId): array
-    {
-        return [
-            'name' => $this->getDepartmentName(),
-            'acronym' => !empty($this->getDepAcronym()) ? $this->getDepAcronym() : null,
-            'faculty_id' => $facultyId
-        ];
-    }
-
-    /**
-     * @param int $departmentId
-     * @param int $positionId
-     * @return array
-     */
-    public function getEmployeeData(int $departmentId, int $positionId): array
+    public function getEmployeeData(): array
     {
         return array_merge(
             $this->getEmployeeExplodeName(),
             [
+                'id' => $this->getId(),
                 'full_name' => $this->getName(),
-                'position_id' => $positionId,
-                'department_id' => $departmentId
+                'position' => $this->getDescription(),
+                'dep_name' => $this->getDepartment(),
+                'dep_acronym' => $this->getDepAcronym(),
+                'faculty_name' => $this->getFaculty(),
+                'faculty_acronym' => $this->getFacultyAcronym()
             ]);
-    }
-
-    /**
-     * @return null|string
-     */
-    private function getFacultyShort(): ?string
-    {
-        $facultyShort = null;
-
-        $regular = preg_split('/[ .-]+/', trim($this->getDepartment()));
-        if (count($regular) >= 2) {
-            $facultyShort = $regular[0];
-        }
-
-        return $facultyShort;
-    }
-
-    /**
-     * @return string
-     */
-    private function getDepartmentName(): string
-    {
-        $departmentName = null;
-
-        $regular = preg_replace('/^(' . $this->getFacultyShort() . ')[ .-]+/', '', $this->getDepartment());
-        if (!empty($regular)) {
-            $departmentName = $regular;
-        }
-
-        return $departmentName;
     }
 
     /**

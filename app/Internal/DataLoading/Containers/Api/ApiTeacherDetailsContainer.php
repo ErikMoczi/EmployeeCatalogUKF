@@ -2,7 +2,10 @@
 
 namespace App\Internal\DataLoading\Containsers\Api;
 
-use App\Internal\DataLoading\Containsers\Api\RawData\RDProfile;
+use App\Internal\DataLoading\Containsers\Api\RawData\IRDActivity;
+use App\Internal\DataLoading\Containsers\Api\RawData\IRDProfile;
+use App\Internal\DataLoading\Containsers\Api\RawData\IRDProject;
+use App\Internal\DataLoading\Containsers\Api\RawData\IRDPublication;
 use App\Internal\DataLoading\Containsers\Api\RawData\RDTeacherDetails;
 
 /**
@@ -26,33 +29,33 @@ class ApiTeacherDetailsContainer
     }
 
     /**
-     * @return RDProfile|null
+     * @return IRDProfile|null
      */
-    public function getProfile(): ?RDProfile
+    public function getProfile(): ?IRDProfile
     {
         return $this->teacherDetails->getProfile();
     }
 
     /**
-     * @return array|null
+     * @return IRDActivity[]
      */
-    public function getActivities(): ?array
+    public function getActivities(): array
     {
         return $this->teacherDetails->getActivities();
     }
 
     /**
-     * @return array|null
+     * @return IRDProject[]
      */
-    public function getProjects(): ?array
+    public function getProjects(): array
     {
         return $this->teacherDetails->getProjects();
     }
 
     /**
-     * @return array|null
+     * @return IRDPublication[]
      */
-    public function getPublications(): ?array
+    public function getPublications(): array
     {
         return $this->teacherDetails->getPublications();
     }

@@ -29,9 +29,9 @@ class RDTeacherDetails
     private $activities;
 
     /**
-     * @return RDProfile|null
+     * @return IRDProfile|null
      */
-    public function getProfile(): ?RDProfile
+    public function getProfile(): ?IRDProfile
     {
         return $this->profile;
     }
@@ -47,11 +47,11 @@ class RDTeacherDetails
     }
 
     /**
-     * @return RDPublication[]|null
+     * @return IRDPublication[]
      */
-    public function getPublications(): ?array
+    public function getPublications(): array
     {
-        return $this->publications;
+        return $this->publications ? $this->publications : array();
     }
 
     /**
@@ -65,11 +65,11 @@ class RDTeacherDetails
     }
 
     /**
-     * @return RDProject[]|null
+     * @return IRDProject[]
      */
-    public function getProjects(): ?array
+    public function getProjects(): array
     {
-        return $this->projects;
+        return $this->projects ? $this->projects : array();
     }
 
     /**
@@ -83,11 +83,11 @@ class RDTeacherDetails
     }
 
     /**
-     * @return RDActivity[]|null
+     * @return IRDActivity[]
      */
-    public function getActivities(): ?array
+    public function getActivities(): array
     {
-        return $this->activities;
+        return $this->activities ? $this->activities : array();
     }
 
     /**

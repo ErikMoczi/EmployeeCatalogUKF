@@ -6,7 +6,7 @@ namespace App\Internal\DataLoading\Containsers\Api\RawData;
  * Class RDActivity
  * @package App\Internal\DataLoading\Containsers\Api\RawData
  */
-class RDActivity
+class RDActivity implements IRDActivity
 {
     /**
      * @var string
@@ -21,7 +21,7 @@ class RDActivity
     /**
      * @var string
      */
-    private $titile;
+    private $title;
 
     /**
      * @var string
@@ -82,18 +82,18 @@ class RDActivity
     /**
      * @return string
      */
-    public function getTitile(): string
+    public function getTitle(): string
     {
-        return $this->titile;
+        return $this->title;
     }
 
     /**
-     * @param string $titile
+     * @param string $title
      * @return $this
      */
-    public function setTitile(string $titile)
+    public function setTitle(string $title)
     {
-        $this->titile = $titile;
+        $this->title = $title;
         return $this;
     }
 
@@ -167,5 +167,21 @@ class RDActivity
     {
         $this->allAuthors = $allAuthors;
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getActivityData(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'title' => $this->getTitle(),
+            'date' => $this->getDate(),
+            'country' => $this->getCountry(),
+            'type' => $this->getType(),
+            'category' => $this->getCategory(),
+            'authors' => $this->getAllAuthors()
+        ];
     }
 }

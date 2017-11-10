@@ -4,18 +4,13 @@ namespace App\Internal\DataLoading\Containsers\Api\RawData;
 
 
 /**
- * Interface IRDTeacher
+ * Interface IRDProject
  * @package App\Internal\DataLoading\Containsers\Api\RawData
  */
-interface IRDTeacher
+interface IRDProject
 {
-    /**
-     * @return int
-     */
-    public function getId(): int;
-
     /**
      * @return array
      */
-    public function getEmployeeData(): array;
+    public function getProjectData(): array;
 }

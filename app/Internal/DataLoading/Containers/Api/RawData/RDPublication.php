@@ -6,7 +6,7 @@ namespace App\Internal\DataLoading\Containsers\Api\RawData;
  * Class RDPublication
  * @package App\Internal\DataLoading\Containsers\Api\RawData
  */
-class RDPublication
+class RDPublication implements IRDPublication
 {
     /**
      * @var string
@@ -213,5 +213,23 @@ class RDPublication
     {
         $this->code = $code;
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPublicationData(): array
+    {
+        return [
+            'ISBN' => $this->getIsbn(),
+            'title' => $this->getTitle(),
+            'sub_title' => $this->getSubTitle(),
+            'authors' => $this->getAllAuthors(),
+            'type' => $this->getType(),
+            'publisher' => $this->getPublisher(),
+            'pages' => $this->getPages(),
+            'year' => $this->getYear(),
+            'code' => $this->getCode()
+        ];
     }
 }
