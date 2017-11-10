@@ -11,7 +11,7 @@ interface RepositoryContract
 
     public function count();
 
-    public function create(array $data);
+    public function create(array $data, bool $forceCreate = true);
 
     public function createMultiple(array $data);
 

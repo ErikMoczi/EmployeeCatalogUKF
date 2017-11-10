@@ -90,8 +90,8 @@ abstract class BaseRepository implements RepositoryContract
     {
         $model = app()->make($this->model());
 
-        if (! $model instanceof Model) {
-            throw new GeneralException("Class {$this->model()} must be an instance of ".Model::class);
+        if (!$model instanceof Model) {
+            throw new GeneralException("Class {$this->model()} must be an instance of " . Model::class);
         }
 
         return $this->model = $model;
@@ -120,7 +120,7 @@ abstract class BaseRepository implements RepositoryContract
      *
      * @return int
      */
-    public function count() : int
+    public function count(): int
     {
         return $this->get()->count();
     }
@@ -129,14 +129,21 @@ abstract class BaseRepository implements RepositoryContract
      * Create a new model record in the database.
      *
      * @param array $data
+     * @param bool $forceCreate
      *
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function create(array $data)
+    public function create(array $data, bool $forceCreate = true)
     {
         $this->unsetClauses();
 
-        return $this->model->create($data);
+        if ($forceCreate) {
+            $model = $this->model->create(array_filter($data, 'strlen'));
+        } else {
+            $model = $this->model->firstOrCreate(array_filter($data, 'strlen'));
+        }
+
+        return $model;
     }
 
     /**
@@ -181,7 +188,7 @@ abstract class BaseRepository implements RepositoryContract
      * @return bool|null
      * @throws \Exception
      */
-    public function deleteById($id) : bool
+    public function deleteById($id): bool
     {
         $this->unsetClauses();
 
@@ -195,7 +202,7 @@ abstract class BaseRepository implements RepositoryContract
      *
      * @return int
      */
-    public function deleteMultipleById(array $ids) : int
+    public function deleteMultipleById(array $ids): int
     {
         return $this->model->destroy($ids);
     }
@@ -270,10 +277,10 @@ abstract class BaseRepository implements RepositoryContract
     }
 
     /**
-     * @param int    $limit
-     * @param array  $columns
+     * @param int $limit
+     * @param array $columns
      * @param string $pageName
-     * @param null   $page
+     * @param null $page
      *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
@@ -356,7 +363,7 @@ abstract class BaseRepository implements RepositoryContract
      * Add a simple where in clause to the query.
      *
      * @param string $column
-     * @param mixed  $values
+     * @param mixed $values
      *
      * @return $this
      */
@@ -432,7 +439,7 @@ abstract class BaseRepository implements RepositoryContract
             $this->query->orderBy($orders['column'], $orders['direction']);
         }
 
-        if (isset($this->take) and ! is_null($this->take)) {
+        if (isset($this->take) and !is_null($this->take)) {
             $this->query->take($this->take);
         }
 
