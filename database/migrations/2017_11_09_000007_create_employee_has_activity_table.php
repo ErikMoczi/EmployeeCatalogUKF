@@ -24,7 +24,7 @@ class CreateEmployeeHasActivityTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->unsignedInteger('employee_id');
-            $table->string('activity_id', 20);
+            $table->string('activity_id', 10);
 
             $table->index(["activity_id"], 'fk_employee_has_activity_activity1_idx');
 

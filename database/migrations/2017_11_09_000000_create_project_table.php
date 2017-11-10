@@ -24,12 +24,11 @@ class CreateProjectTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('title', 150);
+            $table->string('title', 255);
             $table->decimal('year_from', 4, 0);
             $table->decimal('year_to', 4, 0);
-            $table->string('reg_number', 50)->nullable();
+            $table->string('reg_number', 30)->nullable();
 
-            $table->unique(["title"], 'title_UNIQUE');
             $table->timestamps();
         });
     }

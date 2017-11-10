@@ -23,12 +23,12 @@ class CreateActivityTable extends Migration
         if (Schema::hasTable($this->set_schema_table)) return;
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->string('id', 20);
-            $table->string('title')->default('Neuvedené');
-            $table->date('date')->nullable();
-            $table->string('country', 50)->nullable();
-            $table->string('type', 50)->default('Neuvedené');
-            $table->string('category', 50)->default('Neuvedené');
+            $table->string('id', 10);
+            $table->string('title',255)->default('Neuvedené');
+            $table->string('date', 100)->nullable();
+            $table->string('country', 5)->nullable();
+            $table->string('type', 40)->default('Neuvedené');
+            $table->string('category', 100)->default('Neuvedené');
             $table->text('authors')->nullable();
 
             $table->primary(['id']);

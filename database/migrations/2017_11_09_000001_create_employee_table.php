@@ -28,13 +28,12 @@ class CreateEmployeeTable extends Migration
             $table->string('middle_name', 25)->nullable();
             $table->string('last_name', 25);
             $table->string('full_name', 100);
-            $table->string('position', 50)->default('Neuvedené');
+            $table->string('position', 100)->default('Neuvedené');
             $table->string('dep_name', 50)->default('Neuvedené');
-            $table->string('dep_acronym', 50)->nullable();
+            $table->string('dep_acronym', 20)->nullable();
             $table->string('faculty_name', 50)->default('Neuvedené');
-            $table->string('faculty_acronym', 50)->nullable();
+            $table->string('faculty_acronym', 20)->nullable();
 
-            $table->unique(["first_name", "middle_name", "last_name"], 'name_UNIQUE');
             $table->timestamps();
         });
     }
