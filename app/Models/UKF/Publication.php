@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property string $ISBN
  * @property string $title
- * @property string $sub_titile
+ * @property string $sub_title
  * @property string $authors
  * @property string $type
  * @property string $publisher
@@ -24,7 +24,7 @@ class Publication extends Model
 
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'publication';
@@ -35,7 +35,7 @@ class Publication extends Model
     protected $fillable = [
         'ISBN',
         'title',
-        'sub_titile',
+        'sub_title',
         'authors',
         'type',
         'publisher',

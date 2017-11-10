@@ -38,10 +38,10 @@ class Activity extends Model
      * 
      * @var bool
      */
-    protected $incrementing = false;
+    public $incrementing = false;
 
     /**
      * @var array
      */
-    protected $fillable = ['title', 'date', 'country', 'type', 'category', 'authors'];
+    protected $fillable = ['id', 'title', 'date', 'country', 'type', 'category', 'authors'];
 }
