@@ -2,8 +2,8 @@
 
 namespace App\Models\UKF;
 
+use App\Models\BaseModel;
 use App\Models\UKF\Traits\Relationship\EmployeeHasPublicationRelationship;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $employee_id
@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Employee $employee
  * @property Publication $publication
  */
-class EmployeeHasPublication extends Model
+class EmployeeHasPublication extends BaseModel
 {
     use EmployeeHasPublicationRelationship;
 

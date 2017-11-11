@@ -2,8 +2,8 @@
 
 namespace App\Models\UKF;
 
+use App\Models\BaseModel;
 use App\Models\UKF\Traits\Relationship\ActivityRelationship;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $authors
  * @property Employee[] $employees
  */
-class Activity extends Model
+class Activity extends BaseModel
 {
     use ActivityRelationship;
 

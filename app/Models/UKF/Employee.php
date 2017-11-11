@@ -2,8 +2,8 @@
 
 namespace App\Models\UKF;
 
+use App\Models\BaseModel;
 use App\Models\UKF\Traits\Relationship\EmployeeRelationship;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Project[] $projects
  * @property Publication[] $publications
  */
-class Employee extends Model
+class Employee extends BaseModel
 {
     use EmployeeRelationship;
 

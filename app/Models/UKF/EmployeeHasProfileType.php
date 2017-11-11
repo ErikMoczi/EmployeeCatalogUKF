@@ -2,8 +2,8 @@
 
 namespace App\Models\UKF;
 
+use App\Models\BaseModel;
 use App\Models\UKF\Traits\Relationship\EmployeeHasProfileTypeRelationship;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $employee_id
@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Employee $employee
  * @property ProfileType $profileType
  */
-class EmployeeHasProfileType extends Model
+class EmployeeHasProfileType extends BaseModel
 {
     use EmployeeHasProfileTypeRelationship;
 

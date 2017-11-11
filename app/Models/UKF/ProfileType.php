@@ -2,15 +2,15 @@
 
 namespace App\Models\UKF;
 
+use App\Models\BaseModel;
 use App\Models\UKF\Traits\Relationship\ProfileTypeRelationship;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
  * @property string $name
  * @property EmployeeHasProfileType[] $employeeHasProfileTypes
  */
-class ProfileType extends Model
+class ProfileType extends BaseModel
 {
     use ProfileTypeRelationship;
 

@@ -2,8 +2,8 @@
 
 namespace App\Models\UKF;
 
+use App\Models\BaseModel;
 use App\Models\UKF\Traits\Relationship\ProjectRelationship;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property int $id
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $reg_number
  * @property Employee[] $employees
  */
-class Project extends Model
+class Project extends BaseModel
 {
     use ProjectRelationship;
 
