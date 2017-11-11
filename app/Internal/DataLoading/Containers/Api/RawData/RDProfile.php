@@ -83,9 +83,16 @@ class RDProfile implements IRDProfile
     public function getProfileData(): array
     {
         return [
-            'description' => $this->getDescription(),
-            'consultation_hours' => $this->getConsultationHours(),
-            'education' => $this->getEducation()
+            'profile_type' => [
+                ['name' => 'description'],
+                ['name' => 'consultation_hours'],
+                ['name' => 'education'],
+            ],
+            'profile_value' => [
+                'description' => $this->getDescription(),
+                'consultation_hours' => $this->getConsultationHours(),
+                'education' => $this->getEducation()
+            ]
         ];
     }
 }
