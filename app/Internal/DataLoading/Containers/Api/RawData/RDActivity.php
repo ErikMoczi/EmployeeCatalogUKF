@@ -175,7 +175,7 @@ class RDActivity implements IRDActivity
     public function getActivityData(): array
     {
         return [
-            'id' => $this->getId(),
+            'key' => $this->getId(),
             'title' => $this->getTitle(),
             'date' => $this->getDate(),
             'country' => $this->getCountry(),
