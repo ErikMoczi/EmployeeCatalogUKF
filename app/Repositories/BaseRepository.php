@@ -150,15 +150,16 @@ abstract class BaseRepository implements RepositoryContract
      * Create one or more new model records in the database.
      *
      * @param array $data
+     * @param bool $forceCreate
      *
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function createMultiple(array $data)
+    public function createMultiple(array $data, bool $forceCreate = true)
     {
         $models = new Collection();
 
         foreach ($data as $d) {
-            $models->push($this->create($d));
+            $models->push($this->create($d, $forceCreate));
         }
 
         return $models;

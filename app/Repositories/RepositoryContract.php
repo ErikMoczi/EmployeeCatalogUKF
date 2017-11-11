@@ -13,7 +13,7 @@ interface RepositoryContract
 
     public function create(array $data, bool $forceCreate = true);
 
-    public function createMultiple(array $data);
+    public function createMultiple(array $data, bool $forceCreate = true);
 
     public function delete();
 
