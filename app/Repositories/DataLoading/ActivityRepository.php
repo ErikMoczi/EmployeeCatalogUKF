@@ -3,6 +3,7 @@
 namespace App\Repositories\DataLoading;
 
 use App\Models\UKF\Activity;
+use App\Models\UKF\Employee;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\DB;
 
@@ -17,18 +18,12 @@ class ActivityRepository extends BaseRepository
         return Activity::class;
     }
 
-    public function create(array $data, bool $forceCreate = false)
+    public function createWithEmployeeRelation(array $data, int $employeeId)
     {
-        return DB::transaction(function () use ($data, $forceCreate) {
-            $activity = parent::create([
-                'id' => $data['id'],
-                'title' => $data['title'],
-                'date' => $data['date'],
-                'country' => $data['country'],
-                'type' => $data['type'],
-                'category' => $data['category'],
-                'authors' => $data['authors']
-            ], $forceCreate);
+        return DB::transaction(function () use ($data, $employeeId) {
+            $activity = parent::create($data, false);
+            $employee = Employee::find($employeeId);
+            $activity->employees()->sync($employee);
 
             return $activity;
         });

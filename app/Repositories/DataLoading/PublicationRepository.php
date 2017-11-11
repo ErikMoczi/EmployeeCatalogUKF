@@ -3,6 +3,7 @@
 namespace App\Repositories\DataLoading;
 
 
+use App\Models\UKF\Employee;
 use App\Models\UKF\Publication;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\DB;
@@ -18,20 +19,12 @@ class PublicationRepository extends BaseRepository
         return Publication::class;
     }
 
-    public function create(array $data, bool $forceCreate = false)
+    public function createWithEmployeeRelation(array $data, int $employeeId)
     {
-        return DB::transaction(function () use ($data, $forceCreate) {
-            $publication = parent::create([
-                'ISBN' => $data['ISBN'],
-                'title' => $data['title'],
-                'sub_title' => $data['sub_title'],
-                'authors' => $data['authors'],
-                'type' => $data['type'],
-                'publisher' => $data['publisher'],
-                'pages' => $data['pages'],
-                'year' => $data['year'],
-                'code' => $data['code']
-            ], $forceCreate);
+        return DB::transaction(function () use ($data, $employeeId) {
+            $publication = parent::create($data, false);
+            $employee = Employee::find($employeeId);
+            $publication->employees()->sync($employee);
 
             return $publication;
         });
