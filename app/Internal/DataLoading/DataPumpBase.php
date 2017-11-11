@@ -35,8 +35,7 @@ abstract class DataPumpBase implements IDataPump
     {
         $teachers = $this->apiRequest(new ApiUrlTeachersContainer());
 
-        if(is_null($teachers))
-        {
+        if (is_null($teachers)) {
             throw new GeneralException('Missing request data for teachers!');
         }
 
@@ -49,8 +48,7 @@ abstract class DataPumpBase implements IDataPump
     {
         $teacher = $this->apiRequest(new ApiUrlTeacherContainer($id));
 
-        if(is_null($teacher))
-        {
+        if (is_null($teacher)) {
             throw new GeneralException('Missing request data for teacher id {' . $id . '}!');
         }
 
@@ -81,12 +79,9 @@ abstract class DataPumpBase implements IDataPump
         try {
             $jsonMapper = new \JsonMapper();
 
-            if($isArray)
-            {
+            if ($isArray) {
                 $mapArray = $jsonMapper->mapArray($jsonData, array(), $className);
-            }
-            else
-            {
+            } else {
                 $mapArray = $jsonMapper->map($jsonData, new $className);
             }
 
