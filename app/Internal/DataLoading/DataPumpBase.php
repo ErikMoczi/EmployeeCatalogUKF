@@ -118,6 +118,10 @@ abstract class DataPumpBase implements IDataPump
         $this->profileRepository = $profileRepository;
     }
 
+    /**
+     * @return ApiTeachersContainer
+     * @throws GeneralException
+     */
     protected function getApiTeachers(): ApiTeachersContainer
     {
         $teachers = $this->apiRequest(new ApiUrlTeachersContainer());
@@ -131,6 +135,11 @@ abstract class DataPumpBase implements IDataPump
         );
     }
 
+    /**
+     * @param int $id
+     * @return ApiTeacherDetailsContainer
+     * @throws GeneralException
+     */
     protected function getApiTeacherDetails(int $id): ApiTeacherDetailsContainer
     {
         $teacher = $this->apiRequest(new ApiUrlTeacherContainer($id));
