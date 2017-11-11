@@ -11,6 +11,6 @@ trait ProjectRelationship
      */
     public function employees()
     {
-        return $this->belongsToMany(Employee::class, EmployeeHasProject::class);
+        return $this->belongsToMany(Employee::class, EmployeeHasProject::getTableName());
     }
 }

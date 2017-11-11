@@ -11,6 +11,6 @@ trait PublicationRelationship
      */
     public function employees()
     {
-        return $this->belongsToMany(Employee::class, EmployeeHasPublication::class);
+        return $this->belongsToMany(Employee::class, EmployeeHasPublication::getTableName());
     }
 }

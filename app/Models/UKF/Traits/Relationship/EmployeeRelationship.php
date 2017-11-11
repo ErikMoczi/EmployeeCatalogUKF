@@ -6,6 +6,7 @@ use App\Models\UKF\EmployeeHasActivity;
 use App\Models\UKF\EmployeeHasProfileType;
 use App\Models\UKF\EmployeeHasProject;
 use App\Models\UKF\EmployeeHasPublication;
+use App\Models\UKF\ProfileType;
 use App\Models\UKF\Project;
 use App\Models\UKF\Publication;
 
@@ -16,15 +17,15 @@ trait EmployeeRelationship
      */
     public function activities()
     {
-        return $this->belongsToMany(Activity::class, EmployeeHasActivity::class);
+        return $this->belongsToMany(Activity::class, EmployeeHasActivity::getTableName());
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      */
-    public function employeeHasProfileTypes()
+    public function profiles()
     {
-        return $this->hasMany(EmployeeHasProfileType::class);
+        return $this->belongsToMany(ProfileType::class, EmployeeHasProfileType::getTableName())->withPivot('value');
     }
 
     /**
@@ -32,7 +33,7 @@ trait EmployeeRelationship
      */
     public function projects()
     {
-        return $this->belongsToMany(Project::class, EmployeeHasProject::class);
+        return $this->belongsToMany(Project::class, EmployeeHasProject::getTableName());
     }
 
     /**
@@ -40,6 +41,6 @@ trait EmployeeRelationship
      */
     public function publications()
     {
-        return $this->belongsToMany(Publication::class, EmployeeHasPublication::class);
+        return $this->belongsToMany(Publication::class, EmployeeHasPublication::getTableName());
     }
 }

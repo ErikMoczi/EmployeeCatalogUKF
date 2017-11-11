@@ -11,6 +11,6 @@ trait ActivityRelationship
      */
     public function employees()
     {
-        return $this->belongsToMany(Employee::class, EmployeeHasActivity::class);
+        return $this->belongsToMany(Employee::class, EmployeeHasActivity::getTableName());
     }
 }
