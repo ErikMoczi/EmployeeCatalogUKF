@@ -59,7 +59,7 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "@php artisan ide-helper:generate",
             "@php artisan ide-helper:meta",
-            "@php artisan optimize",
+            "@php artisan optimize"
         ],
         "clear-all": [
             "composer dumpautoload -o",
