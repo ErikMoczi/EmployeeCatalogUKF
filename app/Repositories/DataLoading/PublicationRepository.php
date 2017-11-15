@@ -3,8 +3,8 @@
 namespace App\Repositories\DataLoading;
 
 
-use App\Models\UKF\Employee;
-use App\Models\UKF\Publication;
+use App\Models\Data\Employee;
+use App\Models\Data\Publication;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\DB;
 

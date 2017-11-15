@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models\UKF;
+namespace App\Models\Data;
 
 use App\Models\BaseModel;
-use App\Models\UKF\Traits\Relationship\EmployeeHasProjectRelationship;
+use App\Models\Data\Traits\Relationship\EmployeeHasProjectRelationship;
 
 /**
  * @property int $employee_id

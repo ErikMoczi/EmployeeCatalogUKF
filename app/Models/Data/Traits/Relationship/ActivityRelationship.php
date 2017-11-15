@@ -1,8 +1,8 @@
 <?php
-namespace App\Models\UKF\Traits\Relationship;
+namespace App\Models\Data\Traits\Relationship;
 
-use App\Models\UKF\Employee;
-use App\Models\UKF\EmployeeHasActivity;
+use App\Models\Data\Employee;
+use App\Models\Data\EmployeeHasActivity;
 
 trait ActivityRelationship
 {

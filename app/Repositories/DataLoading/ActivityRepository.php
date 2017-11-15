@@ -2,8 +2,8 @@
 
 namespace App\Repositories\DataLoading;
 
-use App\Models\UKF\Activity;
-use App\Models\UKF\Employee;
+use App\Models\Data\Activity;
+use App\Models\Data\Employee;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\DB;
 

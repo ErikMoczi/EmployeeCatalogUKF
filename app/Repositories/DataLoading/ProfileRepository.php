@@ -2,8 +2,8 @@
 
 namespace App\Repositories\DataLoading;
 
-use App\Models\UKF\Employee;
-use App\Models\UKF\ProfileType;
+use App\Models\Data\Employee;
+use App\Models\Data\ProfileType;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\DB;
 

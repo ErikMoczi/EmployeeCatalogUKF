@@ -1,8 +1,8 @@
 <?php
-namespace App\Models\UKF\Traits\Relationship;
+namespace App\Models\Data\Traits\Relationship;
 
-use App\Models\UKF\Employee;
-use App\Models\UKF\EmployeeHasPublication;
+use App\Models\Data\Employee;
+use App\Models\Data\EmployeeHasPublication;
 
 trait PublicationRelationship
 {
