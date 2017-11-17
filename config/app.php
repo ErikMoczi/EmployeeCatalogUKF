@@ -227,6 +227,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'EmailHelper' => App\Facades\General\EmailHelper::class,
+        'DataPumpHelper' => App\Facades\General\DataPumpHelper::class,
     ],
 
 ];
