@@ -6,7 +6,7 @@ use App\Models\Data\Employee;
 trait UserRelationship
 {
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
      */
     public function employee()
     {
