@@ -54,6 +54,24 @@ class RDPublication implements IRDPublication
     private $code;
 
     /**
+     * @return array
+     */
+    public function getPublicationData(): array
+    {
+        return [
+            'ISBN' => $this->getIsbn(),
+            'title' => $this->getTitle(),
+            'sub_title' => $this->getSubTitle(),
+            'authors' => $this->getAllAuthors(),
+            'type' => $this->getType(),
+            'publisher' => $this->getPublisher(),
+            'pages' => $this->getPages(),
+            'year' => $this->getYear(),
+            'code' => $this->getCode()
+        ];
+    }
+
+    /**
      * @return string
      */
     public function getIsbn(): string
@@ -213,23 +231,5 @@ class RDPublication implements IRDPublication
     {
         $this->code = $code;
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getPublicationData(): array
-    {
-        return [
-            'ISBN' => $this->getIsbn(),
-            'title' => $this->getTitle(),
-            'sub_title' => $this->getSubTitle(),
-            'authors' => $this->getAllAuthors(),
-            'type' => $this->getType(),
-            'publisher' => $this->getPublisher(),
-            'pages' => $this->getPages(),
-            'year' => $this->getYear(),
-            'code' => $this->getCode()
-        ];
     }
 }

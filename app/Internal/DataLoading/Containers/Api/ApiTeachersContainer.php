@@ -18,20 +18,20 @@ class ApiTeachersContainer
     private $teachers;
 
     /**
-     * @return IRDTeacher[]
-     */
-    public function getTeachers(): array
-    {
-        return $this->teachers;
-    }
-
-    /**
      * ApiTeachersContainer constructor.
      * @param RDTeacher[] $teachers
      */
     public function __construct(array $teachers)
     {
         $this->teachers = $teachers;
+    }
+
+    /**
+     * @return IRDTeacher[]
+     */
+    public function getTeachers(): array
+    {
+        return $this->teachers;
     }
 
     /**

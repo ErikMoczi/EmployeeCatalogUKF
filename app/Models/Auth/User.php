@@ -3,8 +3,8 @@
 namespace App\Models\Auth;
 
 use App\Models\Auth\Traits\Relationship\UserRelationship;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * @property int $id
@@ -31,10 +31,10 @@ class User extends Authenticatable
     /**
      * @var array
      */
-    protected $fillable = ['employee_id', 'name', 'email', 'remember_token'];
+    protected $fillable = ['employee_id', 'name', 'email', 'remember_token', 'password', 'admin_flag'];
 
     /**
      * @var array
      */
-    protected $guarded = ['password', 'admin_flag'];
+    protected $guarded = [];
 }

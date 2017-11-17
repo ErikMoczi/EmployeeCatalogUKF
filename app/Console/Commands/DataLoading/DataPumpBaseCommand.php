@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Internal\DataLoading;
+namespace App\Console\Commands\DataLoading;
+
 
 use App\Exceptions\GeneralException;
+use App\Internal\DataLoading\ApiCommunication;
 use App\Internal\DataLoading\Containsers\Api\ApiTeacherDetailsContainer;
 use App\Internal\DataLoading\Containsers\Api\ApiTeachersContainer;
 use App\Internal\DataLoading\Containsers\Api\RawData\RDTeacher;
@@ -15,12 +17,14 @@ use App\Repositories\DataLoading\EmployeeRepository;
 use App\Repositories\DataLoading\ProfileRepository;
 use App\Repositories\DataLoading\ProjectRepository;
 use App\Repositories\DataLoading\PublicationRepository;
+use App\Repositories\DataLoading\UserRepository;
+use Illuminate\Console\Command;
 
 /**
- * Class DataPumpBase
- * @package App\Internal\DataLoading
+ * Class DataPumpBaseCommand
+ * @package App\Console\Commands\DataLoading
  */
-abstract class DataPumpBase implements IDataPump
+abstract class DataPumpBaseCommand extends Command implements IDataPump
 {
     /**
      * @var ApiCommunication
@@ -51,6 +55,42 @@ abstract class DataPumpBase implements IDataPump
      * @var ProfileRepository
      */
     private $profileRepository;
+
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
+
+    /**
+     * DataPumpBaseCommand constructor.
+     * @param ApiCommunication $apiCommunication
+     * @param EmployeeRepository $employeeRepository
+     * @param ActivityRepository $activityRepository
+     * @param ProjectRepository $projectRepository
+     * @param PublicationRepository $publicationRepository
+     * @param ProfileRepository $profileRepository
+     * @param UserRepository $userRepository
+     */
+    public function __construct(
+        ApiCommunication $apiCommunication,
+        EmployeeRepository $employeeRepository,
+        ActivityRepository $activityRepository,
+        ProjectRepository $projectRepository,
+        PublicationRepository $publicationRepository,
+        ProfileRepository $profileRepository,
+        UserRepository $userRepository
+    )
+    {
+        parent::__construct();
+
+        $this->apiCommunication = $apiCommunication;
+        $this->employeeRepository = $employeeRepository;
+        $this->activityRepository = $activityRepository;
+        $this->projectRepository = $projectRepository;
+        $this->publicationRepository = $publicationRepository;
+        $this->profileRepository = $profileRepository;
+        $this->userRepository = $userRepository;
+    }
 
     /**
      * @return EmployeeRepository
@@ -93,29 +133,25 @@ abstract class DataPumpBase implements IDataPump
     }
 
     /**
-     * DataPumpBase constructor.
-     * @param ApiCommunication $apiCommunication
-     * @param EmployeeRepository $employeeRepository
-     * @param ActivityRepository $activityRepository
-     * @param ProjectRepository $projectRepository
-     * @param PublicationRepository $publicationRepository
-     * @param ProfileRepository $profileRepository
+     * @return UserRepository
      */
-    public function __construct(
-        ApiCommunication $apiCommunication,
-        EmployeeRepository $employeeRepository,
-        ActivityRepository $activityRepository,
-        ProjectRepository $projectRepository,
-        PublicationRepository $publicationRepository,
-    ProfileRepository $profileRepository
-    )
+    public function getUserRepository(): UserRepository
     {
-        $this->apiCommunication = $apiCommunication;
-        $this->employeeRepository = $employeeRepository;
-        $this->activityRepository = $activityRepository;
-        $this->projectRepository = $projectRepository;
-        $this->publicationRepository = $publicationRepository;
-        $this->profileRepository = $profileRepository;
+        return $this->userRepository;
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+        $this->info('-----> start time ' . date("h:i:sa"));
+
+        $this->runPump();
+
+        $this->info('-----> end time ' . date("h:i:sa"));
     }
 
     /**
@@ -132,24 +168,6 @@ abstract class DataPumpBase implements IDataPump
 
         return new ApiTeachersContainer(
             $this->mapJsonToObject($teachers, RDTeacher::class, true)
-        );
-    }
-
-    /**
-     * @param int $id
-     * @return ApiTeacherDetailsContainer
-     * @throws GeneralException
-     */
-    protected function getApiTeacherDetails(int $id): ApiTeacherDetailsContainer
-    {
-        $teacher = $this->apiRequest(new ApiUrlTeacherContainer($id));
-
-        if (is_null($teacher)) {
-            throw new GeneralException('Missing request data for teacher id {' . $id . '}!');
-        }
-
-        return new ApiTeacherDetailsContainer(
-            $this->mapJsonToObject($teacher, RDTeacherDetails::class)
         );
     }
 
@@ -186,5 +204,23 @@ abstract class DataPumpBase implements IDataPump
         }
 
         return $mapArray;
+    }
+
+    /**
+     * @param int $id
+     * @return ApiTeacherDetailsContainer
+     * @throws GeneralException
+     */
+    protected function getApiTeacherDetails(int $id): ApiTeacherDetailsContainer
+    {
+        $teacher = $this->apiRequest(new ApiUrlTeacherContainer($id));
+
+        if (is_null($teacher)) {
+            throw new GeneralException('Missing request data for teacher id {' . $id . '}!');
+        }
+
+        return new ApiTeacherDetailsContainer(
+            $this->mapJsonToObject($teacher, RDTeacherDetails::class)
+        );
     }
 }

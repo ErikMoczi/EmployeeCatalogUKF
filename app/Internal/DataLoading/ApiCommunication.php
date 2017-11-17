@@ -5,7 +5,6 @@ namespace App\Internal\DataLoading;
 use App\Exceptions\GeneralException;
 use App\Internal\DataLoading\Containsers\Url\IApiUrlContainer;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -66,6 +65,10 @@ class ApiCommunication
         }
     }
 
+    /**
+     * @param $jsonData
+     * @return mixed
+     */
     private function adjustJsonData($jsonData)
     {
         $jsonData = json_decode($jsonData);

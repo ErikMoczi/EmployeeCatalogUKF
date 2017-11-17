@@ -46,6 +46,88 @@ class RDTeacher implements IRDTeacher
     private $description;
 
     /**
+     * @return array
+     */
+    public function getEmployeeData(): array
+    {
+        return array_merge(
+            $this->getEmployeeExplodeName(),
+            [
+                'id' => $this->getId(),
+                'full_name' => $this->getName(),
+                'position' => $this->getDescription(),
+                'dep_name' => $this->getDepartment(),
+                'dep_acronym' => $this->getDepAcronym(),
+                'faculty_name' => $this->getFaculty(),
+                'faculty_acronym' => $this->getFacultyAcronym()
+            ]);
+    }
+
+    /**
+     * @return array
+     */
+    private function getEmployeeExplodeName(): array
+    {
+        $explodeName = [
+            'first_name' => null,
+            'middle_name' => null,
+            'last_name' => null
+        ];
+
+        $fullName = preg_replace('(\w+\.)', '', $this->getName());
+        $fullName = rtrim(trim($fullName), ',');
+        $names = preg_replace('/[[:blank:]]+/', ' ', $fullName);
+        $names = explode(' ', $names);
+
+        switch (count($names)) {
+            case 0: {
+                break;
+            }
+            case 1: {
+                $explodeName['last_name'] = $names[0];
+                break;
+            }
+            case 2: {
+                $explodeName['first_name'] = $names[0];
+                $explodeName['last_name'] = $names[1];
+                break;
+            }
+            case 3: {
+                $explodeName['first_name'] = $names[0];
+                $explodeName['middle_name'] = $names[1];
+                $explodeName['last_name'] = $names[2];
+                break;
+            }
+            default: {
+                $explodeName['first_name'] = $names[0];
+                $explodeName['middle_name'] = $names[1];
+                $explodeName['last_name'] = $names[2];
+                break;
+            }
+        }
+
+        return $explodeName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return $this
+     */
+    public function setName(string $name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -66,18 +148,18 @@ class RDTeacher implements IRDTeacher
     /**
      * @return string
      */
-    public function getName(): string
+    public function getDescription(): string
     {
-        return $this->name;
+        return $this->description;
     }
 
     /**
-     * @param string $name
+     * @param string $description
      * @return $this
      */
-    public function setName(string $name)
+    public function setDescription(string $description)
     {
-        $this->name = $name;
+        $this->description = $description;
         return $this;
     }
 
@@ -154,84 +236,19 @@ class RDTeacher implements IRDTeacher
     }
 
     /**
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param string $description
-     * @return $this
-     */
-    public function setDescription(string $description)
-    {
-        $this->description = $description;
-        return $this;
-    }
-
-    /**
      * @return array
      */
-    public function getEmployeeData(): array
+    public function getUserData(): array
     {
-        return array_merge(
-            $this->getEmployeeExplodeName(),
-            [
-                'id' => $this->getId(),
-                'full_name' => $this->getName(),
-                'position' => $this->getDescription(),
-                'dep_name' => $this->getDepartment(),
-                'dep_acronym' => $this->getDepAcronym(),
-                'faculty_name' => $this->getFaculty(),
-                'faculty_acronym' => $this->getFacultyAcronym()
-            ]);
-    }
+        $name = $this->getEmployeeExplodeName();
+        $prefix = substr(iconv('UTF-8', 'ASCII//TRANSLIT', $name['first_name']), 0, 1);
+        $suffix = iconv('UTF-8', 'ASCII//TRANSLIT', $name['last_name']);
 
-    /**
-     * @return array
-     */
-    private function getEmployeeExplodeName(): array
-    {
-        $explodeName = [
-            'first_name' => null,
-            'middle_name' => null,
-            'last_name' => null
+        return [
+            'name' => $this->getName(),
+            'email' => strtolower($prefix . $suffix . config('datapump.email')),
+            'password' => bcrypt(str_random(6)),
+            'employee_id' => $this->getId()
         ];
-
-        $fullName = preg_replace('(\w+\.)', '', $this->getName());
-        $fullName = rtrim(trim($fullName), ',');
-        $names = preg_replace('/[[:blank:]]+/', ' ', $fullName);
-        $names = explode(' ', $names);
-
-        switch (count($names)) {
-            case 0: {
-                break;
-            }
-            case 1: {
-                $explodeName['last_name'] = $names[0];
-                break;
-            }
-            case 2: {
-                $explodeName['first_name'] = $names[0];
-                $explodeName['last_name'] = $names[1];
-                break;
-            }
-            case 3: {
-                $explodeName['first_name'] = $names[0];
-                $explodeName['middle_name'] = $names[1];
-                $explodeName['last_name'] = $names[2];
-                break;
-            }
-            default: {
-                $explodeName['first_name'] = $names[0];
-                $explodeName['middle_name'] = $names[1];
-                $explodeName['last_name'] = $names[2];
-                break;
-            }
-        }
-
-        return $explodeName;
     }
 }

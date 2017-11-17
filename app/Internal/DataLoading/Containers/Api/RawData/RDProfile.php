@@ -24,6 +24,25 @@ class RDProfile implements IRDProfile
     private $education;
 
     /**
+     * @return array
+     */
+    public function getProfileData(): array
+    {
+        return [
+            'profile_type' => [
+                ['name' => 'description'],
+                ['name' => 'consultation_hours'],
+                ['name' => 'education'],
+            ],
+            'profile_value' => [
+                'description' => $this->getDescription(),
+                'consultation_hours' => $this->getConsultationHours(),
+                'education' => $this->getEducation()
+            ]
+        ];
+    }
+
+    /**
      * @return string
      */
     public function getDescription(): string
@@ -75,24 +94,5 @@ class RDProfile implements IRDProfile
     {
         $this->education = $education;
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getProfileData(): array
-    {
-        return [
-            'profile_type' => [
-                ['name' => 'description'],
-                ['name' => 'consultation_hours'],
-                ['name' => 'education'],
-            ],
-            'profile_value' => [
-                'description' => $this->getDescription(),
-                'consultation_hours' => $this->getConsultationHours(),
-                'education' => $this->getEducation()
-            ]
-        ];
     }
 }

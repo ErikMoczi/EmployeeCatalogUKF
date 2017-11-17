@@ -18,4 +18,9 @@ interface IRDTeacher
      * @return array
      */
     public function getEmployeeData(): array;
+
+    /**
+     * @return array
+     */
+    public function getUserData(): array;
 }

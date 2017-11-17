@@ -44,6 +44,22 @@ class RDActivity implements IRDActivity
     private $allAuthors;
 
     /**
+     * @return array
+     */
+    public function getActivityData(): array
+    {
+        return [
+            'key' => $this->getId(),
+            'title' => $this->getTitle(),
+            'date' => $this->getDate(),
+            'country' => $this->getCountry(),
+            'type' => $this->getType(),
+            'category' => $this->getCategory(),
+            'authors' => $this->getAllAuthors()
+        ];
+    }
+
+    /**
      * @return string
      */
     public function getId(): string
@@ -64,24 +80,6 @@ class RDActivity implements IRDActivity
     /**
      * @return string
      */
-    public function getDate(): string
-    {
-        return $this->date;
-    }
-
-    /**
-     * @param string $date
-     * @return $this
-     */
-    public function setDate(string $date)
-    {
-        $this->date = $date;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
@@ -94,6 +92,24 @@ class RDActivity implements IRDActivity
     public function setTitle(string $title)
     {
         $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDate(): string
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param string $date
+     * @return $this
+     */
+    public function setDate(string $date)
+    {
+        $this->date = $date;
         return $this;
     }
 
@@ -167,21 +183,5 @@ class RDActivity implements IRDActivity
     {
         $this->allAuthors = $allAuthors;
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getActivityData(): array
-    {
-        return [
-            'key' => $this->getId(),
-            'title' => $this->getTitle(),
-            'date' => $this->getDate(),
-            'country' => $this->getCountry(),
-            'type' => $this->getType(),
-            'category' => $this->getCategory(),
-            'authors' => $this->getAllAuthors()
-        ];
     }
 }

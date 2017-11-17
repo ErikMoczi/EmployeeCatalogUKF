@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\DataLoading;
 
 /**
  * Class DataPumpUpdateCommand
- * @package App\Console\Commands
+ * @package App\Console\Commands\DataLoading
  */
 class DataPumpUpdateCommand extends DataPumpBaseCommand
 {
@@ -21,4 +21,12 @@ class DataPumpUpdateCommand extends DataPumpBaseCommand
      * @var string
      */
     protected $description = 'Command description';
+
+    /**
+     *
+     */
+    public function runPump(): void
+    {
+        // TODO: Implement runPump() method.
+    }
 }

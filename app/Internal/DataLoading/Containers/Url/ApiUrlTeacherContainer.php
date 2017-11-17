@@ -2,6 +2,9 @@
 
 namespace App\Internal\DataLoading\Containsers\Url;
 
+use App\Facades\General\DataPumpHelper;
+
+
 /**
  * Class ApiUrlTeacherContainer
  * @package App\Internal\DataLoading\Containsers\Url
@@ -27,6 +30,6 @@ class ApiUrlTeacherContainer implements IApiUrlContainer
      */
     public function getUrl(): string
     {
-        return config('datapump.api_url.teacher') . $this->id;
+        return DataPumpHelper::getApiUrlTeacher() . $this->id;
     }
 }

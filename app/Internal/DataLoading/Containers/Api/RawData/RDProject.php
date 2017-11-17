@@ -29,6 +29,19 @@ class RDProject implements IRDProject
     private $regNumber;
 
     /**
+     * @return array
+     */
+    public function getProjectData(): array
+    {
+        return [
+            'title' => $this->getTitle(),
+            'year_from' => $this->getYearFrom(),
+            'year_to' => $this->getYearEnd(),
+            'reg_number' => $this->getRegNumber()
+        ];
+    }
+
+    /**
      * @return string
      */
     public function getTitle(): string
@@ -98,18 +111,5 @@ class RDProject implements IRDProject
     {
         $this->regNumber = $regNumber;
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function getProjectData(): array
-    {
-        return [
-            'title' => $this->getTitle(),
-            'year_from' => $this->getYearFrom(),
-            'year_to' => $this->getYearEnd(),
-            'reg_number' => $this->getRegNumber()
-        ];
     }
 }
