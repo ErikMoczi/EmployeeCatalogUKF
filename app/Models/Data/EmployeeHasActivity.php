@@ -16,21 +16,19 @@ class EmployeeHasActivity extends BaseModel
     use EmployeeHasActivityRelationship;
 
     /**
-     * The table associated with the model.
-     * 
-     * @var string
-     */
-    protected $table = 'employee_has_activity';
-
-    /**
-     * @var array
-     */
-    protected $fillable = [];
-
-    /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
      */
     public $timestamps = false;
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'employee_has_activity';
+    /**
+     * @var array
+     */
+    protected $fillable = [];
 }

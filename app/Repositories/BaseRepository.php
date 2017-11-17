@@ -3,8 +3,8 @@
 namespace App\Repositories;
 
 use App\Exceptions\GeneralException;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class BaseRepository.
@@ -76,13 +76,6 @@ abstract class BaseRepository implements RepositoryContract
     }
 
     /**
-     * Specify Model class name.
-     *
-     * @return mixed
-     */
-    abstract public function model();
-
-    /**
      * @return Model|mixed
      * @throws GeneralException
      */
@@ -96,6 +89,13 @@ abstract class BaseRepository implements RepositoryContract
 
         return $this->model = $model;
     }
+
+    /**
+     * Specify Model class name.
+     *
+     * @return mixed
+     */
+    abstract public function model();
 
     /**
      * Get all the model records in the database.
@@ -116,6 +116,47 @@ abstract class BaseRepository implements RepositoryContract
     }
 
     /**
+     * Add relationships to the query builder to eager load.
+     *
+     * @return $this
+     */
+    protected function eagerLoad()
+    {
+        foreach ($this->with as $relation) {
+            $this->query->with($relation);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Create a new instance of the model's query builder.
+     *
+     * @return $this
+     */
+    protected function newQuery()
+    {
+        $this->query = $this->model->newQuery();
+
+        return $this;
+    }
+
+    /**
+     * Reset the query clause parameter arrays.
+     *
+     * @return $this
+     */
+    protected function unsetClauses()
+    {
+        $this->wheres = [];
+        $this->whereIns = [];
+        $this->scopes = [];
+        $this->take = null;
+
+        return $this;
+    }
+
+    /**
      * Count the number of specified model records in the database.
      *
      * @return int
@@ -123,6 +164,83 @@ abstract class BaseRepository implements RepositoryContract
     public function count(): int
     {
         return $this->get()->count();
+    }
+
+    /**
+     * Get all the specified model records in the database.
+     *
+     * @param array $columns
+     *
+     * @return Collection|static[]
+     */
+    public function get(array $columns = ['*'])
+    {
+        $this->newQuery()->eagerLoad()->setClauses()->setScopes();
+
+        $models = $this->query->get($columns);
+
+        $this->unsetClauses();
+
+        return $models;
+    }
+
+    /**
+     * Set query scopes.
+     *
+     * @return $this
+     */
+    protected function setScopes()
+    {
+        foreach ($this->scopes as $method => $args) {
+            $this->query->$method(implode(', ', $args));
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set clauses on the query builder.
+     *
+     * @return $this
+     */
+    protected function setClauses()
+    {
+        foreach ($this->wheres as $where) {
+            $this->query->where($where['column'], $where['operator'], $where['value']);
+        }
+
+        foreach ($this->whereIns as $whereIn) {
+            $this->query->whereIn($whereIn['column'], $whereIn['values']);
+        }
+
+        foreach ($this->orderBys as $orders) {
+            $this->query->orderBy($orders['column'], $orders['direction']);
+        }
+
+        if (isset($this->take) and !is_null($this->take)) {
+            $this->query->take($this->take);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Create one or more new model records in the database.
+     *
+     * @param array $data
+     * @param bool $forceCreate
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function createMultiple(array $data, bool $forceCreate = true)
+    {
+        $models = new Collection();
+
+        foreach ($data as $d) {
+            $models->push($this->create($d, $forceCreate));
+        }
+
+        return $models;
     }
 
     /**
@@ -144,25 +262,6 @@ abstract class BaseRepository implements RepositoryContract
         }
 
         return $model;
-    }
-
-    /**
-     * Create one or more new model records in the database.
-     *
-     * @param array $data
-     * @param bool $forceCreate
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function createMultiple(array $data, bool $forceCreate = true)
-    {
-        $models = new Collection();
-
-        foreach ($data as $d) {
-            $models->push($this->create($d, $forceCreate));
-        }
-
-        return $models;
     }
 
     /**
@@ -197,6 +296,23 @@ abstract class BaseRepository implements RepositoryContract
     }
 
     /**
+     * Get the specified model record from the database.
+     *
+     * @param       $id
+     * @param array $columns
+     *
+     * @return Collection|Model
+     */
+    public function getById($id, array $columns = ['*'])
+    {
+        $this->unsetClauses();
+
+        $this->newQuery()->eagerLoad();
+
+        return $this->query->findOrFail($id, $columns);
+    }
+
+    /**
      * Delete multiple records.
      *
      * @param array $ids
@@ -224,41 +340,6 @@ abstract class BaseRepository implements RepositoryContract
         $this->unsetClauses();
 
         return $model;
-    }
-
-    /**
-     * Get all the specified model records in the database.
-     *
-     * @param array $columns
-     *
-     * @return Collection|static[]
-     */
-    public function get(array $columns = ['*'])
-    {
-        $this->newQuery()->eagerLoad()->setClauses()->setScopes();
-
-        $models = $this->query->get($columns);
-
-        $this->unsetClauses();
-
-        return $models;
-    }
-
-    /**
-     * Get the specified model record from the database.
-     *
-     * @param       $id
-     * @param array $columns
-     *
-     * @return Collection|Model
-     */
-    public function getById($id, array $columns = ['*'])
-    {
-        $this->unsetClauses();
-
-        $this->newQuery()->eagerLoad();
-
-        return $this->query->findOrFail($id, $columns);
     }
 
     /**
@@ -391,87 +472,6 @@ abstract class BaseRepository implements RepositoryContract
         }
 
         $this->with = $relations;
-
-        return $this;
-    }
-
-    /**
-     * Create a new instance of the model's query builder.
-     *
-     * @return $this
-     */
-    protected function newQuery()
-    {
-        $this->query = $this->model->newQuery();
-
-        return $this;
-    }
-
-    /**
-     * Add relationships to the query builder to eager load.
-     *
-     * @return $this
-     */
-    protected function eagerLoad()
-    {
-        foreach ($this->with as $relation) {
-            $this->query->with($relation);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set clauses on the query builder.
-     *
-     * @return $this
-     */
-    protected function setClauses()
-    {
-        foreach ($this->wheres as $where) {
-            $this->query->where($where['column'], $where['operator'], $where['value']);
-        }
-
-        foreach ($this->whereIns as $whereIn) {
-            $this->query->whereIn($whereIn['column'], $whereIn['values']);
-        }
-
-        foreach ($this->orderBys as $orders) {
-            $this->query->orderBy($orders['column'], $orders['direction']);
-        }
-
-        if (isset($this->take) and !is_null($this->take)) {
-            $this->query->take($this->take);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set query scopes.
-     *
-     * @return $this
-     */
-    protected function setScopes()
-    {
-        foreach ($this->scopes as $method => $args) {
-            $this->query->$method(implode(', ', $args));
-        }
-
-        return $this;
-    }
-
-    /**
-     * Reset the query clause parameter arrays.
-     *
-     * @return $this
-     */
-    protected function unsetClauses()
-    {
-        $this->wheres = [];
-        $this->whereIns = [];
-        $this->scopes = [];
-        $this->take = null;
 
         return $this;
     }

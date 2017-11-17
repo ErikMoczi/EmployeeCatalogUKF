@@ -16,5 +16,5 @@
  * Namespaces indicate folder structure
  */
 Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
-    include_route_files(__DIR__.'/Frontend/');
+    include_route_files(__DIR__ . '/Frontend/');
 });

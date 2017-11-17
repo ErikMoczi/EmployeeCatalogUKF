@@ -3,13 +3,14 @@
 namespace App\Repositories;
 
 /**
- * Interface RepositoryContract.
+ * Interface RepositoryContract
+ * @package App\Repositories
  */
 interface RepositoryContract
 {
     public function all(array $columns = ['*']);
 
-    public function count();
+    public function count(): int;
 
     public function create(array $data, bool $forceCreate = true);
 
@@ -17,9 +18,9 @@ interface RepositoryContract
 
     public function delete();
 
-    public function deleteById($id);
+    public function deleteById($id): bool;
 
-    public function deleteMultipleById(array $ids);
+    public function deleteMultipleById(array $ids): int;
 
     public function first(array $columns = ['*']);
 

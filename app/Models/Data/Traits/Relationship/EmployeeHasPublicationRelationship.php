@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models\Data\Traits\Relationship;
 
 use App\Models\Data\Employee;

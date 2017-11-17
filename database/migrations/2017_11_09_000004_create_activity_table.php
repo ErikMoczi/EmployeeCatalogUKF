@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateActivityTable extends Migration
 {
@@ -25,7 +25,7 @@ class CreateActivityTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('key', 10);
-            $table->string('title',255)->default('Neuvedené');
+            $table->string('title', 255)->default('Neuvedené');
             $table->string('date', 100)->nullable();
             $table->string('country', 5)->nullable();
             $table->string('type', 40)->default('Neuvedené');
@@ -41,8 +41,8 @@ class CreateActivityTable extends Migration
      *
      * @return void
      */
-     public function down()
-     {
-       Schema::dropIfExists($this->set_schema_table);
-     }
+    public function down()
+    {
+        Schema::dropIfExists($this->set_schema_table);
+    }
 }

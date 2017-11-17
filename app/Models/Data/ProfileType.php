@@ -16,7 +16,7 @@ class ProfileType extends BaseModel
 
     /**
      * The table associated with the model.
-     * 
+     *
      * @var string
      */
     protected $table = 'profile_type';

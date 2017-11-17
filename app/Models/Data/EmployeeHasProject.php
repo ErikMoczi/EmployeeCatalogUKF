@@ -16,21 +16,19 @@ class EmployeeHasProject extends BaseModel
     use EmployeeHasProjectRelationship;
 
     /**
-     * The table associated with the model.
-     * 
-     * @var string
-     */
-    protected $table = 'employee_has_project';
-
-    /**
-     * @var array
-     */
-    protected $fillable = [];
-
-    /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
      */
     public $timestamps = false;
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'employee_has_project';
+    /**
+     * @var array
+     */
+    protected $fillable = [];
 }

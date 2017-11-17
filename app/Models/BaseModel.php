@@ -11,9 +11,9 @@ use Illuminate\Database\Eloquent\Model;
 abstract class BaseModel extends Model
 {
     /**
-     * @return mixed
+     * @return string
      */
-    public static function getTableName()
+    public static function getTableName(): string
     {
         return with(new static)->getTable();
     }
