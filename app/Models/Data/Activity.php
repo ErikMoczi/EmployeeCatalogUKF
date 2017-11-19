@@ -6,15 +6,8 @@ use App\Models\BaseModel;
 use App\Models\Data\Traits\Relationship\ActivityRelationship;
 
 /**
- * @property int $id
- * @property string $key
- * @property string $title
- * @property string $date
- * @property string $country
- * @property string $type
- * @property string $category
- * @property string $authors
- * @property Employee[] $employees
+ * Class Activity
+ * @package App\Models\Data
  */
 class Activity extends BaseModel
 {

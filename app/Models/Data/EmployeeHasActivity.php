@@ -6,10 +6,8 @@ use App\Models\BaseModel;
 use App\Models\Data\Traits\Relationship\EmployeeHasActivityRelationship;
 
 /**
- * @property int $employee_id
- * @property string $activity_id
- * @property Activity $activity
- * @property Employee $employee
+ * Class EmployeeHasActivity
+ * @package App\Models\Data
  */
 class EmployeeHasActivity extends BaseModel
 {

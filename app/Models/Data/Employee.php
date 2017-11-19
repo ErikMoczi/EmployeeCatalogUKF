@@ -6,20 +6,8 @@ use App\Models\BaseModel;
 use App\Models\Data\Traits\Relationship\EmployeeRelationship;
 
 /**
- * @property int $id
- * @property string $first_name
- * @property string $middle_name
- * @property string $last_name
- * @property string $full_name
- * @property string $position
- * @property string $dep_name
- * @property string $dep_acronym
- * @property string $faculty_name
- * @property string $faculty_acronym
- * @property Activity[] $activities
- * @property EmployeeHasProfileType[] $employeeHasProfileTypes
- * @property Project[] $projects
- * @property Publication[] $publications
+ * Class Employee
+ * @package App\Models\Data
  */
 class Employee extends BaseModel
 {

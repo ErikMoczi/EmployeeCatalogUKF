@@ -5,6 +5,10 @@ namespace App\Models\Data\Traits\Relationship;
 use App\Models\Data\Employee;
 use App\Models\Data\EmployeeHasPublication;
 
+/**
+ * Trait PublicationRelationship
+ * @package App\Models\Data\Traits\Relationship
+ */
 trait PublicationRelationship
 {
     /**

@@ -7,14 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * @property int $id
- * @property int $employee_id
- * @property string $name
- * @property string $email
- * @property string $password
- * @property boolean $admin_flag
- * @property string $remember_token
- * @property Employee $employee
+ * Class User
+ * @package App\Models\Auth
  */
 class User extends Authenticatable
 {
@@ -32,9 +26,4 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = ['employee_id', 'name', 'email', 'remember_token', 'password', 'admin_flag'];
-
-    /**
-     * @var array
-     */
-    protected $guarded = [];
 }

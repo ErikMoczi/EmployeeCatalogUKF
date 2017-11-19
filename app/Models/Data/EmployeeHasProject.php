@@ -6,10 +6,8 @@ use App\Models\BaseModel;
 use App\Models\Data\Traits\Relationship\EmployeeHasProjectRelationship;
 
 /**
- * @property int $employee_id
- * @property int $project_id
- * @property Employee $employee
- * @property Project $project
+ * Class EmployeeHasProject
+ * @package App\Models\Data
  */
 class EmployeeHasProject extends BaseModel
 {

@@ -6,10 +6,8 @@ use App\Models\BaseModel;
 use App\Models\Data\Traits\Relationship\EmployeeHasPublicationRelationship;
 
 /**
- * @property int $employee_id
- * @property int $publication_id
- * @property Employee $employee
- * @property Publication $publication
+ * Class EmployeeHasPublication
+ * @package App\Models\Data
  */
 class EmployeeHasPublication extends BaseModel
 {

@@ -6,12 +6,8 @@ use App\Models\BaseModel;
 use App\Models\Data\Traits\Relationship\ProjectRelationship;
 
 /**
- * @property int $id
- * @property string $title
- * @property float $year_from
- * @property float $year_to
- * @property string $reg_number
- * @property Employee[] $employees
+ * Class Project
+ * @package App\Models\Data
  */
 class Project extends BaseModel
 {

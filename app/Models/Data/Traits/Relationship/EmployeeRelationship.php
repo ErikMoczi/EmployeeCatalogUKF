@@ -11,6 +11,10 @@ use App\Models\Data\ProfileType;
 use App\Models\Data\Project;
 use App\Models\Data\Publication;
 
+/**
+ * Trait EmployeeRelationship
+ * @package App\Models\Data\Traits\Relationship
+ */
 trait EmployeeRelationship
 {
     /**

@@ -6,11 +6,8 @@ use App\Models\BaseModel;
 use App\Models\Data\Traits\Relationship\EmployeeHasProfileTypeRelationship;
 
 /**
- * @property int $employee_id
- * @property int $profile_type_id
- * @property string $value
- * @property Employee $employee
- * @property ProfileType $profileType
+ * Class EmployeeHasProfileType
+ * @package App\Models\Data
  */
 class EmployeeHasProfileType extends BaseModel
 {

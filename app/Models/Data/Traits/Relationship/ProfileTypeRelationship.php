@@ -5,6 +5,10 @@ namespace App\Models\Data\Traits\Relationship;
 use App\Models\Data\Employee;
 use App\Models\Data\EmployeeHasProfileType;
 
+/**
+ * Trait ProfileTypeRelationship
+ * @package App\Models\Data\Traits\Relationship
+ */
 trait ProfileTypeRelationship
 {
     /**
