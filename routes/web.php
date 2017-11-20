@@ -18,3 +18,11 @@
 Route::group(['namespace' => 'Frontend', 'as' => 'frontend.'], function () {
     include_route_files(__DIR__ . '/Frontend/');
 });
+
+/*
+ * Base Auth Routes
+ * Namespaces indicate folder structure
+ */
+Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
+    include_route_files(__DIR__ . '/Auth/');
+});
