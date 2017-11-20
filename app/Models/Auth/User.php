@@ -26,4 +26,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = ['employee_id', 'name', 'email', 'remember_token', 'password', 'admin_flag'];
+
+    /**
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->admin_flag;
+    }
 }
