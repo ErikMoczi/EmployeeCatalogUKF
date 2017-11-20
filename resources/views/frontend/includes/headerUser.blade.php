@@ -1,8 +1,9 @@
-<div class="navbar-custom-menu">
-    <ul class="nav navbar-nav">
-        <!-- User Account Menu -->
-        @guest
-            <li><a href="#">Login</a></li>
+@if (Route::has('login'))
+    <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+            <!-- User Account Menu -->
+            @guest
+                <li><a href="#">Login</a></li>
             @else
                 <li class="dropdown user user-menu">
                     <!-- Menu Toggle Button -->
@@ -44,6 +45,7 @@
                         </li>
                     </ul>
                 </li>
-                @endguest
-    </ul>
-</div>
+            @endguest
+        </ul>
+    </div>
+@endif
