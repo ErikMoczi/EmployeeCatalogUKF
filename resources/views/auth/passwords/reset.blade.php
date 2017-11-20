@@ -11,6 +11,7 @@
             <p class="login-box-msg">Reset Password</p>
 
             <form action="{{ route('password.request') }}" method="post">
+                {{ csrf_field() }}
                 <input type="hidden" name="token" value="{{ $token }}">
                 <div class="form-group has-feedback" {{ $errors->has('email') ? 'has-error' : '' }}>
                     <input type="email" name="email" class="form-control" value="{{ $email or old('email') }}"
