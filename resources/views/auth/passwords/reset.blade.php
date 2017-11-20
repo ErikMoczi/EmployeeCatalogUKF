@@ -5,12 +5,12 @@
 @section('body')
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ route('home') }}"><b>UKF</b> katalóg</a>
+            <a href="{{ route('frontend.home') }}"><b>UKF</b> katalóg</a>
         </div>
         <div class="login-box-body">
             <p class="login-box-msg">Reset Password</p>
 
-            <form action="{{ route('password.request') }}" method="post">
+            <form action="{{ route('auth.password.request') }}" method="post">
                 {{ csrf_field() }}
                 <input type="hidden" name="token" value="{{ $token }}">
                 <div class="form-group has-feedback" {{ $errors->has('email') ? 'has-error' : '' }}>

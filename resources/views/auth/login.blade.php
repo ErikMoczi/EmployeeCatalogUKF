@@ -22,12 +22,12 @@
 @section('body')
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ route('home') }}"><b>UKF</b> katalóg</a>
+            <a href="{{ route('frontend.home') }}"><b>UKF</b> katalóg</a>
         </div>
         <div class="login-box-body">
             <p class="login-box-msg">Sign in</p>
 
-            <form action="{{ route('login') }}" method="post">
+            <form action="{{ route('auth.login') }}" method="post">
                 {{ csrf_field() }}
                 <div class="form-group has-feedback" {{ $errors->has('email') ? 'has-error' : '' }}>
                     <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Email"

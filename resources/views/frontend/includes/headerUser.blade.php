@@ -1,9 +1,9 @@
-@if (Route::has('login'))
+@if (Route::has('auth.login'))
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
             <!-- User Account Menu -->
             @guest
-                <li><a href="#">Login</a></li>
+                <li><a href="{{ route('auth.login') }}">Login</a></li>
             @else
                 <li class="dropdown user user-menu">
                     <!-- Menu Toggle Button -->
@@ -40,7 +40,7 @@
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="{{ route('auth.logout') }}" class="btn btn-default btn-flat">Sign out</a>
                             </div>
                         </li>
                     </ul>
