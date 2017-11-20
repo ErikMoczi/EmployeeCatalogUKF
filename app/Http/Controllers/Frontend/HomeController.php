@@ -15,6 +15,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('frontend.index')->with('content_header', 'Hello world');
+        return view('frontend.index');
     }
 }
