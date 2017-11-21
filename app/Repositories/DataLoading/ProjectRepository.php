@@ -24,7 +24,7 @@ class ProjectRepository extends BaseRepository
         return DB::transaction(function () use ($data, $employeeId) {
             $project = parent::create($data, false);
             $employee = Employee::find($employeeId);
-            $project->employees()->sync($employee);
+            $project->employees()->sync($employee, false);
 
             return $project;
         });

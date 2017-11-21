@@ -23,7 +23,7 @@ class ActivityRepository extends BaseRepository
         return DB::transaction(function () use ($data, $employeeId) {
             $activity = parent::create($data, false);
             $employee = Employee::find($employeeId);
-            $activity->employees()->sync($employee);
+            $activity->employees()->sync($employee, false);
 
             return $activity;
         });

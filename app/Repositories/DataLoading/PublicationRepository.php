@@ -24,7 +24,7 @@ class PublicationRepository extends BaseRepository
         return DB::transaction(function () use ($data, $employeeId) {
             $publication = parent::create($data, false);
             $employee = Employee::find($employeeId);
-            $publication->employees()->sync($employee);
+            $publication->employees()->sync($employee, false);
 
             return $publication;
         });
