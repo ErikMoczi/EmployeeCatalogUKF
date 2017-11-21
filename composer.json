@@ -62,6 +62,12 @@
             "@php artisan ide-helper:models --nowrite",
             "@php artisan optimize"
         ],
+        "generate-ide-helper": [
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta",
+            "@php artisan ide-helper:models --nowrite",
+            "@php artisan optimize"
+        ],
         "clear-all": [
             "composer dumpautoload -o",
             "@php artisan optimize",
