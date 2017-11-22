@@ -1,17 +1,14 @@
-<header class="main-header">
-    <nav class="navbar navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="/" class="navbar-brand"><b>UKF</b> katalóg zamestnancov</a>
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#navbar-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
+@extends('includes.header')
 
-            @include('frontend.includes.headerMenu')
+@section('header-navbar-header')
+    <a href="{{ route('frontend.home') }}" class="navbar-brand"><b>UKF</b> katalóg zamestnancov</a>
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            data-target="#navbar-collapse">
+        <i class="fa fa-bars"></i>
+    </button>
+@endsection
 
-            @include('frontend.includes.headerUser')
-        </div>
-    </nav>
-</header>
+@section('header-navbar-container')
+    @parent
+    @include('frontend.includes.headerMenu')
+@endsection

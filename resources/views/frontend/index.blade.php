@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    <p>Kecy</p>
+    base content
 @endsection
