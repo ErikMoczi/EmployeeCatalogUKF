@@ -24,4 +24,11 @@ class Department extends Model
      * @var array
      */
     protected $fillable = ['faculty_id', 'name', 'acronym'];
+
+    /**
+     * @var array
+     */
+    protected $attributes = [
+        'name' => 'N/A'
+    ];
 }

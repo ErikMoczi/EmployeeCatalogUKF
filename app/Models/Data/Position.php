@@ -24,4 +24,11 @@ class Position extends Model
      * @var array
      */
     protected $fillable = ['name'];
+
+    /**
+     * @var array
+     */
+    protected $attributes = [
+        'name' => 'N/A'
+    ];
 }

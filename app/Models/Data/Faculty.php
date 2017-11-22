@@ -2,6 +2,7 @@
 
 namespace App\Models\Data;
 
+use App\Models\Data\Traits\Method\FacultyMethod;
 use App\Models\Data\Traits\Relationship\FacultyRelationship;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Faculty extends Model
 {
-    use FacultyRelationship;
+    use FacultyRelationship,
+        FacultyMethod;
 
     /**
      * The table associated with the model.
@@ -23,5 +25,12 @@ class Faculty extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'short', 'acronym'];
+    protected $fillable = ['name', 'acronym'];
+
+    /**
+     * @var array
+     */
+    protected $attributes = [
+        'name' => 'N/A'
+    ];
 }
