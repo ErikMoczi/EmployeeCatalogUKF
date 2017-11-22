@@ -25,7 +25,7 @@ class CreateDepartmentTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name', 50)->default('N/A');
-            $table->string('acronym', 50)->nullable();
+            $table->string('acronym', 20)->nullable();
             $table->unsignedInteger('faculty_id');
 
             $table->index(["faculty_id"], 'fk_department_faculty1_idx');
