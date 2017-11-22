@@ -13,7 +13,10 @@ use App\Internal\DataLoading\Containsers\Url\ApiUrlTeacherContainer;
 use App\Internal\DataLoading\Containsers\Url\ApiUrlTeachersContainer;
 use App\Internal\DataLoading\Containsers\Url\IApiUrlContainer;
 use App\Repositories\DataLoading\ActivityRepository;
+use App\Repositories\DataLoading\DepartmentRepository;
 use App\Repositories\DataLoading\EmployeeRepository;
+use App\Repositories\DataLoading\FacultyRepository;
+use App\Repositories\DataLoading\PositionRepository;
 use App\Repositories\DataLoading\ProfileRepository;
 use App\Repositories\DataLoading\ProjectRepository;
 use App\Repositories\DataLoading\PublicationRepository;
@@ -62,6 +65,20 @@ abstract class DataPumpBaseCommand extends Command implements IDataPump
     private $userRepository;
 
     /**
+     * @var PositionRepository
+     */
+    private $positionRepository;
+
+    /**
+     * @var DepartmentRepository
+     */
+    private $departmentRepository;
+    /**
+     * @var FacultyRepository
+     */
+    private $facultyRepository;
+
+    /**
      * DataPumpBaseCommand constructor.
      * @param ApiCommunication $apiCommunication
      * @param EmployeeRepository $employeeRepository
@@ -70,6 +87,9 @@ abstract class DataPumpBaseCommand extends Command implements IDataPump
      * @param PublicationRepository $publicationRepository
      * @param ProfileRepository $profileRepository
      * @param UserRepository $userRepository
+     * @param PositionRepository $positionRepository
+     * @param DepartmentRepository $departmentRepository
+     * @param FacultyRepository $facultyRepository
      */
     public function __construct(
         ApiCommunication $apiCommunication,
@@ -78,7 +98,10 @@ abstract class DataPumpBaseCommand extends Command implements IDataPump
         ProjectRepository $projectRepository,
         PublicationRepository $publicationRepository,
         ProfileRepository $profileRepository,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        PositionRepository $positionRepository,
+        DepartmentRepository $departmentRepository,
+        FacultyRepository $facultyRepository
     )
     {
         parent::__construct();
@@ -90,6 +113,33 @@ abstract class DataPumpBaseCommand extends Command implements IDataPump
         $this->publicationRepository = $publicationRepository;
         $this->profileRepository = $profileRepository;
         $this->userRepository = $userRepository;
+        $this->positionRepository = $positionRepository;
+        $this->departmentRepository = $departmentRepository;
+        $this->facultyRepository = $facultyRepository;
+    }
+
+    /**
+     * @return PositionRepository
+     */
+    public function getPositionRepository(): PositionRepository
+    {
+        return $this->positionRepository;
+    }
+
+    /**
+     * @return DepartmentRepository
+     */
+    public function getDepartmentRepository(): DepartmentRepository
+    {
+        return $this->departmentRepository;
+    }
+
+    /**
+     * @return FacultyRepository
+     */
+    public function getFacultyRepository(): FacultyRepository
+    {
+        return $this->facultyRepository;
     }
 
     /**

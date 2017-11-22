@@ -19,6 +19,11 @@ class PublicationRepository extends BaseRepository
         return Publication::class;
     }
 
+    /**
+     * @param array $data
+     * @param int $employeeId
+     * @return Publication
+     */
     public function createWithEmployeeRelation(array $data, int $employeeId)
     {
         return DB::transaction(function () use ($data, $employeeId) {

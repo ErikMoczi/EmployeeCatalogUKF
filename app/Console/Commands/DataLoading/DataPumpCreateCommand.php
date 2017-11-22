@@ -42,7 +42,12 @@ class DataPumpCreateCommand extends DataPumpBaseCommand
 
             foreach ($teachers as $teacher) {
                 try {
-                    $this->createEmployee($teacher->getEmployeeData());
+                    $positionId = $this->createPosition($teacher->getPositionData());
+                    $facultyId = $this->createFaculty($teacher->getFacultyData());
+                    $departmentId = $this->createDepartment($teacher->getDepartmentData(), $facultyId);
+
+                    $this->createEmployee($teacher->getEmployeeData($positionId, $departmentId));
+
                     $this->createUserEmployee($teacher->getUserData());
 
                     $teacherDetails = $this->getApiTeacherDetails($teacher->getId());
@@ -73,6 +78,9 @@ class DataPumpCreateCommand extends DataPumpBaseCommand
     private function cleanUp(): void
     {
         $this->getEmployeeRepository()->delete();
+        $this->getFacultyRepository()->delete();
+        $this->getDepartmentRepository()->delete();
+        $this->getPositionRepository()->delete();
         $this->getProfileRepository()->delete();
         $this->getActivityRepository()->delete();
         $this->getProjectRepository()->delete();
@@ -81,10 +89,39 @@ class DataPumpCreateCommand extends DataPumpBaseCommand
 
     /**
      * @param array $data
+     * @return int
      */
-    private function createEmployee(array $data): void
+    private function createPosition(array $data): int
     {
-        $this->getEmployeeRepository()->create($data);
+        return $this->getPositionRepository()->createUnique($data)->id;
+    }
+
+    /**
+     * @param array $data
+     * @return int
+     */
+    private function createFaculty(array $data): int
+    {
+        return $this->getFacultyRepository()->createUnique($data)->id;
+    }
+
+    /**
+     * @param array $data
+     * @param int $facultyId
+     * @return int
+     */
+    private function createDepartment(array $data, int $facultyId): int
+    {
+        return $this->getDepartmentRepository()->createWithFacultyRelation($data, $facultyId)->id;
+    }
+
+    /**
+     * @param array $data
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    private function createEmployee(array $data)
+    {
+        return $this->getEmployeeRepository()->create($data, false);
     }
 
     /**
@@ -92,7 +129,7 @@ class DataPumpCreateCommand extends DataPumpBaseCommand
      */
     private function createUserEmployee(array $data): void
     {
-        $this->getUserRepository()->create($data);
+        $this->getUserRepository()->createUnique($data);
     }
 
     /**

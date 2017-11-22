@@ -18,6 +18,11 @@ class ActivityRepository extends BaseRepository
         return Activity::class;
     }
 
+    /**
+     * @param array $data
+     * @param int $employeeId
+     * @return Activity
+     */
     public function createWithEmployeeRelation(array $data, int $employeeId)
     {
         return DB::transaction(function () use ($data, $employeeId) {

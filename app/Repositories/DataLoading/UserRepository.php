@@ -18,14 +18,16 @@ class UserRepository extends BaseRepository
         return User::class;
     }
 
-    public function create(array $data, bool $forceCreate = true)
+    /**
+     * @param array $data
+     * @return User
+     */
+    public function createUnique(array $data)
     {
-        return DB::transaction(function () use ($data, $forceCreate) {
+        return DB::transaction(function () use ($data) {
             $data['email'] = $this->getUniqueEmail($data['email']);
 
-            $user = parent::create($data, $forceCreate);
-
-            return $user;
+            return parent::create($data, false);
         });
     }
 

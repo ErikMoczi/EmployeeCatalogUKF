@@ -46,20 +46,19 @@ class RDTeacher implements IRDTeacher
     private $description;
 
     /**
+     * @param int $positionId
+     * @param int $departmentId
      * @return array
      */
-    public function getEmployeeData(): array
+    public function getEmployeeData(int $positionId, int $departmentId): array
     {
         return array_merge(
             $this->getEmployeeExplodeName(),
             [
                 'id' => $this->getId(),
                 'full_name' => $this->getName(),
-                'position' => $this->getDescription(),
-                'dep_name' => $this->getDepartment(),
-                'dep_acronym' => $this->getDepAcronym(),
-                'faculty_name' => $this->getFaculty(),
-                'faculty_acronym' => $this->getFacultyAcronym()
+                'position_id' => $positionId,
+                'department_id' => $departmentId
             ]);
     }
 
@@ -146,6 +145,16 @@ class RDTeacher implements IRDTeacher
     }
 
     /**
+     * @return array
+     */
+    public function getPositionData(): array
+    {
+        return [
+            'name' => $this->getDescription()
+        ];
+    }
+
+    /**
      * @return string
      */
     public function getDescription(): string
@@ -164,39 +173,14 @@ class RDTeacher implements IRDTeacher
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getDepartment(): string
+    public function getFacultyData(): array
     {
-        return $this->department;
-    }
-
-    /**
-     * @param string $department
-     * @return $this
-     */
-    public function setDepartment(string $department)
-    {
-        $this->department = $department;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDepAcronym(): string
-    {
-        return $this->depAcronym;
-    }
-
-    /**
-     * @param string $depAcronym
-     * @return $this
-     */
-    public function setDepAcronym(string $depAcronym)
-    {
-        $this->depAcronym = $depAcronym;
-        return $this;
+        return [
+            'name' => $this->getFaculty(),
+            'acronym' => $this->getFacultyAcronym()
+        ];
     }
 
     /**
@@ -232,6 +216,53 @@ class RDTeacher implements IRDTeacher
     public function setFacultyAcronym(string $facultyAcronym)
     {
         $this->facultyAcronym = $facultyAcronym;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDepartmentData(): array
+    {
+        return [
+            'name' => $this->getDepartment(),
+            'acronym' => $this->getDepAcronym()
+        ];
+    }
+
+    /**
+     * @return string
+     */
+    public function getDepartment(): string
+    {
+        return $this->department;
+    }
+
+    /**
+     * @param string $department
+     * @return $this
+     */
+    public function setDepartment(string $department)
+    {
+        $this->department = $department;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDepAcronym(): string
+    {
+        return $this->depAcronym;
+    }
+
+    /**
+     * @param string $depAcronym
+     * @return $this
+     */
+    public function setDepAcronym(string $depAcronym)
+    {
+        $this->depAcronym = $depAcronym;
         return $this;
     }
 

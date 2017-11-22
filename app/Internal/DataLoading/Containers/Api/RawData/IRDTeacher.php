@@ -15,12 +15,29 @@ interface IRDTeacher
     public function getId(): int;
 
     /**
+     * @param int $positionId
+     * @param int $departmentId
      * @return array
      */
-    public function getEmployeeData(): array;
+    public function getEmployeeData(int $positionId, int $departmentId): array;
 
     /**
      * @return array
      */
     public function getUserData(): array;
+
+    /**
+     * @return array
+     */
+    public function getPositionData(): array;
+
+    /**
+     * @return array
+     */
+    public function getFacultyData(): array;
+
+    /**
+     * @return array
+     */
+    public function getDepartmentData(): array;
 }

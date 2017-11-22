@@ -21,6 +21,11 @@ class ProfileRepository extends BaseRepository
         return ProfileType::class;
     }
 
+    /**
+     * @param array $data
+     * @param int $employeeId
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function createMultipleWithEmployeeRelation(array $data, int $employeeId)
     {
         return DB::transaction(function () use ($data, $employeeId) {
