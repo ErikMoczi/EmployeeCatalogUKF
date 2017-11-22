@@ -6,4 +6,5 @@
         <strong>Copyright &copy; 2017 <a href="#">Crazy monkeys</a>.</strong> All rights
         reserved.
     </div>
+    <!-- /.container -->
 </footer>
