@@ -27,7 +27,6 @@ class Publication extends BaseModel
         'ISBN',
         'title',
         'sub_title',
-        'authors',
         'type',
         'publisher',
         'pages',

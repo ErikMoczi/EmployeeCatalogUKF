@@ -23,5 +23,5 @@ class Activity extends BaseModel
     /**
      * @var array
      */
-    protected $fillable = ['key', 'title', 'date', 'country', 'type', 'category', 'authors'];
+    protected $fillable = ['key', 'title', 'date', 'country', 'type', 'category'];
 }

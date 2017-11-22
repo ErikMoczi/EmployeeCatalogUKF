@@ -54,8 +54,7 @@ class RDActivity implements IRDActivity
             'date' => $this->getDate(),
             'country' => $this->getCountry(),
             'type' => $this->getType(),
-            'category' => $this->getCategory(),
-            'authors' => $this->getAllAuthors()
+            'category' => $this->getCategory()
         ];
     }
 

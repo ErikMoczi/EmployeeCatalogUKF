@@ -62,7 +62,6 @@ class RDPublication implements IRDPublication
             'ISBN' => $this->getIsbn(),
             'title' => $this->getTitle(),
             'sub_title' => $this->getSubTitle(),
-            'authors' => $this->getAllAuthors(),
             'type' => $this->getType(),
             'publisher' => $this->getPublisher(),
             'pages' => $this->getPages(),

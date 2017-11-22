@@ -30,7 +30,6 @@ class CreateActivityTable extends Migration
             $table->string('country', 5)->nullable();
             $table->string('type', 40)->default('Neuvedené');
             $table->string('category', 100)->default('Neuvedené');
-            $table->text('authors')->nullable();
 
             $table->timestamps();
         });
