@@ -51,3 +51,24 @@ if (!function_exists('resolve')) {
         return app($name);
     }
 }
+
+if (!function_exists('home_route')) {
+
+    /**
+     * Return the route to the "home" page depending on authentication/authorization status.
+     *
+     * @return string
+     */
+    function home_route()
+    {
+        if (auth()->check()) {
+            if (auth()->user()->isAdmin()) {
+                return 'admin.dashboard';
+            } else {
+                return 'frontend.user.dashboard';
+            }
+        }
+
+        return 'frontend.index';
+    }
+}
