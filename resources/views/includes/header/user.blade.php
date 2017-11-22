@@ -1,43 +1,41 @@
 @if (Route::has('auth.login'))
+    <!-- Navbar Right Menu -->
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
             <!-- User Account Menu -->
             @guest
                 <li><a href="{{ route('auth.login') }}">Login</a></li>
             @else
+                <!-- User Account Menu -->
                 <li class="dropdown user user-menu">
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">Alexander Piercssssse</span>
+                        <span class="hidden-xs">{{ $logged_in_user->name }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                {{ $logged_in_user->name }}
+                                <small>Member since {{ $logged_in_user->getAccountCreateMonthYear() }}</small>
                             </p>
                         </li>
                         <!-- Menu Body -->
                         <li class="user-body">
                             <div class="row">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Followers</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Sales</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Friends</a>
-                                </div>
+                                @if($logged_in_user->isAdmin())
+                                    <div class="col-xs-4 text-center">
+                                        <a href="{{ route('admin.dashboard') }}">Admin</a>
+                                    </div>
+                                @endif
                             </div>
                             <!-- /.row -->
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{ route('frontend.user.dashboard') }}" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
                                 <a href="{{ route('auth.logout') }}" class="btn btn-default btn-flat">Sign out</a>
@@ -48,4 +46,5 @@
             @endguest
         </ul>
     </div>
+    <!-- /.navbar-custom-menu -->
 @endif
