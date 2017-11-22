@@ -2,6 +2,7 @@
 
 namespace App\Models\Auth;
 
+use App\Models\Auth\Traits\Method\UserMethod;
 use App\Models\Auth\Traits\Relationship\UserRelationship;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,8 +13,9 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable
 {
-    use Notifiable;
-    use UserRelationship;
+    use Notifiable,
+        UserRelationship,
+        UserMethod;
 
     /**
      * The table associated with the model.
@@ -26,6 +28,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = ['employee_id', 'name', 'email', 'remember_token', 'password', 'admin_flag'];
+
+    /**
+     * @var array
+     */
+    protected $hidden = ['remember_token', 'password', 'admin_flag'];
 
     /**
      * @return bool
