@@ -2,11 +2,14 @@
 
 namespace App\Models\Data\Traits\Relationship;
 
+use App\Models\Auth\User;
 use App\Models\Data\Activity;
+use App\Models\Data\Department;
 use App\Models\Data\EmployeeHasActivity;
 use App\Models\Data\EmployeeHasProfileType;
 use App\Models\Data\EmployeeHasProject;
 use App\Models\Data\EmployeeHasPublication;
+use App\Models\Data\Position;
 use App\Models\Data\ProfileType;
 use App\Models\Data\Project;
 use App\Models\Data\Publication;
@@ -47,5 +50,29 @@ trait EmployeeRelationship
     public function publications()
     {
         return $this->belongsToMany(Publication::class, EmployeeHasPublication::getTableName());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function user()
+    {
+        return $this->hasOne(User::class);
     }
 }

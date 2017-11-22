@@ -25,14 +25,11 @@ class Employee extends BaseModel
      */
     protected $fillable = [
         'id',
+        'position_id',
+        'department_id',
         'first_name',
         'middle_name',
         'last_name',
-        'full_name',
-        'position',
-        'dep_name',
-        'dep_acronym',
-        'faculty_name',
-        'faculty_acronym'
+        'full_name'
     ];
 }
