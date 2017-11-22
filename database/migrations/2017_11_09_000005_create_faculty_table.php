@@ -25,7 +25,6 @@ class CreateFacultyTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name', 50)->default('N/A');
-            $table->string('short', 10)->nullable();
             $table->string('acronym', 20)->nullable();
 
             $table->unique(["name"], 'name_UNIQUE');
