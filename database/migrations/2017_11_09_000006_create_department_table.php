@@ -4,17 +4,17 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmployeeTable extends Migration
+class CreateDepartmentTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $set_schema_table = 'employee';
+    public $set_schema_table = 'department';
 
     /**
      * Run the migrations.
-     * @table employee
+     * @table department
      *
      * @return void
      */
@@ -24,17 +24,20 @@ class CreateEmployeeTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('first_name', 25);
-            $table->string('middle_name', 25)->nullable();
-            $table->string('last_name', 25);
-            $table->string('full_name', 100);
-            $table->string('position', 100)->default('Neuvedené');
-            $table->string('dep_name', 50)->default('Neuvedené');
-            $table->string('dep_acronym', 20)->nullable();
-            $table->string('faculty_name', 50)->default('Neuvedené');
-            $table->string('faculty_acronym', 20)->nullable();
+            $table->string('name', 50)->default('Neuvedené');
+            $table->string('acronym', 50)->nullable();
+            $table->unsignedInteger('faculty_id');
 
+            $table->index(["faculty_id"], 'fk_department_faculty1_idx');
+
+            $table->unique(["name"], 'name_UNIQUE');
             $table->timestamps();
+
+
+            $table->foreign('faculty_id', 'fk_department_faculty1_idx')
+                ->references('id')->on('faculty')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
