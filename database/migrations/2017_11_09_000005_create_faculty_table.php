@@ -24,7 +24,7 @@ class CreateFacultyTable extends Migration
         Schema::create($this->set_schema_table, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('name', 50)->default('Neuvedené');
+            $table->string('name', 50)->default('N/A');
             $table->string('short', 50)->nullable();
             $table->string('acronym', 50)->nullable();
 

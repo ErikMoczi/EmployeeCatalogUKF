@@ -25,11 +25,11 @@ class CreateActivityTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('key', 10);
-            $table->string('title', 255)->default('Neuvedené');
+            $table->string('title', 255)->default('N/A');
             $table->string('date', 100)->nullable();
             $table->string('country', 5)->nullable();
-            $table->string('type', 40)->default('Neuvedené');
-            $table->string('category', 100)->default('Neuvedené');
+            $table->string('type', 40)->default('N/A');
+            $table->string('category', 100)->default('N/A');
 
             $table->timestamps();
         });

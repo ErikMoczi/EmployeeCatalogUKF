@@ -27,8 +27,8 @@ class CreatePublicationTable extends Migration
             $table->string('ISBN', 25)->nullable();
             $table->string('title', 255);
             $table->string('sub_title', 255)->nullable();
-            $table->string('type', 15)->default('Neuvedené');
-            $table->string('publisher', 150)->default('Neuvedené');
+            $table->string('type', 15)->default('N/A');
+            $table->string('publisher', 150)->default('N/A');
             $table->decimal('pages', 4, 0)->default(0);
             $table->decimal('year', 4, 0)->nullable();
             $table->string('code', 100)->nullable();
