@@ -74,7 +74,13 @@ class RDTeacher implements IRDTeacher
         ];
 
         $fullName = preg_replace('(\w+\.)', '', $this->getName());
-        $fullName = rtrim(trim($fullName), ',');
+
+        if(strpos($fullName, ',') !== false)
+        {
+            $fullName = strstr($fullName, ',', true);
+        }
+
+        $fullName = trim($fullName);
         $names = preg_replace('/[[:blank:]]+/', ' ', $fullName);
         $names = explode(' ', $names);
 
@@ -89,12 +95,6 @@ class RDTeacher implements IRDTeacher
             case 2: {
                 $explodeName['first_name'] = $names[0];
                 $explodeName['last_name'] = $names[1];
-                break;
-            }
-            case 3: {
-                $explodeName['first_name'] = $names[0];
-                $explodeName['middle_name'] = $names[1];
-                $explodeName['last_name'] = $names[2];
                 break;
             }
             default: {
