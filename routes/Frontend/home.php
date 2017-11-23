@@ -2,6 +2,11 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::group(['namespace' => 'Employee', 'prefix' => 'employee', 'as' => 'employee.'], function () {
+    Route::get('', 'EmployeeController@index')->name('index');
+    Route::get('{employee}', 'EmployeeController@show')->name('show');
+});
+
 Route::group(['namespace' => 'Publication', 'prefix' => 'publication', 'as' => 'publication.'], function () {
     Route::get('', 'PublicationController@index')->name('index');
     Route::get('{publication}', 'PublicationController@show')->name('show');

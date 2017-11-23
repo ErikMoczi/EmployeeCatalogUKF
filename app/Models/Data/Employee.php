@@ -3,6 +3,7 @@
 namespace App\Models\Data;
 
 use App\Models\BaseModel;
+use App\Models\Data\Traits\Method\EmployeeMethod;
 use App\Models\Data\Traits\Relationship\EmployeeRelationship;
 
 /**
@@ -11,7 +12,8 @@ use App\Models\Data\Traits\Relationship\EmployeeRelationship;
  */
 class Employee extends BaseModel
 {
-    use EmployeeRelationship;
+    use EmployeeRelationship,
+        EmployeeMethod;
 
     /**
      * The table associated with the model.

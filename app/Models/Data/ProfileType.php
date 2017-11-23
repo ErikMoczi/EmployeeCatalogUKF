@@ -3,6 +3,7 @@
 namespace App\Models\Data;
 
 use App\Models\BaseModel;
+use App\Models\Data\Traits\Method\ProfileTypeMethod;
 use App\Models\Data\Traits\Relationship\ProfileTypeRelationship;
 
 /**
@@ -11,7 +12,8 @@ use App\Models\Data\Traits\Relationship\ProfileTypeRelationship;
  */
 class ProfileType extends BaseModel
 {
-    use ProfileTypeRelationship;
+    use ProfileTypeRelationship,
+        ProfileTypeMethod;
 
     /**
      * The table associated with the model.
