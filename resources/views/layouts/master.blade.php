@@ -17,6 +17,8 @@
         <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/font-awesome/css/font-awesome.min.css') }}">
         <!-- Ionicons -->
         <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/Ionicons/css/ionicons.min.css') }}">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
         <!-- Theme style -->
         <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/AdminLTE.min.css') }}">
         <!-- AdminLTE Skin -->
@@ -43,6 +45,9 @@
     <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- DataTables -->
+    <script src="{{ asset('vendor/adminlte/vendor/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/adminlte/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
     <!-- SlimScroll -->
     <script src="{{ asset('vendor/adminlte/vendor/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
     <!-- FastClick -->
