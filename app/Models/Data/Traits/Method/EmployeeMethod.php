@@ -12,6 +12,8 @@ use App\Models\Data\Employee;
  */
 trait EmployeeMethod
 {
+    use BaseMethod;
+
     /**
      * @return string
      */
@@ -24,21 +26,17 @@ trait EmployeeMethod
         );
     }
 
-    public function getNextRecord(): ?Employee
-    {
-        return $this->where('id', '>', $this->id)->oldest('id')->first();
-    }
-
-    public function getPreviousRecord(): ?Employee
-    {
-        return $this->where('id', '<', $this->id)->latest('id')->first();
-    }
-
+    /**
+     * @return Employee|null
+     */
     public function getNextRecordByLastName(): ?Employee
     {
         return $this->where('last_name', '>', $this->last_name)->oldest('last_name')->first();
     }
 
+    /**
+     * @return Employee|null
+     */
     public function getPreviousRecordByLastName(): ?Employee
     {
         return $this->where('last_name', '<', $this->last_name)->latest('last_name')->first();

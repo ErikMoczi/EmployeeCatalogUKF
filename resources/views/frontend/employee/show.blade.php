@@ -13,7 +13,9 @@
                 <div class="box-body box-profile">
                     <h3 class="profile-username text-center">{{ $employee->full_name }}</h3>
 
-                    <p class="text-muted text-center">{{ $position->name }}</p>
+                    <p class="text-muted text-center">
+                        <a href="#">{{ $position->name }}</a>
+                    </p>
 
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
@@ -69,14 +71,7 @@
                         <a href="#activities" data-toggle="tab">Activities</a>
                     </li>
                     <li class="pull-right">
-                        <ul class="pagination pagination-sm inline">
-                            @if($previous_employee)
-                            <li><a href="{{ route('frontend.employee.show', $previous_employee->id) }}">«</a></li>
-                            @endif
-                            @if($next_employee)
-                            <li><a href="{{ route('frontend.employee.show', $next_employee->id) }}">»</a></li>
-                            @endif
-                        </ul>
+                        @include('frontend.includes.previousNextRecord')
                     </li>
                 </ul>
                 <div class="tab-content">

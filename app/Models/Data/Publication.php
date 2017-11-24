@@ -3,6 +3,7 @@
 namespace App\Models\Data;
 
 use App\Models\BaseModel;
+use App\Models\Data\Traits\Method\PublicationMethod;
 use App\Models\Data\Traits\Relationship\PublicationRelationship;
 
 /**
@@ -11,7 +12,8 @@ use App\Models\Data\Traits\Relationship\PublicationRelationship;
  */
 class Publication extends BaseModel
 {
-    use PublicationRelationship;
+    use PublicationRelationship,
+        PublicationMethod;
 
     /**
      * The table associated with the model.

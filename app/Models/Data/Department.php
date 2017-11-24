@@ -2,6 +2,7 @@
 
 namespace App\Models\Data;
 
+use App\Models\Data\Traits\Method\DepartmentMethod;
 use App\Models\Data\Traits\Relationship\DepartmentRelationship;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Department extends Model
 {
-    use DepartmentRelationship;
+    use DepartmentRelationship,
+        DepartmentMethod;
 
     /**
      * The table associated with the model.

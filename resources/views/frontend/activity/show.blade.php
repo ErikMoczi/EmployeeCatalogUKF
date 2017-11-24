@@ -8,6 +8,9 @@
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">{{ $activity->title }}</h3>
+            <div class="box-tools pull-right">
+                @include('frontend.includes.previousNextRecord')
+            </div>
         </div>
         <div class="box-body">
             <dl class="dl-horizontal">

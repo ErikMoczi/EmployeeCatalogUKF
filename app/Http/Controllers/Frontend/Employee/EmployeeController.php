@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Frontend\Employee;
 use App\Http\Controllers\Controller;
 use App\Models\Data\Employee;
 
+/**
+ * Class EmployeeController
+ * @package App\Http\Controllers\Frontend\Employee
+ */
 class EmployeeController extends Controller
 {
     public function index()
@@ -12,16 +16,26 @@ class EmployeeController extends Controller
         return view('frontend.employee.index');
     }
 
+    /**
+     * @param Employee $employee
+     * @return \Illuminate\View\View
+     */
     public function show(Employee $employee)
     {
         return view('frontend.employee.show')
-            ->with('employee', $employee)
-            ->with('position', $employee->position()->first())
-            ->with('publications', $employee->publications()->get())
-            ->with('projects', $employee->projects()->get())
-            ->with('activities', $employee->activities()->get())
-            ->with('profiles', $employee->profiles()->get())
-            ->with('next_employee', $employee->getNextRecordByLastName())
-            ->with('previous_employee', $employee->getPreviousRecordByLastName());
+            ->withEmployee($employee)
+            ->withPosition($employee->position()->first())
+            ->withPublications($employee->publications()->get())
+            ->withProjects($employee->projects()->get())
+            ->withActivities($employee->activities()->get())
+            ->withProfiles($employee->profiles()->get())
+            ->withNextRecord([
+                'route' => 'frontend.employee.show',
+                'model' => $employee->getNextRecordByLastName()
+            ])
+            ->withPreviousRecord([
+                'route' => 'frontend.employee.show',
+                'model' => $employee->getPreviousRecordByLastName()
+            ]);
     }
 }

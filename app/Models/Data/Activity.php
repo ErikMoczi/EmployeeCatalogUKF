@@ -3,6 +3,7 @@
 namespace App\Models\Data;
 
 use App\Models\BaseModel;
+use App\Models\Data\Traits\Method\ActivityMethod;
 use App\Models\Data\Traits\Relationship\ActivityRelationship;
 
 /**
@@ -11,7 +12,8 @@ use App\Models\Data\Traits\Relationship\ActivityRelationship;
  */
 class Activity extends BaseModel
 {
-    use ActivityRelationship;
+    use ActivityRelationship,
+        ActivityMethod;
 
     /**
      * The table associated with the model.

@@ -2,6 +2,7 @@
 
 namespace App\Models\Data;
 
+use App\Models\Data\Traits\Method\PositionMethod;
 use App\Models\Data\Traits\Relationship\PositionRelationship;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Position extends Model
 {
-    use PositionRelationship;
+    use PositionRelationship,
+        PositionMethod;
 
     /**
      * The table associated with the model.

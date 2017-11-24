@@ -3,6 +3,7 @@
 namespace App\Models\Data;
 
 use App\Models\BaseModel;
+use App\Models\Data\Traits\Method\ProjectMethod;
 use App\Models\Data\Traits\Relationship\ProjectRelationship;
 
 /**
@@ -11,7 +12,8 @@ use App\Models\Data\Traits\Relationship\ProjectRelationship;
  */
 class Project extends BaseModel
 {
-    use ProjectRelationship;
+    use ProjectRelationship,
+        ProjectMethod;
 
     /**
      * The table associated with the model.
