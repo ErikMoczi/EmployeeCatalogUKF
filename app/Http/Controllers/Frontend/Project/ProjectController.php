@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\Project;
 
 use App\Http\Controllers\Controller;
 use App\Models\Data\Project;
+use App\Repositories\Frontend\ProjectRepository;
 
 /**
  * Class ProjectController
@@ -11,9 +12,27 @@ use App\Models\Data\Project;
  */
 class ProjectController extends Controller
 {
+    /**
+     * @var ProjectRepository
+     */
+    protected $projectRepository;
+
+    /**
+     * EmployeeController constructor.
+     * @param ProjectRepository $projectRepository
+     */
+    public function __construct(ProjectRepository $projectRepository)
+    {
+        $this->projectRepository = $projectRepository;
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
-        return view('frontend.project.index');
+        return view('frontend.project.index')
+            ->withTableData($this->projectRepository->getWithCountRelations());
     }
 
     /**

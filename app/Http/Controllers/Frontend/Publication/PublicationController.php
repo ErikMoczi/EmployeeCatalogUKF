@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\Publication;
 
 use App\Http\Controllers\Controller;
 use App\Models\Data\Publication;
+use App\Repositories\Frontend\PublicationRepository;
 
 /**
  * Class PublicationController
@@ -11,9 +12,27 @@ use App\Models\Data\Publication;
  */
 class PublicationController extends Controller
 {
+    /**
+     * @var PublicationRepository
+     */
+    protected $publicationRepository;
+
+    /**
+     * EmployeeController constructor.
+     * @param PublicationRepository $publicationRepository
+     */
+    public function __construct(PublicationRepository $publicationRepository)
+    {
+        $this->publicationRepository = $publicationRepository;
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
-        return view('frontend.employee.index');
+        return view('frontend.publication.index')
+            ->withTableData($this->publicationRepository->getWithCountRelations());
     }
 
     /**

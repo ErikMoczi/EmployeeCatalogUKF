@@ -10,6 +10,14 @@
                 <li><a href="{{ route('frontend.activity.index') }}">Activities</a></li>
             </ul>
         </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ route('frontend.publication.index') }}">Positions</a></li>
+                <li><a href="{{ route('frontend.project.index') }}">Departments</a></li>
+                <li><a href="{{ route('frontend.activity.index') }}">Faculties</a></li>
+            </ul>
+        </li>
     </ul>
     <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
