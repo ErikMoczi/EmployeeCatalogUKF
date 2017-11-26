@@ -3,6 +3,7 @@
 namespace App\Models\Data\Traits\Relationship;
 
 use App\Models\Data\Department;
+use App\Models\Data\Employee;
 
 /**
  * Trait FacultyRelationship
@@ -16,5 +17,13 @@ trait FacultyRelationship
     public function departments()
     {
         return $this->hasMany(Department::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasManyThrough
+     */
+    public function employees()
+    {
+        return $this->hasManyThrough(Employee::class, Department::class);
     }
 }
