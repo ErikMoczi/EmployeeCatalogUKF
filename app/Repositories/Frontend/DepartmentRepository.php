@@ -3,18 +3,19 @@
 namespace App\Repositories\Frontend;
 
 
-use App\Models\Data\Employee;
+use App\Models\Data\Department;
 use App\Repositories\BaseRepository;
+use App\Repositories\Frontend\Traits\DataTableRepository;
 
 /**
- * Class EmployeeRepository
+ * Class DepartmentRepository
  * @package App\Repositories\Frontend
  */
-class EmployeeRepository extends BaseRepository implements IFrontendDataTableRepository
+class DepartmentRepository extends BaseRepository implements IFrontendDataTableRepository
 {
     public function model()
     {
-        return Employee::class;
+        return Department::class;
     }
 
     /**
@@ -23,15 +24,12 @@ class EmployeeRepository extends BaseRepository implements IFrontendDataTableRep
     public function getForDataTable()
     {
         return $this->model
-            ->join('department', 'department.id', '=', 'employee.department_id')
             ->join('faculty', 'faculty.id', '=', 'department.faculty_id')
             ->select(
-                'employee.*',
-                'department.name AS department_name',
-                'department.id AS department_id',
+                'department.*',
                 'faculty.name AS faculty_name',
                 'faculty.id AS faculty_id'
             )
-            ->withCount('publications', 'projects', 'activities');
+            ->withCount('employees');
     }
 }

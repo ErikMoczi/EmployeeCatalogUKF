@@ -5,26 +5,18 @@ namespace App\Repositories\Frontend;
 
 use App\Models\Data\Project;
 use App\Repositories\BaseRepository;
-use Illuminate\Database\Eloquent\Collection;
+use App\Repositories\Frontend\Traits\DataTableRepository;
 
 /**
  * Class ProjectRepository
  * @package App\Repositories\Frontend
  */
-class ProjectRepository extends BaseRepository
+class ProjectRepository extends BaseRepository implements IFrontendDataTableRepository
 {
+    use DataTableRepository;
+
     public function model()
     {
         return Project::class;
-    }
-
-    /**
-     * @return Collection|static[]
-     */
-    public function getWithCountRelations()
-    {
-        return $this->model
-            ->withCount('employees')
-            ->get();
     }
 }

@@ -3,20 +3,20 @@
 namespace App\Repositories\Frontend;
 
 
-use App\Models\Data\Publication;
+use App\Models\Data\Position;
 use App\Repositories\BaseRepository;
 use App\Repositories\Frontend\Traits\DataTableRepository;
 
 /**
- * Class PublicationRepository
+ * Class PositionRepository
  * @package App\Repositories\Frontend
  */
-class PublicationRepository extends BaseRepository implements IFrontendDataTableRepository
+class PositionRepository extends BaseRepository implements IFrontendDataTableRepository
 {
     use DataTableRepository;
 
     public function model()
     {
-        return Publication::class;
+        return Position::class;
     }
 }
