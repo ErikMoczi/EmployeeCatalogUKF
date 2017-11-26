@@ -21,3 +21,9 @@ Route::group(['namespace' => 'Activity', 'prefix' => 'activity', 'as' => 'activi
     Route::get('', 'ActivityController@index')->name('index');
     Route::get('{activity}', 'ActivityController@show')->name('show');
 });
+
+Route::group(['namespace' => 'Faculty', 'prefix' => 'faculty', 'as' => 'faculty.'], function () {
+    Route::get('', 'FacultyController@index')->name('index');
+    Route::get('{faculty}', 'FacultyController@show')->name('show');
+});
+
