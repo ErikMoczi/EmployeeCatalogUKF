@@ -240,7 +240,7 @@ return [
          */
         'EmailHelper' => App\Facades\General\EmailHelper::class,
         'DataPumpHelper' => App\Facades\General\DataPumpHelper::class,
-        
+
     ],
 
 ];
