@@ -72,3 +72,46 @@ if (!function_exists('home_route')) {
         return 'frontend.index';
     }
 }
+
+if (!function_exists('record_navigation_init')) {
+
+    /**
+     * @param string $routeName
+     * @param \Illuminate\Database\Eloquent\Model $modelData
+     * @return array
+     */
+    function record_navigation_init(string $routeName, \Illuminate\Database\Eloquent\Model $modelData)
+    {
+        $nextRecord = $modelData->getNextRecord();
+        $previousRecord = $modelData->getPreviousRecord();
+
+        return [
+            'next_record' => $nextRecord ? route($routeName, $nextRecord->id) : null,
+            'previous_record' => $previousRecord ? route($routeName, $previousRecord->id) : null
+        ];
+    }
+}
+
+if (!function_exists('record_navigation_get_next')) {
+
+    /**
+     * @param array $navigationRecord
+     * @return mixed
+     */
+    function record_navigation_get_next(array $navigationRecord)
+    {
+        return $navigationRecord['next_record'];
+    }
+}
+
+if (!function_exists('record_navigation_get_previous')) {
+
+    /**
+     * @param array $navigationRecord
+     * @return mixed
+     */
+    function record_navigation_get_previous(array $navigationRecord)
+    {
+        return $navigationRecord['previous_record'];
+    }
+}
