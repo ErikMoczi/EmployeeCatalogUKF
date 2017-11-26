@@ -178,6 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Providers\ComposerServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        App\Providers\FrontendDataTableRepositoryServiceProvider::class,
 
     ],
 
