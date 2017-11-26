@@ -167,6 +167,8 @@ return [
         /*
          * Package Service Providers...
          */
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        HieuLe\Active\ActiveServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -176,12 +178,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
         App\Providers\ComposerServiceProvider::class,
-        Yajra\DataTables\DataTablesServiceProvider::class,
         App\Providers\FrontendDataTableRepositoryServiceProvider::class,
-        HieuLe\Active\ActiveServiceProvider::class,
-
+        
     ],
 
     /*
@@ -231,9 +230,17 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /*
+         * Package Aliases
+         */
+        'Active' => HieuLe\Active\Facades\Active::class,
+
+        /*
+         * Application Aliases
+         */
         'EmailHelper' => App\Facades\General\EmailHelper::class,
         'DataPumpHelper' => App\Facades\General\DataPumpHelper::class,
-        'Active' => HieuLe\Active\Facades\Active::class,
+        
     ],
 
 ];
