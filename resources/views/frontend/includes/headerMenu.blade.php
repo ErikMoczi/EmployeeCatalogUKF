@@ -13,9 +13,9 @@
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="{{ route('frontend.publication.index') }}">Positions</a></li>
-                <li><a href="{{ route('frontend.project.index') }}">Departments</a></li>
-                <li><a href="{{ route('frontend.activity.index') }}">Faculties</a></li>
+                <li><a href="{{ route('frontend.position.index') }}">Positions</a></li>
+                <li><a href="{{ route('frontend.department.index') }}">Departments</a></li>
+                <li><a href="{{ route('frontend.faculty.index') }}">Faculties</a></li>
             </ul>
         </li>
     </ul>
