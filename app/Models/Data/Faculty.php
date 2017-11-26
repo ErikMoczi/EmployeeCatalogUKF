@@ -2,15 +2,15 @@
 
 namespace App\Models\Data;
 
+use App\Models\BaseModel;
 use App\Models\Data\Traits\Method\FacultyMethod;
 use App\Models\Data\Traits\Relationship\FacultyRelationship;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Faculty
  * @package App\Models\Data
  */
-class Faculty extends Model
+class Faculty extends BaseModel
 {
     use FacultyRelationship,
         FacultyMethod;

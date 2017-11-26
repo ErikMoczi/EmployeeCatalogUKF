@@ -2,15 +2,15 @@
 
 namespace App\Models\Data;
 
+use App\Models\BaseModel;
 use App\Models\Data\Traits\Method\DepartmentMethod;
 use App\Models\Data\Traits\Relationship\DepartmentRelationship;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Department
  * @package App\Models\Data
  */
-class Department extends Model
+class Department extends BaseModel
 {
     use DepartmentRelationship,
         DepartmentMethod;
