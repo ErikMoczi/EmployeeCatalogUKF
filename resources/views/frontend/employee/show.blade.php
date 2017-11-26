@@ -1,7 +1,7 @@
 @extends('frontend.layouts.page')
 
 @section('content_header')
-    <h1>Employee Profile</h1>
+    <h1>Employee Profile details</h1>
 @endsection
 
 @section('content')
@@ -11,21 +11,39 @@
             <!-- Profile Image -->
             <div class="box box-primary">
                 <div class="box-body box-profile">
-                    <h3 class="profile-username text-center">{{ $employee->full_name }}</h3>
+                    <img class="profile-user-img img-responsive img-circle"
+                         src="{{ asset('img/user/unknown-user.ico') }}" alt="User profile picture">
+                    <h3 class="profile-username text-center">{{ $dataShow->full_name }}</h3>
 
                     <p class="text-muted text-center">
-                        <a href="#">{{ $position->name }}</a>
+                        <a href="{{ route('frontend.position.show', $dataShow->position->id) }}">{{ $dataShow->position->name }}</a>
                     </p>
 
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
-                            <b>Publications</b> <a class="pull-right">{{ count($publications) }}</a>
+                            <b>Department</b>
+                            <p class="text-muted">
+                                <a href="{{ route('frontend.department.show', $dataShow->department->id) }}">
+                                    {{ $dataShow->department->name }}
+                                </a>
+                            </p>
                         </li>
                         <li class="list-group-item">
-                            <b>Projects</b> <a class="pull-right">{{ count($projects) }}</a>
+                            <b>Faculty</b>
+                            <p class="text-muted">
+                                <a href="{{ route('frontend.faculty.show', $dataShow->faculty->id) }}">
+                                    {{ $dataShow->faculty->name }}
+                                </a>
+                            </p>
                         </li>
                         <li class="list-group-item">
-                            <b>Activities</b> <a class="pull-right">{{ count($activities) }}</a>
+                            <b>Publications</b> <a class="pull-right">{{ count($dataShow->publications) }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Projects</b> <a class="pull-right">{{ count($dataShow->projects) }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Activities</b> <a class="pull-right">{{ count($dataShow->activities) }}</a>
                         </li>
                     </ul>
                 </div>
@@ -40,7 +58,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    @foreach($profiles as $profile)
+                    @foreach($dataShow->profiles as $profile)
                         <strong><i class="fa fa-book margin-r-5"></i>{{ $profile->getName() }}
                         </strong>
 
@@ -76,118 +94,156 @@
                 </ul>
                 <div class="tab-content">
                     <div class="active tab-pane" id="publications">
-                    @foreach($publications as $publication)
-                        <!-- Post -->
-                            <div class="post">
-                                <div class="user-block">
-                                    <span class="username">
-                                        <a href="{{ route('frontend.publication.show', $publication->id) }}">{{ $publication->title }}</a>
-                                    </span>
-                                    <span class="description">{{ $publication->sub_title }}</span>
-                                </div>
-                                <!-- /.user-block -->
-                                <ul class="list-inline">
-                                    @if($publication->ISBN)
-                                        <li>
-                                            <i class="fa fa-barcode margin-r-5"></i>{{ $publication->ISBN }}
-                                        </li>
-                                    @endif
-                                    @if($publication->publisher)
-                                        <li>
-                                            <i class="fa fa-frown-o margin-r-5"></i>{{ $publication->publisher }}
-                                        </li>
-                                    @endif
-                                    @if($publication->type)
-                                        <li>
-                                            <i class="fa fa-creative-commons margin-r-5"></i>{{ $publication->type }}
-                                        </li>
-                                    @endif
-                                    @if($publication->year)
-                                        <li>
-                                            <i class="fa fa-calendar margin-r-5"></i>{{ $publication->year }}
-                                        </li>
-                                    @endif
-                                    @if($publication->pages > 0)
-                                        <li>
-                                            <i class="fa fa-sticky-note margin-r-5"></i>{{ $publication->pages }}
-                                        </li>
-                                    @endif
-                                    @if($publication->code)
-                                        <li>
-                                            <i class="fa fa-code-fork margin-r-5"></i>{{ $publication->code }}
-                                        </li>
-                                    @endif
-                                </ul>
-                            </div>
-                            <!-- /.post -->
-                        @endforeach
+                        <!-- The timeline -->
+                        <ul class="timeline timeline-inverse">
+                        @foreach($dataShow->publications as $publication)
+                            <!-- timeline item -->
+                                <li>
+                                    <i class="fa fa-copy bg-green"></i>
+                                    <div class="timeline-item">
+                                        <h3 class="timeline-header">
+                                            <a href="{{ route('frontend.publication.show', $publication->id) }}">
+                                                {{ $publication->title }}
+                                            </a>
+                                            @if($publication->sub_title)
+                                                : {{ $publication->sub_title }}
+                                            @endif
+                                        </h3>
+                                        <div class="timeline-body">
+                                            <ul class="list-inline">
+                                                @if($publication->ISBN)
+                                                    <li>
+                                                        <i class="fa fa-barcode margin-r-5"></i>{{ $publication->ISBN }}
+                                                    </li>
+                                                @endif
+                                                @if($publication->publisher)
+                                                    <li>
+                                                        <i class="fa fa-frown-o margin-r-5"></i>{{ $publication->publisher }}
+                                                    </li>
+                                                @endif
+                                                @if($publication->type)
+                                                    <li>
+                                                        <i class="fa fa-creative-commons margin-r-5"></i>{{ $publication->type }}
+                                                    </li>
+                                                @endif
+                                                @if($publication->year)
+                                                    <li>
+                                                        <i class="fa fa-calendar margin-r-5"></i>{{ $publication->year }}
+                                                    </li>
+                                                @endif
+                                                @if($publication->pages > 0)
+                                                    <li>
+                                                        <i class="fa fa-sticky-note margin-r-5"></i>{{ $publication->pages }}
+                                                    </li>
+                                                @endif
+                                                @if($publication->code)
+                                                    <li>
+                                                        <i class="fa fa-code-fork margin-r-5"></i>{{ $publication->code }}
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                        </div>
+                                        <div class="timeline-footer">
+                                            <a href="{{ route('frontend.publication.show', $publication->id) }}"
+                                               class="btn btn-primary btn-xs">Details</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- END timeline item -->
+                            @endforeach
+                        </ul>
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="projects">
-                    @foreach($projects as $project)
-                        <!-- Post -->
-                            <div class="post">
-                                <div class="user-block">
-                                    <span class="username">
-                                        <a href="{{ route('frontend.project.show', $project->id) }}">{{ $project->title }}</a>
-                                    </span>
-                                    <span class="description">{{ $project->reg_number }}</span>
-                                </div>
-                                <!-- /.user-block -->
-                                <ul class="list-inline">
-                                    @if($project->year_from)
-                                        <li>
-                                            <i class="fa fa-calendar-plus-o margin-r-5"></i>{{ $project->year_from }}
-                                        </li>
-                                    @endif
-                                    @if($project->year_to)
-                                        <li>
-                                            <i class="fa fa-calendar-minus-o margin-r-5"></i>{{ $project->year_to }}
-                                        </li>
-                                    @endif
-                                </ul>
-                            </div>
-                            <!-- /.post -->
-                        @endforeach
+                        <!-- The timeline -->
+                        <ul class="timeline timeline-inverse">
+                        @foreach($dataShow->projects as $project)
+                            <!-- timeline item -->
+                                <li>
+                                    <i class="fa fa-copy bg-red"></i>
+                                    <div class="timeline-item">
+                                        <h3 class="timeline-header">
+                                            <a href="{{ route('frontend.project.show', $project->id) }}">
+                                                {{ $project->title }}
+                                            </a>
+                                            @if($project->reg_number)
+                                                : {{ $project->reg_number }}
+                                            @endif
+                                        </h3>
+                                        <div class="timeline-body">
+                                            <ul class="list-inline">
+                                                @if($project->year_from)
+                                                    <li>
+                                                        <i class="fa fa-calendar-plus-o margin-r-5"></i>{{ $project->year_from }}
+                                                    </li>
+                                                @endif
+                                                @if($project->year_to)
+                                                    <li>
+                                                        <i class="fa fa-calendar-minus-o margin-r-5"></i>{{ $project->year_to }}
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                        </div>
+                                        <div class="timeline-footer">
+                                            <a href="{{ route('frontend.project.show', $project->id) }}"
+                                               class="btn btn-primary btn-xs">Details</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- END timeline item -->
+                            @endforeach
+                        </ul>
                     </div>
                     <!-- /.tab-pane -->
-
                     <div class="tab-pane" id="activities">
-                    @foreach($activities as $activity)
-                        <!-- Post -->
-                            <div class="post">
-                                <div class="user-block">
-                                    <span class="username">
-                                        <a href="{{ route('frontend.activity.show', $activity->id) }}">{{ $activity->title }}</a>
-                                    </span>
-                                    <span class="description">{{ $activity->key }}</span>
-                                </div>
-                                <!-- /.user-block -->
-                                <ul class="list-inline">
-                                    @if($activity->date)
-                                        <li>
-                                            <i class="fa fa-calendar margin-r-5"></i>{{ $activity->date }}
-                                        </li>
-                                    @endif
-                                    @if($activity->country)
-                                        <li>
-                                            <i class="fa fa-plane margin-r-5"></i>{{ $activity->country }}
-                                        </li>
-                                    @endif
-                                    @if($activity->type)
-                                        <li>
-                                            <i class="fa fa-creative-commons margin-r-5"></i>{{ $activity->type }}
-                                        </li>
-                                    @endif
-                                    @if($activity->category)
-                                        <li>
-                                            <i class="fa fa-cog margin-r-5"></i>{{ $activity->category }}
-                                        </li>
-                                    @endif
-                                </ul>
-                            </div>
-                            <!-- /.post -->
-                        @endforeach
+                        <!-- The timeline -->
+                        <ul class="timeline timeline-inverse">
+                        @foreach($dataShow->activities as $activity)
+                            <!-- timeline item -->
+                                <li>
+                                    <i class="fa fa-copy bg-yellow"></i>
+                                    <div class="timeline-item">
+                                        <h3 class="timeline-header">
+                                            <a href="{{ route('frontend.activity.show', $activity->id) }}">
+                                                {{ $activity->title }}
+                                            </a>
+                                            @if($activity->key)
+                                                : {{ $activity->key }}
+                                            @endif
+                                        </h3>
+                                        <div class="timeline-body">
+                                            <ul class="list-inline">
+                                                @if($activity->date)
+                                                    <li>
+                                                        <i class="fa fa-calendar margin-r-5"></i>{{ $activity->date }}
+                                                    </li>
+                                                @endif
+                                                @if($activity->country)
+                                                    <li>
+                                                        <i class="fa fa-plane margin-r-5"></i>{{ $activity->country }}
+                                                    </li>
+                                                @endif
+                                                @if($activity->type)
+                                                    <li>
+                                                        <i class="fa fa-creative-commons margin-r-5"></i>{{ $activity->type }}
+                                                    </li>
+                                                @endif
+                                                @if($activity->category)
+                                                    <li>
+                                                        <i class="fa fa-cog margin-r-5"></i>{{ $activity->category }}
+                                                    </li>
+                                                @endif
+                                            </ul>
+                                        </div>
+                                        <div class="timeline-footer">
+                                            <a href="{{ route('frontend.activity.show', $activity->id) }}"
+                                               class="btn btn-primary btn-xs">Details</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- END timeline item -->
+                            @endforeach
+                        </ul>
                     </div>
                     <!-- /.tab-pane -->
                 </div>
