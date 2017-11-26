@@ -10,6 +10,8 @@ use App\Models\Data\Faculty;
  */
 trait FacultyMethod
 {
+    use BaseMethod;
+
     /**
      * @return Faculty
      */

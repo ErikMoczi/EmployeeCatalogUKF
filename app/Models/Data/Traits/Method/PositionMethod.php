@@ -10,5 +10,5 @@ namespace App\Models\Data\Traits\Method;
  */
 trait PositionMethod
 {
-
+    use BaseMethod;
 }
