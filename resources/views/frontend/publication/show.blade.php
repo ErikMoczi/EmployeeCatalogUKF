@@ -1,13 +1,13 @@
 @extends('frontend.layouts.page')
 
 @section('content_header')
-    <h1>Publication</h1>
+    <h1>Publication details</h1>
 @endsection
 
 @section('content')
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">{{ $publication->title }}</h3>
+            <h3 class="box-title">{{ $dataShow->title }}</h3>
             <div class="box-tools pull-right">
                 @include('frontend.includes.previousNextRecord')
             </div>
@@ -15,33 +15,27 @@
         <div class="box-body">
             <dl class="dl-horizontal">
                 <dt>ISBN</dt>
-                <dd>{{ $publication->ISBN }}</dd>
+                <dd>{{ $dataShow->ISBN }}</dd>
                 <dt>Sub title</dt>
-                <dd>{{ $publication->sub_title }}</dd>
+                <dd>{{ $dataShow->sub_title }}</dd>
                 <dt>Publisher</dt>
-                <dd>{{ $publication->publisher }}</dd>
+                <dd>{{ $dataShow->publisher }}</dd>
                 <dt>Type</dt>
-                <dd>{{ $publication->type }}</dd>
+                <dd>{{ $dataShow->type }}</dd>
                 <dt>Pages</dt>
-                <dd>{{ $publication->pages }}</dd>
+                <dd>{{ $dataShow->pages }}</dd>
                 <dt>Year</dt>
-                <dd>{{ $publication->year }}</dd>
+                <dd>{{ $dataShow->year }}</dd>
                 <dt>Code</dt>
-                <dd>{{ $publication->code }}</dd>
+                <dd>{{ $dataShow->code }}</dd>
                 <dt>Total authors</dt>
-                <dd>{{ count($employees) }}</dd>
+                <dd>{{ count($dataShow->employees) }}</dd>
             </dl>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
             <ul>
-                @foreach($employees as $employee)
-                    <li>
-                        <a href="{{ route('frontend.employee.show', $employee->id) }}" class="link-black text-sm">
-                            <i class="fa fa-genderless margin-r-5"></i>{{ $employee->full_name }}
-                        </a>
-                    </li>
-                @endforeach
+                @include('frontend.includes.boxFooter.user', ['employeesList' => $dataShow->employees])
             </ul>
         </div>
         <!-- /.box-footer-->
