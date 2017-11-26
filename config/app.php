@@ -180,6 +180,7 @@ return [
         App\Providers\ComposerServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         App\Providers\FrontendDataTableRepositoryServiceProvider::class,
+        HieuLe\Active\ActiveServiceProvider::class,
 
     ],
 
@@ -232,6 +233,7 @@ return [
 
         'EmailHelper' => App\Facades\General\EmailHelper::class,
         'DataPumpHelper' => App\Facades\General\DataPumpHelper::class,
+        'Active' => HieuLe\Active\Facades\Active::class,
     ],
 
 ];
