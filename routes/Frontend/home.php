@@ -32,3 +32,7 @@ Route::group(['namespace' => 'Position', 'prefix' => 'position', 'as' => 'positi
     Route::get('{position}', 'PositionController@show')->name('show');
 });
 
+Route::group(['namespace' => 'Department', 'prefix' => 'department', 'as' => 'department.'], function () {
+    Route::get('', 'DepartmentController@index')->name('index');
+    Route::get('{department}', 'DepartmentController@show')->name('show');
+});
