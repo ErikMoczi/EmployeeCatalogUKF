@@ -27,3 +27,8 @@ Route::group(['namespace' => 'Faculty', 'prefix' => 'faculty', 'as' => 'faculty.
     Route::get('{faculty}', 'FacultyController@show')->name('show');
 });
 
+Route::group(['namespace' => 'Position', 'prefix' => 'position', 'as' => 'position.'], function () {
+    Route::get('', 'PositionController@index')->name('index');
+    Route::get('{position}', 'PositionController@show')->name('show');
+});
+
