@@ -75,4 +75,13 @@ trait EmployeeRelationship
     {
         return $this->hasOne(User::class);
     }
+
+    /**
+     * return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function faculty()
+    {
+        return $this->department()
+            ->join('faculty', 'faculty.id', '=','department.faculty_id');
+    }
 }
