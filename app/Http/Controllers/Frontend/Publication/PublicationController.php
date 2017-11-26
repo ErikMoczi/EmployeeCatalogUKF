@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Frontend\Publication;
 
+use App\DataTables\Frontend\PublicationDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\Data\Publication;
 use App\Repositories\Frontend\PublicationRepository;
 
 /**
@@ -18,7 +18,7 @@ class PublicationController extends Controller
     protected $publicationRepository;
 
     /**
-     * EmployeeController constructor.
+     * PublicationController constructor.
      * @param PublicationRepository $publicationRepository
      */
     public function __construct(PublicationRepository $publicationRepository)
@@ -27,30 +27,24 @@ class PublicationController extends Controller
     }
 
     /**
-     * @return \Illuminate\View\View
+     * @param PublicationDataTable $dataTable
+     * @return mixed
      */
-    public function index()
+    public function index(PublicationDataTable $dataTable)
     {
-        return view('frontend.publication.index')
-            ->withTableData($this->publicationRepository->getWithCountRelations());
+        return $dataTable->render('frontend.publication.index');
     }
 
     /**
-     * @param Publication $publication
-     * @@return \Illuminate\View\View
+     * @param int $id
+     * @return \Illuminate\View\View
      */
-    public function show(Publication $publication)
+    public function show(int $id)
     {
+        $dataShow = $this->publicationRepository->getById($id);
+
         return view('frontend.publication.show')
-            ->withPublication($publication)
-            ->withEmployees($publication->employees()->get())
-            ->withNextRecord([
-                'route' => 'frontend.publication.show',
-                'model' => $publication->getNextRecord()
-            ])
-            ->withPreviousRecord([
-                'route' => 'frontend.publication.show',
-                'model' => $publication->getPreviousRecord()
-            ]);
+            ->withDataShow($dataShow)
+            ->withNavigationRecord(record_navigation_init('frontend.publication.show', $dataShow));
     }
 }

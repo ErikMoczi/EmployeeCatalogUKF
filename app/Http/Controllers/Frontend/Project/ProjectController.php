@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Frontend\Project;
 
+use App\DataTables\Frontend\ProjectDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\Data\Project;
 use App\Repositories\Frontend\ProjectRepository;
 
 /**
@@ -18,7 +18,7 @@ class ProjectController extends Controller
     protected $projectRepository;
 
     /**
-     * EmployeeController constructor.
+     * ProjectController constructor.
      * @param ProjectRepository $projectRepository
      */
     public function __construct(ProjectRepository $projectRepository)
@@ -27,30 +27,24 @@ class ProjectController extends Controller
     }
 
     /**
-     * @return \Illuminate\View\View
+     * @param ProjectDataTable $dataTable
+     * @return mixed
      */
-    public function index()
+    public function index(ProjectDataTable $dataTable)
     {
-        return view('frontend.project.index')
-            ->withTableData($this->projectRepository->getWithCountRelations());
+        return $dataTable->render('frontend.project.index');
     }
 
     /**
-     * @param Project $project
+     * @param int $id
      * @return \Illuminate\View\View
      */
-    public function show(Project $project)
+    public function show(int $id)
     {
+        $dataShow = $this->projectRepository->getById($id);
+
         return view('frontend.project.show')
-            ->withProject($project)
-            ->withEmployees($project->employees()->get())
-            ->withNextRecord([
-                'route' => 'frontend.project.show',
-                'model' => $project->getNextRecord()
-            ])
-            ->withPreviousRecord([
-                'route' => 'frontend.project.show',
-                'model' => $project->getPreviousRecord()
-            ]);
+            ->withDataShow($dataShow)
+            ->withNavigationRecord(record_navigation_init('frontend.project.show', $dataShow));
     }
 }

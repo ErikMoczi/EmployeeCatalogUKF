@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Frontend\Activity;
 
+use App\DataTables\Frontend\ActivityDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\Data\Activity;
 use App\Repositories\Frontend\ActivityRepository;
 
 /**
@@ -18,7 +18,7 @@ class ActivityController extends Controller
     protected $activityRepository;
 
     /**
-     * EmployeeController constructor.
+     * ActivityController constructor.
      * @param ActivityRepository $activityRepository
      */
     public function __construct(ActivityRepository $activityRepository)
@@ -27,30 +27,24 @@ class ActivityController extends Controller
     }
 
     /**
-     * @return \Illuminate\View\View
+     * @param ActivityDataTable $dataTable
+     * @return mixed
      */
-    public function index()
+    public function index(ActivityDataTable $dataTable)
     {
-        return view('frontend.activity.index')
-            ->withTableData($this->activityRepository->getWithCountRelations());
+        return $dataTable->render('frontend.publication.index');
     }
 
     /**
-     * @param Activity $activity
+     * @param int $id
      * @return \Illuminate\View\View
      */
-    public function show(Activity $activity)
+    public function show(int $id)
     {
+        $dataShow = $this->activityRepository->getById($id);
+
         return view('frontend.activity.show')
-            ->withActivity($activity)
-            ->withEmployees($activity->employees()->get())
-            ->withNextRecord([
-                'route' => 'frontend.activity.show',
-                'model' => $activity->getNextRecord()
-            ])
-            ->withPreviousRecord([
-                'route' => 'frontend.activity.show',
-                'model' => $activity->getPreviousRecord()
-            ]);
+            ->withDataShow($dataShow)
+            ->withNavigationRecord(record_navigation_init('frontend.activity.show', $dataShow));
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Frontend\Employee;
 
+use App\DataTables\Frontend\EmployeeDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\Data\Employee;
 use App\Repositories\Frontend\EmployeeRepository;
 
 /**
@@ -27,34 +27,24 @@ class EmployeeController extends Controller
     }
 
     /**
-     * @return \Illuminate\View\View
+     * @param EmployeeDataTable $dataTable
+     * @return mixed
      */
-    public function index()
+    public function index(EmployeeDataTable $dataTable)
     {
-        return view('frontend.employee.index')
-            ->withTableData($this->employeeRepository->getWithCountRelations());
+        return $dataTable->render('frontend.employee.index');
     }
 
     /**
-     * @param Employee $employee
+     * @param int $id
      * @return \Illuminate\View\View
      */
-    public function show(Employee $employee)
+    public function show(int $id)
     {
+        $dataShow = $this->employeeRepository->getById($id);
+
         return view('frontend.employee.show')
-            ->withEmployee($employee)
-            ->withPosition($employee->position()->first())
-            ->withPublications($employee->publications()->get())
-            ->withProjects($employee->projects()->get())
-            ->withActivities($employee->activities()->get())
-            ->withProfiles($employee->profiles()->get())
-            ->withNextRecord([
-                'route' => 'frontend.employee.show',
-                'model' => $employee->getNextRecordByLastName()
-            ])
-            ->withPreviousRecord([
-                'route' => 'frontend.employee.show',
-                'model' => $employee->getPreviousRecordByLastName()
-            ]);
+            ->withDataShow($dataShow)
+            ->withNavigationRecord(record_navigation_init('frontend.employee.show', $dataShow));
     }
 }
