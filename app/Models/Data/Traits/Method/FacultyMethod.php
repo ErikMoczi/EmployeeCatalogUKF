@@ -33,4 +33,20 @@ trait FacultyMethod
     {
         return $this->create(['name' => $this->getAttribute('name')]);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    public function getNextRecord()
+    {
+        return $this->getNextRecordByColumn('name');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    public function getPreviousRecord()
+    {
+        return $this->getPreviousRecordByColumn('name');
+    }
 }

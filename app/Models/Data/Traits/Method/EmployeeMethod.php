@@ -4,8 +4,6 @@
 namespace App\Models\Data\Traits\Method;
 
 
-use App\Models\Data\Employee;
-
 /**
  * Trait EmployeeMethod
  * @package App\Models\Data\Traits\Method
@@ -27,18 +25,18 @@ trait EmployeeMethod
     }
 
     /**
-     * @return Employee|null
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function getNextRecordByLastName(): ?Employee
+    public function getNextRecord()
     {
-        return $this->where('last_name', '>', $this->last_name)->oldest('last_name')->first();
+        return $this->getNextRecordByColumn('last_name');
     }
 
     /**
-     * @return Employee|null
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
-    public function getPreviousRecordByLastName(): ?Employee
+    public function getPreviousRecord()
     {
-        return $this->where('last_name', '<', $this->last_name)->latest('last_name')->first();
+        return $this->getPreviousRecordByColumn('last_name');
     }
 }

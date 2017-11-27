@@ -3,6 +3,8 @@
 
 namespace App\Models\Data\Traits\Method;
 
+use App\Models\Data\Traits\Method\Base\NavigationRecordMethod;
+
 
 /**
  * Class BaseMethod
@@ -10,12 +12,14 @@ namespace App\Models\Data\Traits\Method;
  */
 trait BaseMethod
 {
+    use NavigationRecordMethod;
+
     /**
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function getNextRecord()
     {
-        return $this->where('id', '>', $this->id)->oldest('id')->first();
+        return $this->getNextRecordById();
     }
 
     /**
@@ -23,6 +27,23 @@ trait BaseMethod
      */
     public function getPreviousRecord()
     {
-        return $this->where('id', '<', $this->id)->latest('id')->first();
+        return $this->getPreviosRecordById();
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    public function getPreviosRecordById()
+    {
+        return $this->getNextRecordByColumn();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    public function getNextRecordById()
+    {
+        return $this->getNextRecordByColumn();
+    }
+
 }
