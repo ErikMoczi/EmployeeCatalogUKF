@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Frontend\Statistics;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Frontend\ActivityRepository;
 use App\Repositories\Frontend\StatisticsRepository;
+use ConsoleTVs\Charts\Facades\Charts;
 
 /**
  * Class StatisticsController
@@ -62,9 +64,30 @@ class StatisticsController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function activity()
+    public function activity(ActivityRepository $activityRepository)
     {
-        return view('frontend.statistics.activity');
+        $data = $activityRepository->all();
+
+        $countryChart = Charts::database($data, 'pie', 'c3')
+            ->title('Chart of country activities')
+            ->responsive(true)
+            ->groupBy('country');
+
+        $typeChart = Charts::database($data, 'pie', 'c3')
+            ->title('Chart of type activities')
+            ->responsive(true)
+            ->groupBy('type');
+
+        $categoryChart = Charts::database($data, 'pie', 'c3')
+            ->title('Chart of category activities')
+            ->responsive(true)
+            ->groupBy('category');
+
+        return view('frontend.statistics.activity', compact([
+            'countryChart',
+            'typeChart',
+            'categoryChart'
+        ]));
     }
 
     /**
