@@ -6,6 +6,10 @@ namespace App\DataTables\Frontend;
 
 use App\DataTables\BaseDataTable;
 
+/**
+ * Class FrontendDataTable
+ * @package App\DataTables\Frontend
+ */
 abstract class FrontendDataTable extends BaseDataTable
 {
     /**
