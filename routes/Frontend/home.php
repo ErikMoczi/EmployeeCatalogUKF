@@ -36,3 +36,14 @@ Route::group(['namespace' => 'Department', 'prefix' => 'department', 'as' => 'de
     Route::get('', 'DepartmentController@index')->name('index');
     Route::get('{department}', 'DepartmentController@show')->name('show');
 });
+
+Route::group(['namespace' => 'Statistics', 'prefix' => 'statistics', 'as' => 'statistics.'], function () {
+    Route::get('', 'StatisticsController@index')->name('index');
+    Route::get('employee', 'StatisticsController@employee')->name('employee');
+    Route::get('publication', 'StatisticsController@publication')->name('publication');
+    Route::get('project', 'StatisticsController@project')->name('project');
+    Route::get('activity', 'StatisticsController@activity')->name('activity');
+    Route::get('faculty', 'StatisticsController@faculty')->name('faculty');
+    Route::get('department', 'StatisticsController@department')->name('department');
+    Route::get('position', 'StatisticsController@position')->name('position');
+});

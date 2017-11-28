@@ -34,6 +34,35 @@
                 </li>
             </ul>
         </li>
+        <li class="dropdown {{ active_class(Active::checkUriPattern('statistics*')) }}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Statistics <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li class="{{ active_class(Active::checkRoute('frontend.statistics.index')) }}">
+                    <a href="{{ route('frontend.statistics.index') }}">General</a>
+                </li>
+                <li class="{{ active_class(Active::checkRoute('frontend.statistics.employee')) }}">
+                    <a href="{{ route('frontend.statistics.employee') }}">Employees</a>
+                </li>
+                <li class="{{ active_class(Active::checkRoute('frontend.statistics.publication')) }}">
+                    <a href="{{ route('frontend.statistics.publication') }}">Publications</a>
+                </li>
+                <li class="{{ active_class(Active::checkRoute('frontend.statistics.project')) }}">
+                    <a href="{{ route('frontend.statistics.project') }}">Projects</a>
+                </li>
+                <li class="{{ active_class(Active::checkRoute('frontend.statistics.activity')) }}">
+                    <a href="{{ route('frontend.statistics.activity') }}">Activities</a>
+                </li>
+                <li class="{{ active_class(Active::checkRoute('frontend.statistics.faculty')) }}">
+                    <a href="{{ route('frontend.statistics.faculty') }}">Faculties</a>
+                </li>
+                <li class="{{ active_class(Active::checkRoute('frontend.statistics.department')) }}">
+                    <a href="{{ route('frontend.statistics.department') }}">Departments</a>
+                </li>
+                <li class="{{ active_class(Active::checkRoute('frontend.statistics.position')) }}">
+                    <a href="{{ route('frontend.statistics.position') }}">Positions</a>
+                </li>
+            </ul>
+        </li>
     </ul>
     <form class="navbar-form navbar-left" role="search">
         <div class="form-group">

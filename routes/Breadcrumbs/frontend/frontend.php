@@ -88,3 +88,51 @@ Breadcrumbs::register('frontend.faculty.show', function ($breadcrumbs, $id) {
     $breadcrumbs->parent('frontend.faculty.index');
     $breadcrumbs->push('Details', route('frontend.faculty.show', $id));
 });
+
+// Home > Statistics
+Breadcrumbs::register('frontend.statistics.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('frontend.home');
+    $breadcrumbs->push('Statistics', route('frontend.statistics.index'));
+});
+
+// Home > Statistics > Employees
+Breadcrumbs::register('frontend.statistics.employee', function ($breadcrumbs) {
+    $breadcrumbs->parent('frontend.statistics.index');
+    $breadcrumbs->push('Employees', route('frontend.statistics.employee'));
+});
+
+// Home > Statistics > Publications
+Breadcrumbs::register('frontend.statistics.publication', function ($breadcrumbs) {
+    $breadcrumbs->parent('frontend.statistics.index');
+    $breadcrumbs->push('Publications', route('frontend.statistics.publication'));
+});
+
+// Home > Statistics > Projects
+Breadcrumbs::register('frontend.statistics.project', function ($breadcrumbs) {
+    $breadcrumbs->parent('frontend.statistics.index');
+    $breadcrumbs->push('Projects', route('frontend.statistics.project'));
+});
+
+// Home > Statistics > Activities
+Breadcrumbs::register('frontend.statistics.activity', function ($breadcrumbs) {
+    $breadcrumbs->parent('frontend.statistics.index');
+    $breadcrumbs->push('Activities', route('frontend.statistics.activity'));
+});
+
+// Home > Statistics > Faculties
+Breadcrumbs::register('frontend.statistics.faculty', function ($breadcrumbs) {
+    $breadcrumbs->parent('frontend.statistics.index');
+    $breadcrumbs->push('Faculties', route('frontend.statistics.faculty'));
+});
+
+// Home > Statistics > Departments
+Breadcrumbs::register('frontend.statistics.department', function ($breadcrumbs) {
+    $breadcrumbs->parent('frontend.statistics.index');
+    $breadcrumbs->push('Departments', route('frontend.statistics.department'));
+});
+
+// Home > Statistics > Positions
+Breadcrumbs::register('frontend.statistics.position', function ($breadcrumbs) {
+    $breadcrumbs->parent('frontend.statistics.index');
+    $breadcrumbs->push('Positions', route('frontend.statistics.position'));
+});
