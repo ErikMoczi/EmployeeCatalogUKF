@@ -62,7 +62,12 @@ class HomeController extends Controller
         $projectCount = $this->projectRepository->makeModel()->count();
         $activityCount = $this->activityRepository->makeModel()->count();
 
-        return view('frontend.index', compact(['employeeCount', 'publicationCount', 'projectCount', 'activityCount']))
-            ->withTopEmployees($topEmployees);
+        return view('frontend.index', compact([
+            'topEmployees',
+            'employeeCount',
+            'publicationCount',
+            'projectCount',
+            'activityCount'
+        ]));
     }
 }
