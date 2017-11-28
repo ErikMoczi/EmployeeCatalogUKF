@@ -169,6 +169,7 @@ return [
          */
         Yajra\DataTables\DataTablesServiceProvider::class,
         HieuLe\Active\ActiveServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -240,6 +241,7 @@ return [
          */
         'EmailHelper' => App\Facades\General\EmailHelper::class,
         'DataPumpHelper' => App\Facades\General\DataPumpHelper::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 
     ],
 
