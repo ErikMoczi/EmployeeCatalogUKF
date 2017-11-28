@@ -30,7 +30,9 @@ class StatisticsController extends Controller
      */
     public function index()
     {
-        return view('frontend.statistics.index');
+        $dataCount = $this->statisticsRepository->getTableCounts();
+
+        return view('frontend.statistics.index', compact('dataCount'));
     }
 
     /**
