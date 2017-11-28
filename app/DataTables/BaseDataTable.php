@@ -15,7 +15,7 @@ abstract class BaseDataTable extends DataTable
     /**
      * @var IDataTableRepository
      */
-    protected $repository;
+    private $repository;
 
     /**
      * BaseDataTable constructor.
@@ -69,6 +69,14 @@ abstract class BaseDataTable extends DataTable
      * @return array
      */
     protected abstract function getColumns(): array;
+
+    /**
+     * @return IDataTableRepository
+     */
+    public function getRepository(): IDataTableRepository
+    {
+        return $this->repository;
+    }
 
     /**
      * @return string
