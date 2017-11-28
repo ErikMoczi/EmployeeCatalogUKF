@@ -68,6 +68,12 @@ class EmployeeDataTable extends BaseDataTable
     protected function getColumns(): array
     {
         return [
+            'DT_Row_Index' => [
+                'title' => '#',
+                'searchable' => false,
+                'orderable' => false,
+                'width' => '10px'
+            ],
             'full_name' => [
                 'title' => 'Name',
                 'class' => 'text-left'
