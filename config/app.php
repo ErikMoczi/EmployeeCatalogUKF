@@ -235,13 +235,13 @@ return [
          * Package Aliases
          */
         'Active' => HieuLe\Active\Facades\Active::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 
         /*
          * Application Aliases
          */
         'EmailHelper' => App\Facades\General\EmailHelper::class,
         'DataPumpHelper' => App\Facades\General\DataPumpHelper::class,
-        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 
     ],
 
