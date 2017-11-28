@@ -19,4 +19,14 @@ class ProjectRepository extends BaseRepository implements IFrontendDataTableRepo
     {
         return Project::class;
     }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getAverageDurationProject()
+    {
+        return $this->model
+            ->selectRaw('year_to - year_from + 1 AS duration')
+            ->get();
+    }
 }

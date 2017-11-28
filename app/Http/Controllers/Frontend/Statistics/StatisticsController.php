@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\Statistics;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Frontend\ActivityRepository;
+use App\Repositories\Frontend\ProjectRepository;
 use App\Repositories\Frontend\StatisticsRepository;
 use ConsoleTVs\Charts\Facades\Charts;
 
@@ -56,9 +57,32 @@ class StatisticsController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function project()
+    public function project(ProjectRepository $projectRepository)
     {
-        return view('frontend.statistics.project');
+        $data = $projectRepository->all();
+
+        $projectAverageChart = Charts::database($projectRepository->getAverageDurationProject(), 'bar', 'highcharts')
+            ->title('Chart of average duration projects')
+            ->xAxisTitle('duration')
+            ->yAxisTitle('count')
+            ->responsive(true)
+            ->groupBy('duration');
+
+        $projectStartingChart = Charts::database($data, 'bar', 'c3')
+            ->title('Chart of starting projects')
+            ->responsive(true)
+            ->groupBy('year_from');
+
+        $projectEndingChart = Charts::database($data, 'bar', 'c3')
+            ->title('Chart of ending projects')
+            ->responsive(true)
+            ->groupBy('year_to');
+
+        return view('frontend.statistics.project', compact([
+            'projectAverageChart',
+            'projectStartingChart',
+            'projectEndingChart'
+        ]));
     }
 
     /**
