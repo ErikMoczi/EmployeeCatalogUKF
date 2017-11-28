@@ -15,7 +15,7 @@ class FacultyController extends Controller
     /**
      * @var FacultyRepository
      */
-    protected $facultyRepository;
+    private $facultyRepository;
 
     /**
      * FacultyController constructor.

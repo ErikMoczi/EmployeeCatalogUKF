@@ -15,7 +15,7 @@ class DepartmentController extends Controller
     /**
      * @var DepartmentRepository
      */
-    protected $departmentRepository;
+    private $departmentRepository;
 
     /**
      * DepartmentController constructor.

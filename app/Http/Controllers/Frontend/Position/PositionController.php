@@ -15,7 +15,7 @@ class PositionController extends Controller
     /**
      * @var PositionRepository
      */
-    protected $positionRepository;
+    private $positionRepository;
 
     /**
      * PositionController constructor.

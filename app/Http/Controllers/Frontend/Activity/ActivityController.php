@@ -15,7 +15,7 @@ class ActivityController extends Controller
     /**
      * @var ActivityRepository
      */
-    protected $activityRepository;
+    private $activityRepository;
 
     /**
      * ActivityController constructor.

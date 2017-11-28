@@ -15,7 +15,7 @@ class PublicationController extends Controller
     /**
      * @var PublicationRepository
      */
-    protected $publicationRepository;
+    private $publicationRepository;
 
     /**
      * PublicationController constructor.

@@ -15,7 +15,7 @@ class ProjectController extends Controller
     /**
      * @var ProjectRepository
      */
-    protected $projectRepository;
+    private $projectRepository;
 
     /**
      * ProjectController constructor.

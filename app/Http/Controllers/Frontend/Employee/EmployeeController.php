@@ -15,7 +15,7 @@ class EmployeeController extends Controller
     /**
      * @var EmployeeRepository
      */
-    protected $employeeRepository;
+    private $employeeRepository;
 
     /**
      * EmployeeController constructor.
