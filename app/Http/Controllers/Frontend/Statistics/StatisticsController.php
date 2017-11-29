@@ -59,24 +59,35 @@ class StatisticsController extends Controller
      */
     public function project(ProjectRepository $projectRepository)
     {
-        $data = $projectRepository->all();
-
-        $projectAverageChart = Charts::database($projectRepository->getAverageDurationProject(), 'bar', 'highcharts')
+        $dataAverage = $projectRepository->getAverageDurationProject();
+        $projectAverageChart = Charts::create('bar', 'highcharts')
             ->title('Chart of average duration projects')
+            ->elementLabel('projects')
             ->xAxisTitle('duration')
             ->yAxisTitle('count')
-            ->responsive(true)
-            ->groupBy('duration');
+            ->oneColor(true)
+            ->labels($dataAverage->pluck('duration'))
+            ->values($dataAverage->pluck('aggregate'));
 
-        $projectStartingChart = Charts::database($data, 'bar', 'c3')
+        $dataStarting = $projectRepository->getYearFromCount();
+        $projectStartingChart = Charts::create('bar', 'highcharts')
             ->title('Chart of starting projects')
-            ->responsive(true)
-            ->groupBy('year_from');
+            ->elementLabel("projects")
+            ->xAxisTitle('years')
+            ->yAxisTitle('projects')
+            ->oneColor(true)
+            ->labels($dataStarting->pluck('year_from'))
+            ->values($dataStarting->pluck('aggregate'));
 
-        $projectEndingChart = Charts::database($data, 'bar', 'c3')
+        $dataEnding = $projectRepository->getYearToCount();
+        $projectEndingChart = Charts::create('bar', 'highcharts')
             ->title('Chart of ending projects')
-            ->responsive(true)
-            ->groupBy('year_to');
+            ->elementLabel("projects")
+            ->xAxisTitle('years')
+            ->yAxisTitle('projects')
+            ->oneColor(true)
+            ->labels($dataEnding->pluck('year_to'))
+            ->values($dataEnding->pluck('aggregate'));
 
         return view('frontend.statistics.project', compact([
             'projectAverageChart',

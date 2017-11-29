@@ -16,7 +16,6 @@
 @endpush
 
 @section('content')
-@section('content')
     <div class="row">
         <div class="col-md-12">
             <!-- Custom Tabs -->
@@ -46,6 +45,4 @@
         </div>
         <!-- /.col -->
     </div>
-
-@endsection
 @endsection
