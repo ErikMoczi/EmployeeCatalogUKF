@@ -21,20 +21,20 @@
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#country" data-toggle="tab">Country</a></li>
-                    <li><a href="#type" data-toggle="tab">Type</a></li>
-                    <li><a href="#category" data-toggle="tab">Category</a></li>
+                    <li class="active"><a href="#tab_1" data-toggle="tab">Country</a></li>
+                    <li><a href="#tab_2" data-toggle="tab">Type</a></li>
+                    <li><a href="#tab_3" data-toggle="tab">Category</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="country">
+                    <div class="tab-pane active" id="tab_1">
                         {!! $countryChart->html() !!}
                     </div>
                     <!-- /.tab-pane -->
-                    <div class="tab-pane" id="type">
+                    <div class="tab-pane" id="tab_2">
                         {!! $typeChart->html() !!}
                     </div>
                     <!-- /.tab-pane -->
-                    <div class="tab-pane" id="category">
+                    <div class="tab-pane" id="tab_3">
                         {!! $categoryChart->html() !!}
                     </div>
                     <!-- /.tab-pane -->

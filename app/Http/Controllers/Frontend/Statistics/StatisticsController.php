@@ -101,22 +101,23 @@ class StatisticsController extends Controller
      */
     public function activity(ActivityRepository $activityRepository)
     {
-        $data = $activityRepository->all();
-
-        $countryChart = Charts::database($data, 'pie', 'c3')
+        $dataCountry = $activityRepository->getCountryCount();
+        $countryChart = Charts::create('pie', 'c3')
             ->title('Chart of country activities')
-            ->responsive(true)
-            ->groupBy('country');
+            ->labels($dataCountry->pluck('country'))
+            ->values($dataCountry->pluck('aggregate'));
 
-        $typeChart = Charts::database($data, 'pie', 'c3')
+        $dataType = $activityRepository->getTypeCount();
+        $typeChart = Charts::create('pie', 'c3')
             ->title('Chart of type activities')
-            ->responsive(true)
-            ->groupBy('type');
+            ->labels($dataType->pluck('type'))
+            ->values($dataType->pluck('aggregate'));
 
-        $categoryChart = Charts::database($data, 'pie', 'c3')
+        $dataCategory = $activityRepository->getCategoryCount();
+        $categoryChart = Charts::create('pie', 'c3')
             ->title('Chart of category activities')
-            ->responsive(true)
-            ->groupBy('category');
+            ->labels($dataCategory->pluck('category'))
+            ->values($dataCategory->pluck('aggregate'));
 
         return view('frontend.statistics.activity', compact([
             'countryChart',
