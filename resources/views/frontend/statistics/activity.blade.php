@@ -20,10 +20,11 @@
         <div class="col-md-12">
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs">
+                <ul class="nav nav-tabs pull-right">
                     <li class="active"><a href="#tab_1" data-toggle="tab">Country</a></li>
                     <li><a href="#tab_2" data-toggle="tab">Type</a></li>
                     <li><a href="#tab_3" data-toggle="tab">Category</a></li>
+                    <li class="pull-left header">Sort by categories</li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
