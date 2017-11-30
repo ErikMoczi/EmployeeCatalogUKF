@@ -175,14 +175,6 @@ class StatisticsController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function department()
-    {
-        return view('frontend.statistics.department');
-    }
-
-    /**
-     * @return \Illuminate\View\View
-     */
     public function position()
     {
         return view('frontend.statistics.position');

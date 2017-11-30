@@ -55,9 +55,6 @@
                 <li class="{{ active_class(Active::checkRoute('frontend.statistics.faculty')) }}">
                     <a href="{{ route('frontend.statistics.faculty') }}">Faculties</a>
                 </li>
-                <li class="{{ active_class(Active::checkRoute('frontend.statistics.department')) }}">
-                    <a href="{{ route('frontend.statistics.department') }}">Departments</a>
-                </li>
                 <li class="{{ active_class(Active::checkRoute('frontend.statistics.position')) }}">
                     <a href="{{ route('frontend.statistics.position') }}">Positions</a>
                 </li>

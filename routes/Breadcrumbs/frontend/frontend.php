@@ -125,12 +125,6 @@ Breadcrumbs::register('frontend.statistics.faculty', function ($breadcrumbs) {
     $breadcrumbs->push('Faculties', route('frontend.statistics.faculty'));
 });
 
-// Home > Statistics > Departments
-Breadcrumbs::register('frontend.statistics.department', function ($breadcrumbs) {
-    $breadcrumbs->parent('frontend.statistics.index');
-    $breadcrumbs->push('Departments', route('frontend.statistics.department'));
-});
-
 // Home > Statistics > Positions
 Breadcrumbs::register('frontend.statistics.position', function ($breadcrumbs) {
     $breadcrumbs->parent('frontend.statistics.index');
