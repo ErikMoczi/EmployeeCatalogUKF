@@ -44,5 +44,4 @@ Route::group(['namespace' => 'Statistics', 'prefix' => 'statistics', 'as' => 'st
     Route::get('project', 'StatisticsController@project')->name('project');
     Route::get('activity', 'StatisticsController@activity')->name('activity');
     Route::get('faculty', 'StatisticsController@faculty')->name('faculty');
-    Route::get('position', 'StatisticsController@position')->name('position');
 });

@@ -171,12 +171,4 @@ class StatisticsController extends Controller
             'facultyPositionChart'
         ]));
     }
-
-    /**
-     * @return \Illuminate\View\View
-     */
-    public function position()
-    {
-        return view('frontend.statistics.position');
-    }
 }
