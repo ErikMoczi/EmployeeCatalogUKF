@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Frontend\Statistics;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Frontend\ActivityRepository;
+use App\Repositories\Frontend\FacultyRepository;
 use App\Repositories\Frontend\ProjectRepository;
 use App\Repositories\Frontend\StatisticsRepository;
 use ConsoleTVs\Charts\Facades\Charts;
+use Illuminate\Support\Collection;
 
 /**
  * Class StatisticsController
@@ -129,9 +131,45 @@ class StatisticsController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function faculty()
+    public function faculty(FacultyRepository $facultyRepository)
     {
-        return view('frontend.statistics.faculty');
+        $dataDepartment = $facultyRepository->getDepartmentCount();
+        $facultyDepartmentChart = Charts::create('bar', 'highcharts')
+            ->title('Chart of department faculties')
+            ->elementLabel('departments')
+            ->xAxisTitle('faculties')
+            ->yAxisTitle('departments')
+            ->oneColor(true)
+            ->labels($dataDepartment->pluck('name'))
+            ->values($dataDepartment->pluck('departments_count'));
+
+        $dataEmployee = $facultyRepository->getEmployeeCount();
+        $facultyEmployeeChart = Charts::create('bar', 'highcharts')
+            ->title('Chart of employee faculties')
+            ->elementLabel('employees')
+            ->xAxisTitle('faculties')
+            ->yAxisTitle('employees')
+            ->oneColor(true)
+            ->labels($dataEmployee->pluck('name'))
+            ->values($dataEmployee->pluck('employees_count'));
+
+        $facultyPositionChart = new Collection();
+        $facultyRepository->getPositionCount()->groupBy('faculty_name')
+            ->each(function ($item, $key) use ($facultyPositionChart) {
+                $facultyPositionChart->put($key, Charts::create('area', 'highcharts')
+                    ->title('Chart of position faculty')
+                    ->elementLabel('number of positions')
+                    ->xAxisTitle('positions')
+                    ->yAxisTitle('count')
+                    ->labels($item->pluck('position_name'))
+                    ->values($item->pluck('aggregate')));
+            });
+
+        return view('frontend.statistics.faculty', compact([
+            'facultyDepartmentChart',
+            'facultyEmployeeChart',
+            'facultyPositionChart'
+        ]));
     }
 
     /**

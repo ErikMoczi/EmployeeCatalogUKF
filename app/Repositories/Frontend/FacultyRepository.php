@@ -25,4 +25,41 @@ class FacultyRepository extends BaseRepository implements IFrontendDataTableRepo
         return $this->model
             ->withCount('employees', 'departments');
     }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getDepartmentCount()
+    {
+        return $this->model
+            ->withCount('departments')
+            ->orderBy('name')
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getEmployeeCount()
+    {
+        return $this->model
+            ->withCount('employees')
+            ->orderBy('name')
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getPositionCount()
+    {
+        return $this->model
+            ->join('department', 'department.faculty_id', '=', 'faculty.id')
+            ->join('employee', 'employee.department_id', '=', 'department.id')
+            ->join('position', 'position.id', '=', 'employee.position_id')
+            ->selectRaw('faculty.name AS faculty_name, position.name AS position_name, COUNT(1) AS aggregate')
+            ->orderBy('faculty_name')
+            ->groupBy('faculty_name', 'position_name')
+            ->get();
+    }
 }
