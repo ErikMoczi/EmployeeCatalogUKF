@@ -70,7 +70,7 @@ class EmployeeRepository extends BaseRepository implements IFrontendDataTableRep
     /**
      * @return \Illuminate\Database\Query\Builder
      */
-    public function getPublishingsCount()
+    public function publishingsCount()
     {
         $publications = DB::query()
             ->selectRaw('employee_id, COUNT(1) AS publishing_count, \'publication\' AS type')
