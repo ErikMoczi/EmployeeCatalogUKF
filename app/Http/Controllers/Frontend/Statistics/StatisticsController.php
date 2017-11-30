@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\Frontend\ActivityRepository;
 use App\Repositories\Frontend\FacultyRepository;
 use App\Repositories\Frontend\ProjectRepository;
+use App\Repositories\Frontend\PublicationRepository;
 use App\Repositories\Frontend\StatisticsRepository;
 use ConsoleTVs\Charts\Facades\Charts;
 use Illuminate\Support\Collection;
@@ -51,9 +52,77 @@ class StatisticsController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function publication()
+    public function publication(PublicationRepository $publicationRepository)
     {
-        return view('frontend.statistics.publication');
+
+        $dataType = $publicationRepository->getTypeCountStats();
+        $dataPages = $publicationRepository->getPagesCountStats();
+        $dataCode = $publicationRepository->getCodeFirstLetterCountStats();
+
+        $categoryCharts = new Collection([
+            'Type' =>
+                Charts::create('bar', 'highcharts')
+                    ->title('Chart of type activities')
+                    ->elementLabel('publications')
+                    ->xAxisTitle('type')
+                    ->yAxisTitle('count')
+                    ->oneColor(true)
+                    ->labels($dataType->pluck('type'))
+                    ->values($dataType->pluck('publication_count')),
+            'Code' =>
+                Charts::create('bar', 'highcharts')
+                    ->title('Chart of code activities')
+                    ->elementLabel('publications')
+                    ->xAxisTitle('code')
+                    ->yAxisTitle('count')
+                    ->oneColor(true)
+                    ->labels($dataCode->pluck('code_transform'))
+                    ->values($dataCode->pluck('publication_count')),
+            'Pages' =>
+                Charts::create('bar', 'highcharts')
+                    ->title('Chart of pages activities')
+                    ->elementLabel('publications')
+                    ->xAxisTitle('pages')
+                    ->yAxisTitle('count')
+                    ->oneColor(true)
+                    ->labels($dataPages->pluck('pages_filtered'))
+                    ->values($dataPages->pluck('publication_count'))
+        ]);
+
+        $employeeCharts = new Collection([
+            'Type' =>
+                Charts::create('bar', 'highcharts')
+                    ->title('Chart of average employee count for type')
+                    ->elementLabel('authors')
+                    ->xAxisTitle('type')
+                    ->yAxisTitle('count')
+                    ->oneColor(true)
+                    ->labels($dataType->pluck('type'))
+                    ->values($dataType->pluck('average_employee')),
+            'Code' =>
+                Charts::create('bar', 'highcharts')
+                    ->title('Chart of average employee count for code')
+                    ->elementLabel('authors')
+                    ->xAxisTitle('code')
+                    ->yAxisTitle('count')
+                    ->oneColor(true)
+                    ->labels($dataCode->pluck('code_transform'))
+                    ->values($dataCode->pluck('average_employee')),
+            'Pages' =>
+                Charts::create('bar', 'highcharts')
+                    ->title('Chart of average employee count for pages')
+                    ->elementLabel('authors')
+                    ->xAxisTitle('pages')
+                    ->yAxisTitle('count')
+                    ->oneColor(true)
+                    ->labels($dataPages->pluck('pages_filtered'))
+                    ->values($dataPages->pluck('average_employee'))
+        ]);
+
+        return view('frontend.statistics.publication', compact([
+            'categoryCharts',
+            'employeeCharts'
+        ]));
     }
 
     /**
