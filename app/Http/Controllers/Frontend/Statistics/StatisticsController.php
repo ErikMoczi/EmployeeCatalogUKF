@@ -54,7 +54,6 @@ class StatisticsController extends Controller
      */
     public function publication(PublicationRepository $publicationRepository)
     {
-
         $dataType = $publicationRepository->getTypeCountStats();
         $dataPages = $publicationRepository->getPagesCountStats();
         $dataCode = $publicationRepository->getCodeFirstLetterCountStats();
@@ -131,39 +130,41 @@ class StatisticsController extends Controller
     public function project(ProjectRepository $projectRepository)
     {
         $dataAverage = $projectRepository->getAverageDurationProject();
-        $projectAverageChart = Charts::create('bar', 'highcharts')
-            ->title('Chart of average duration projects')
-            ->elementLabel('projects')
-            ->xAxisTitle('duration')
-            ->yAxisTitle('count')
-            ->oneColor(true)
-            ->labels($dataAverage->pluck('duration'))
-            ->values($dataAverage->pluck('aggregate'));
-
         $dataStarting = $projectRepository->getYearFromCount();
-        $projectStartingChart = Charts::create('bar', 'highcharts')
-            ->title('Chart of starting projects')
-            ->elementLabel("projects")
-            ->xAxisTitle('years')
-            ->yAxisTitle('projects')
-            ->oneColor(true)
-            ->labels($dataStarting->pluck('year_from'))
-            ->values($dataStarting->pluck('aggregate'));
-
         $dataEnding = $projectRepository->getYearToCount();
-        $projectEndingChart = Charts::create('bar', 'highcharts')
-            ->title('Chart of ending projects')
-            ->elementLabel("projects")
-            ->xAxisTitle('years')
-            ->yAxisTitle('projects')
-            ->oneColor(true)
-            ->labels($dataEnding->pluck('year_to'))
-            ->values($dataEnding->pluck('aggregate'));
+
+        $yearCharts = new Collection([
+            'Average' =>
+                Charts::create('bar', 'highcharts')
+                    ->title('Chart of average duration projects')
+                    ->elementLabel('projects')
+                    ->xAxisTitle('duration')
+                    ->yAxisTitle('count')
+                    ->oneColor(true)
+                    ->labels($dataAverage->pluck('duration'))
+                    ->values($dataAverage->pluck('aggregate')),
+            'Starting' =>
+                Charts::create('bar', 'highcharts')
+                    ->title('Chart of starting projects')
+                    ->elementLabel("projects")
+                    ->xAxisTitle('years')
+                    ->yAxisTitle('projects')
+                    ->oneColor(true)
+                    ->labels($dataStarting->pluck('year_from'))
+                    ->values($dataStarting->pluck('aggregate')),
+            'Ending' =>
+                Charts::create('bar', 'highcharts')
+                    ->title('Chart of ending projects')
+                    ->elementLabel("projects")
+                    ->xAxisTitle('years')
+                    ->yAxisTitle('projects')
+                    ->oneColor(true)
+                    ->labels($dataEnding->pluck('year_to'))
+                    ->values($dataEnding->pluck('aggregate'))
+        ]);
 
         return view('frontend.statistics.project', compact([
-            'projectAverageChart',
-            'projectStartingChart',
-            'projectEndingChart'
+            'yearCharts'
         ]));
     }
 
@@ -173,27 +174,29 @@ class StatisticsController extends Controller
     public function activity(ActivityRepository $activityRepository)
     {
         $dataCountry = $activityRepository->getCountryCount();
-        $countryChart = Charts::create('pie', 'c3')
-            ->title('Chart of country activities')
-            ->labels($dataCountry->pluck('country'))
-            ->values($dataCountry->pluck('aggregate'));
-
-        $dataType = $activityRepository->getTypeCount();
-        $typeChart = Charts::create('pie', 'c3')
-            ->title('Chart of type activities')
-            ->labels($dataType->pluck('type'))
-            ->values($dataType->pluck('aggregate'));
-
         $dataCategory = $activityRepository->getCategoryCount();
-        $categoryChart = Charts::create('pie', 'c3')
-            ->title('Chart of category activities')
-            ->labels($dataCategory->pluck('category'))
-            ->values($dataCategory->pluck('aggregate'));
+        $dataType = $activityRepository->getTypeCount();
+
+        $categoryCharts = new Collection([
+            'Country' =>
+                Charts::create('pie', 'c3')
+                    ->title('Chart of country activities')
+                    ->labels($dataCountry->pluck('country'))
+                    ->values($dataCountry->pluck('aggregate')),
+            'Type' =>
+                Charts::create('pie', 'c3')
+                    ->title('Chart of type activities')
+                    ->labels($dataType->pluck('type'))
+                    ->values($dataType->pluck('aggregate')),
+            'Category' =>
+                Charts::create('pie', 'c3')
+                    ->title('Chart of category activities')
+                    ->labels($dataCategory->pluck('category'))
+                    ->values($dataCategory->pluck('aggregate'))
+        ]);
 
         return view('frontend.statistics.activity', compact([
-            'countryChart',
-            'typeChart',
-            'categoryChart'
+            'categoryCharts'
         ]));
     }
 
@@ -203,29 +206,12 @@ class StatisticsController extends Controller
     public function faculty(FacultyRepository $facultyRepository)
     {
         $dataDepartment = $facultyRepository->getDepartmentCount();
-        $facultyDepartmentChart = Charts::create('bar', 'highcharts')
-            ->title('Chart of department faculties')
-            ->elementLabel('departments')
-            ->xAxisTitle('faculties')
-            ->yAxisTitle('departments')
-            ->oneColor(true)
-            ->labels($dataDepartment->pluck('name'))
-            ->values($dataDepartment->pluck('departments_count'));
-
         $dataEmployee = $facultyRepository->getEmployeeCount();
-        $facultyEmployeeChart = Charts::create('bar', 'highcharts')
-            ->title('Chart of employee faculties')
-            ->elementLabel('employees')
-            ->xAxisTitle('faculties')
-            ->yAxisTitle('employees')
-            ->oneColor(true)
-            ->labels($dataEmployee->pluck('name'))
-            ->values($dataEmployee->pluck('employees_count'));
 
-        $facultyPositionChart = new Collection();
+        $positionCharts = new Collection();
         $facultyRepository->getPositionCount()->groupBy('faculty_name')
-            ->each(function ($item, $key) use ($facultyPositionChart) {
-                $facultyPositionChart->put($key, Charts::create('area', 'highcharts')
+            ->each(function ($item, $key) use ($positionCharts) {
+                $positionCharts->put($key, Charts::create('area', 'highcharts')
                     ->title('Chart of position faculty')
                     ->elementLabel('number of positions')
                     ->xAxisTitle('positions')
@@ -234,10 +220,30 @@ class StatisticsController extends Controller
                     ->values($item->pluck('aggregate')));
             });
 
+        $categoryCharts = new Collection([
+            'Departments' =>
+                Charts::create('bar', 'highcharts')
+                    ->title('Chart of department faculties')
+                    ->elementLabel('departments')
+                    ->xAxisTitle('faculties')
+                    ->yAxisTitle('departments')
+                    ->oneColor(true)
+                    ->labels($dataDepartment->pluck('name'))
+                    ->values($dataDepartment->pluck('departments_count')),
+            'Employees' =>
+                Charts::create('bar', 'highcharts')
+                    ->title('Chart of employee faculties')
+                    ->elementLabel('employees')
+                    ->xAxisTitle('faculties')
+                    ->yAxisTitle('employees')
+                    ->oneColor(true)
+                    ->labels($dataEmployee->pluck('name'))
+                    ->values($dataEmployee->pluck('employees_count'))
+        ]);
+
         return view('frontend.statistics.faculty', compact([
-            'facultyDepartmentChart',
-            'facultyEmployeeChart',
-            'facultyPositionChart'
+            'categoryCharts',
+            'positionCharts'
         ]));
     }
 }

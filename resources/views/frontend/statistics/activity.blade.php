@@ -10,9 +10,9 @@
 
 @push('js')
     {!! Charts::scripts() !!}
-    {!! $countryChart->script() !!}
-    {!! $typeChart->script() !!}
-    {!! $categoryChart->script() !!}
+    @foreach($categoryCharts as $value)
+        {!! $value->script() !!}
+    @endforeach
 @endpush
 
 @section('content')
@@ -21,24 +21,21 @@
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs pull-right">
-                    <li class="active"><a href="#tab_1" data-toggle="tab">Country</a></li>
-                    <li><a href="#tab_2" data-toggle="tab">Type</a></li>
-                    <li><a href="#tab_3" data-toggle="tab">Category</a></li>
+                    @foreach($categoryCharts as $key => $value)
+                        <li {{ $loop->first ? 'class=active' : '' }}>
+                            <a href="#category_tab_{{ $loop->iteration }}" data-toggle="tab">{{ $key }}</a>
+                        </li>
+                    @endforeach
                     <li class="pull-left header">Sort by categories</li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="tab_1">
-                        {!! $countryChart->html() !!}
-                    </div>
-                    <!-- /.tab-pane -->
-                    <div class="tab-pane" id="tab_2">
-                        {!! $typeChart->html() !!}
-                    </div>
-                    <!-- /.tab-pane -->
-                    <div class="tab-pane" id="tab_3">
-                        {!! $categoryChart->html() !!}
-                    </div>
-                    <!-- /.tab-pane -->
+                    @foreach($categoryCharts as $key => $value)
+                        <div class="tab-pane {{ $loop->first ? 'active' : '' }}"
+                             id="category_tab_{{ $loop->iteration }}">
+                            {!! $value->html() !!}
+                        </div>
+                        <!-- /.tab-pane -->
+                    @endforeach
                 </div>
                 <!-- /.tab-content -->
             </div>

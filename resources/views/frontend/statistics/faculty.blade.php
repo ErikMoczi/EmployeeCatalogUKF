@@ -10,10 +10,11 @@
 
 @push('js')
     {!! Charts::scripts() !!}
-    {!! $facultyDepartmentChart->script() !!}
-    {!! $facultyEmployeeChart->script() !!}
-    @foreach($facultyPositionChart as $item)
-        {!! $item->script() !!}
+    @foreach($categoryCharts as $value)
+        {!! $value->script() !!}
+    @endforeach
+    @foreach($positionCharts as $value)
+        {!! $value->script() !!}
     @endforeach
 @endpush
 
@@ -23,19 +24,21 @@
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs pull-right">
-                    <li class="active"><a href="#category_tab_1" data-toggle="tab">Departments</a></li>
-                    <li><a href="#category_tab_2" data-toggle="tab">Employees</a></li>
+                    @foreach($categoryCharts as $key => $value)
+                        <li {{ $loop->first ? 'class=active' : '' }}>
+                            <a href="#category_tab_{{ $loop->iteration }}" data-toggle="tab">{{ $key }}</a>
+                        </li>
+                    @endforeach
                     <li class="pull-left header">Sort by categories</li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="category_tab_1">
-                        {!! $facultyDepartmentChart->html() !!}
-                    </div>
-                    <!-- /.tab-pane -->
-                    <div class="tab-pane" id="category_tab_2">
-                        {!! $facultyEmployeeChart->html() !!}
-                    </div>
-                    <!-- /.tab-pane -->
+                    @foreach($categoryCharts as $key => $value)
+                        <div class="tab-pane {{ $loop->first ? 'active' : '' }}"
+                             id="category_tab_{{ $loop->iteration }}">
+                            {!! $value->html() !!}
+                        </div>
+                        <!-- /.tab-pane -->
+                    @endforeach
                 </div>
                 <!-- /.tab-content -->
             </div>
@@ -48,18 +51,18 @@
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs pull-right">
-                    @foreach($facultyPositionChart as $index => $item)
+                    @foreach($positionCharts as $key => $value)
                         <li {{ $loop->first ? 'class=active' : '' }}>
-                            <a href="#position_tab_{{ $loop->iteration }}" data-toggle="tab">{{ $index }}</a>
+                            <a href="#position_tab_{{ $loop->iteration }}" data-toggle="tab">{{ $key }}</a>
                         </li>
                     @endforeach
                     <li class="pull-left header">Sort by positions</li>
                 </ul>
                 <div class="tab-content">
-                    @foreach($facultyPositionChart as $index => $item)
+                    @foreach($positionCharts as $key => $value)
                         <div class="tab-pane {{ $loop->first ? 'active' : '' }}"
                              id="position_tab_{{ $loop->iteration }}">
-                            {!! $item->html() !!}
+                            {!! $value->html() !!}
                         </div>
                         <!-- /.tab-pane -->
                     @endforeach
