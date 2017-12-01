@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend\Statistics;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\Frontend\ActivityRepository;
+use App\Repositories\Frontend\EmployeeRepository;
 use App\Repositories\Frontend\FacultyRepository;
 use App\Repositories\Frontend\ProjectRepository;
 use App\Repositories\Frontend\PublicationRepository;
@@ -44,9 +45,83 @@ class StatisticsController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function employee()
+    public function employee(EmployeeRepository $employeeRepository)
     {
-        return view('frontend.statistics.emloyee');
+        $baseData = $employeeRepository->getPublishingStats()->groupBy('faculty_name');
+        $publishingAggregate = $employeeRepository->getPublishingAgregateStats();
+
+        $dataStats = $baseData->map(function ($value, $key) use ($baseData) {
+            $publishingTypes = $value
+                ->filter(function ($value, $key) {
+                    return $value->type ? $value : null;
+                })
+                ->groupBy('type');
+
+            $searchData = $baseData
+                ->except($key)
+                ->collapse()
+                ->filter(function ($value, $key) {
+                    return $value->type ? $value : null;
+                })
+                ->groupBy('type')
+                ->only($publishingTypes->keys()->toArray())
+                ->map(function ($item) {
+                    return $item->pluck('type', 'publishing_id');
+                });
+
+            return collect(['faculty_name' => $key])
+                ->put(
+                    'data',
+                    $publishingTypes->mapWithKeys(function ($value, $key) use ($searchData) {
+                        list($shared, $unique) = $value->partition(function ($i) use ($searchData) {
+                            return $searchData[$i->type]->has($i->publishing_id);
+                        });
+
+                        return collect([
+                            $key => collect([
+                                'shared' => count($shared),
+                                'unique' => count($unique)
+                            ])
+                        ]);
+                    })
+                )
+                ->mapWithKeys(function ($value, $key) {
+                    $out = collect();
+
+                    if ($key == 'data') {
+                        $total = $value->reduce(function ($count, $value) {
+                            return $count += $value['shared'] + $value['unique'];
+                        }, 0);
+
+                        $out->put('total', $total);
+
+                        $value = $value->mapWithKeys(function ($value, $key) use ($total) {
+                            return collect([
+                                $key => $value->union([
+                                    'percentage' => round(($value['shared'] + $value['unique']) * 100 / $total, 2)
+                                ])
+                            ]);
+                        });
+                    }
+
+                    return $out->put($key, $value);
+                });
+        });
+
+        $publishingChart = Charts::create('bar', 'highcharts')
+            ->title('Chart of publishing')
+            ->elementLabel('publishing')
+            ->xAxisTitle('faculties')
+            ->yAxisTitle('publishing')
+            ->oneColor(true)
+            ->labels($dataStats->keys())
+            ->values($dataStats->pluck('total'));
+
+        return view('frontend.statistics.emloyee', compact([
+            'publishingChart',
+            'dataStats',
+            'publishingAggregate'
+        ]));
     }
 
     /**
