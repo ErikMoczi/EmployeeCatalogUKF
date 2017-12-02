@@ -75,10 +75,7 @@ class RDTeacher implements IRDTeacher
 
         $fullName = preg_replace('(\w+\.)', '', $this->getName());
 
-        if(strpos($fullName, ',') !== false)
-        {
-            $fullName = strstr($fullName, ',', true);
-        }
+        $fullName = preg_replace('/\,/', '', $fullName);
 
         $fullName = trim($fullName);
         $names = preg_replace('/[[:blank:]]+/', ' ', $fullName);
