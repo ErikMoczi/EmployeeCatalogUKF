@@ -53,6 +53,7 @@ class HomeController extends Controller
 
     /**
      * @return \Illuminate\View\View
+     * @throws \App\Exceptions\GeneralException
      */
     public function index()
     {
