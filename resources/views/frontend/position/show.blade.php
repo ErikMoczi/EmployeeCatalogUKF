@@ -16,9 +16,7 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-            <ul>
-                @include('frontend.includes.boxFooter.user', ['employeesList' => $dataShow->employees])
-            </ul>
+            @include('frontend.includes.boxFooter.user', ['employeesList' => $dataShow->employees])
         </div>
         <!-- /.box-footer-->
     </div>
