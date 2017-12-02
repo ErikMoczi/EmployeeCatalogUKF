@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(AuthTableSeeder::class);
 
-        Artisan::call('datapump:create');
+        //Artisan::call('datapump:create');
 
         Model::reguard();
     }
