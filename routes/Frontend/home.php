@@ -45,3 +45,7 @@ Route::group(['namespace' => 'Statistics', 'prefix' => 'statistics', 'as' => 'st
     Route::get('activity', 'StatisticsController@activity')->name('activity');
     Route::get('faculty', 'StatisticsController@faculty')->name('faculty');
 });
+
+Route::group(['namespace' => 'Search', 'prefix' => 'search', 'as' => 'search.'], function () {
+    Route::get('', 'SearchController@index')->name('index');
+});

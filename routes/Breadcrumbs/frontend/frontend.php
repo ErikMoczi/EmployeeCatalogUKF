@@ -124,3 +124,9 @@ Breadcrumbs::register('frontend.statistics.faculty', function ($breadcrumbs) {
     $breadcrumbs->parent('frontend.statistics.index');
     $breadcrumbs->push('Faculties', route('frontend.statistics.faculty'));
 });
+
+// Home > Search
+Breadcrumbs::register('frontend.search.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('frontend.home');
+    $breadcrumbs->push('Search', route('frontend.search.index'));
+});
