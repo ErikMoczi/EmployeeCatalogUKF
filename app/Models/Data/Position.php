@@ -3,6 +3,7 @@
 namespace App\Models\Data;
 
 use App\Models\BaseModel;
+use App\Models\Data\Traits\Method\FullTextSearchMethod;
 use App\Models\Data\Traits\Method\PositionMethod;
 use App\Models\Data\Traits\Relationship\PositionRelationship;
 
@@ -13,7 +14,8 @@ use App\Models\Data\Traits\Relationship\PositionRelationship;
 class Position extends BaseModel
 {
     use PositionRelationship,
-        PositionMethod;
+        PositionMethod,
+        FullTextSearchMethod;
 
     /**
      * The table associated with the model.
@@ -32,5 +34,12 @@ class Position extends BaseModel
      */
     protected $attributes = [
         'name' => 'N/A'
+    ];
+
+    /**
+     * @var array
+     */
+    protected $seachIndexColumn = [
+        'name'
     ];
 }

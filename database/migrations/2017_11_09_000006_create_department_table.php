@@ -39,6 +39,8 @@ class CreateDepartmentTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
+
+        DB::statement('ALTER TABLE ' . $this->set_schema_table . ' ADD FULLTEXT fulltext_name_idx(name)');
     }
 
     /**

@@ -48,4 +48,5 @@ Route::group(['namespace' => 'Statistics', 'prefix' => 'statistics', 'as' => 'st
 
 Route::group(['namespace' => 'Search', 'prefix' => 'search', 'as' => 'search.'], function () {
     Route::get('', 'SearchController@index')->name('index');
+    Route::post('result', 'SearchController@search')->name('result');
 });

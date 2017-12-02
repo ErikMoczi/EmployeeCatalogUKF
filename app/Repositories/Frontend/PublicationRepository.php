@@ -7,15 +7,17 @@ use App\Models\Data\EmployeeHasPublication;
 use App\Models\Data\Publication;
 use App\Repositories\BaseRepository;
 use App\Repositories\Frontend\Traits\DataTableRepository;
+use App\Repositories\Frontend\Traits\FullTextSearch;
 use Illuminate\Support\Facades\DB;
 
 /**
  * Class PublicationRepository
  * @package App\Repositories\Frontend
  */
-class PublicationRepository extends BaseRepository implements IFrontendDataTableRepository
+class PublicationRepository extends BaseRepository implements IFrontendDataTableRepository, IFullTextSearch
 {
-    use DataTableRepository;
+    use DataTableRepository,
+        FullTextSearch;
 
     public function model()
     {
@@ -74,6 +76,19 @@ class PublicationRepository extends BaseRepository implements IFrontendDataTable
     public function getTypeCountStats()
     {
         return $this->categoryCountStats('type')
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getFullTextSearch(string $search)
+    {
+        return $this->fullTextSearch($search)
+            ->select(
+                DB::raw("CONCAT(title, ': ', COALESCE(sub_title, '')) AS display_value"),
+                'id'
+            )
             ->get();
     }
 }

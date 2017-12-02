@@ -4,6 +4,7 @@ namespace App\Models\Data;
 
 use App\Models\BaseModel;
 use App\Models\Data\Traits\Method\ActivityMethod;
+use App\Models\Data\Traits\Method\FullTextSearchMethod;
 use App\Models\Data\Traits\Relationship\ActivityRelationship;
 
 /**
@@ -13,7 +14,8 @@ use App\Models\Data\Traits\Relationship\ActivityRelationship;
 class Activity extends BaseModel
 {
     use ActivityRelationship,
-        ActivityMethod;
+        ActivityMethod,
+        FullTextSearchMethod;
 
     /**
      * The table associated with the model.
@@ -26,4 +28,11 @@ class Activity extends BaseModel
      * @var array
      */
     protected $fillable = ['key', 'title', 'date', 'country', 'type', 'category'];
+
+    /**
+     * @var array
+     */
+    protected $seachIndexColumn = [
+        'title'
+    ];
 }

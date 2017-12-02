@@ -5,13 +5,16 @@ namespace App\Repositories\Frontend;
 
 use App\Models\Data\Faculty;
 use App\Repositories\BaseRepository;
+use App\Repositories\Frontend\Traits\FullTextSearch;
 
 /**
  * Class FacultyRepository
  * @package App\Repositories\Frontend
  */
-class FacultyRepository extends BaseRepository implements IFrontendDataTableRepository
+class FacultyRepository extends BaseRepository implements IFrontendDataTableRepository, IFullTextSearch
 {
+    use FullTextSearch;
+
     public function model()
     {
         return Faculty::class;
@@ -60,6 +63,19 @@ class FacultyRepository extends BaseRepository implements IFrontendDataTableRepo
             ->selectRaw('faculty.name AS faculty_name, position.name AS position_name, COUNT(1) AS aggregate')
             ->orderBy('faculty_name')
             ->groupBy('faculty_name', 'position_name')
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getFullTextSearch(string $search)
+    {
+        return $this->fullTextSearch($search)
+            ->select(
+                'name AS display_value',
+                'id'
+            )
             ->get();
     }
 }

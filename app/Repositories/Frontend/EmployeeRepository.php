@@ -10,14 +10,17 @@ use App\Models\Data\EmployeeHasProject;
 use App\Models\Data\EmployeeHasPublication;
 use App\Models\Data\Faculty;
 use App\Repositories\BaseRepository;
+use App\Repositories\Frontend\Traits\FullTextSearch;
 use Illuminate\Support\Facades\DB;
 
 /**
  * Class EmployeeRepository
  * @package App\Repositories\Frontend
  */
-class EmployeeRepository extends BaseRepository implements IFrontendDataTableRepository
+class EmployeeRepository extends BaseRepository implements IFrontendDataTableRepository, IFullTextSearch
 {
+    use FullTextSearch;
+
     public function model()
     {
         return Employee::class;
@@ -223,5 +226,18 @@ class EmployeeRepository extends BaseRepository implements IFrontendDataTableRep
             ->from(EmployeeHasActivity::getTableName());
 
         return $publications->unionAll($projects)->unionAll($activities);
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getFullTextSearch(string $search)
+    {
+        return $this->fullTextSearch($search)
+            ->select(
+                'full_name AS display_value',
+                'id'
+            )
+            ->get();
     }
 }

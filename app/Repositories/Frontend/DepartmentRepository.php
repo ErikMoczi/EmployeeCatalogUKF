@@ -5,14 +5,16 @@ namespace App\Repositories\Frontend;
 
 use App\Models\Data\Department;
 use App\Repositories\BaseRepository;
-use App\Repositories\Frontend\Traits\DataTableRepository;
+use App\Repositories\Frontend\Traits\FullTextSearch;
 
 /**
  * Class DepartmentRepository
  * @package App\Repositories\Frontend
  */
-class DepartmentRepository extends BaseRepository implements IFrontendDataTableRepository
+class DepartmentRepository extends BaseRepository implements IFrontendDataTableRepository, IFullTextSearch
 {
+    use FullTextSearch;
+
     public function model()
     {
         return Department::class;
@@ -31,5 +33,18 @@ class DepartmentRepository extends BaseRepository implements IFrontendDataTableR
                 'faculty.id AS faculty_id'
             )
             ->withCount('employees');
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getFullTextSearch(string $search)
+    {
+        return $this->fullTextSearch($search)
+            ->select(
+                'name AS display_value',
+                'id'
+            )
+            ->get();
     }
 }

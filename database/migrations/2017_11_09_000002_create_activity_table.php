@@ -33,6 +33,8 @@ class CreateActivityTable extends Migration
 
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE ' . $this->set_schema_table . ' ADD FULLTEXT fulltext_title_idx(title)');
     }
 
     /**

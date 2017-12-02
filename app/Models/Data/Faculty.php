@@ -4,6 +4,7 @@ namespace App\Models\Data;
 
 use App\Models\BaseModel;
 use App\Models\Data\Traits\Method\FacultyMethod;
+use App\Models\Data\Traits\Method\FullTextSearchMethod;
 use App\Models\Data\Traits\Relationship\FacultyRelationship;
 
 /**
@@ -13,7 +14,8 @@ use App\Models\Data\Traits\Relationship\FacultyRelationship;
 class Faculty extends BaseModel
 {
     use FacultyRelationship,
-        FacultyMethod;
+        FacultyMethod,
+        FullTextSearchMethod;
 
     /**
      * The table associated with the model.
@@ -32,5 +34,12 @@ class Faculty extends BaseModel
      */
     protected $attributes = [
         'name' => 'N/A'
+    ];
+
+    /**
+     * @var array
+     */
+    protected $seachIndexColumn = [
+        'name'
     ];
 }

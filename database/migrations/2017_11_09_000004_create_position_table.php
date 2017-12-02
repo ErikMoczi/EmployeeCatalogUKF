@@ -29,6 +29,8 @@ class CreatePositionTable extends Migration
             $table->unique(["name"], 'name_UNIQUE');
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE ' . $this->set_schema_table . ' ADD FULLTEXT fulltext_name_idx(name)');
     }
 
     /**

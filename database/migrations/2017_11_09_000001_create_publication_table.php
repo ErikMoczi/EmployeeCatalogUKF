@@ -35,6 +35,9 @@ class CreatePublicationTable extends Migration
 
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE ' . $this->set_schema_table . ' ADD FULLTEXT fulltext_title_idx(title, sub_title)');
+        //DB::statement('ALTER TABLE ' . $this->set_schema_table . ' ADD FULLTEXT fulltext_isbn_idx(ISBN)');
     }
 
     /**

@@ -130,3 +130,9 @@ Breadcrumbs::register('frontend.search.index', function ($breadcrumbs) {
     $breadcrumbs->parent('frontend.home');
     $breadcrumbs->push('Search', route('frontend.search.index'));
 });
+
+// Home > Search > Result
+Breadcrumbs::register('frontend.search.result', function ($breadcrumbs) {
+    $breadcrumbs->parent('frontend.search.index');
+    $breadcrumbs->push('Result', route('frontend.search.result'));
+});
