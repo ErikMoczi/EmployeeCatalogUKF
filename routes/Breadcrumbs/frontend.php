@@ -5,6 +5,12 @@ Breadcrumbs::register('frontend.home', function ($breadcrumbs) {
     $breadcrumbs->push('Home', route('frontend.home'));
 });
 
+// Home > Dashboard
+Breadcrumbs::register('frontend.user.dashboard', function ($breadcrumbs) {
+    $breadcrumbs->parent('frontend.home');
+    $breadcrumbs->push('Dashboard', route('frontend.user.dashboard'));
+});
+
 // Home > Employees
 Breadcrumbs::register('frontend.employee.index', function ($breadcrumbs) {
     $breadcrumbs->parent('frontend.home');
