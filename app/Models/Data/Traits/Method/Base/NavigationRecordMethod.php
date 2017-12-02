@@ -27,21 +27,6 @@ trait NavigationRecordMethod
 
     /**
      * @param string $columnName
-     * @return \Illuminate\Database\Eloquent\Model|null
-     */
-    public function getPreviousRecordByColumn(string $columnName = 'id')
-    {
-        $record = $this->getBuildNavigationRecord($columnName, true, true);
-
-        if (!$record) {
-            $record = $this->getBuildNavigationRecord($columnName, false, true);
-        }
-
-        return $record;
-    }
-
-    /**
-     * @param string $columnName
      * @param bool $orderOperator
      * @param bool $order
      * @return \Illuminate\Database\Eloquent\Model|null
@@ -62,5 +47,20 @@ trait NavigationRecordMethod
         }
 
         return $record->first();
+    }
+
+    /**
+     * @param string $columnName
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
+    public function getPreviousRecordByColumn(string $columnName = 'id')
+    {
+        $record = $this->getBuildNavigationRecord($columnName, true, true);
+
+        if (!$record) {
+            $record = $this->getBuildNavigationRecord($columnName, false, true);
+        }
+
+        return $record;
     }
 }

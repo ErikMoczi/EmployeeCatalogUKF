@@ -25,6 +25,14 @@ trait BaseMethod
     /**
      * @return \Illuminate\Database\Eloquent\Model|null
      */
+    public function getNextRecordById()
+    {
+        return $this->getNextRecordByColumn();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
     public function getPreviousRecord()
     {
         return $this->getPreviosRecordById();
@@ -34,14 +42,6 @@ trait BaseMethod
      * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function getPreviosRecordById()
-    {
-        return $this->getNextRecordByColumn();
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Model|null
-     */
-    public function getNextRecordById()
     {
         return $this->getNextRecordByColumn();
     }

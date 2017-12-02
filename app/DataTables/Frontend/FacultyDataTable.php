@@ -1,6 +1,7 @@
 <?php
 
 namespace App\DataTables\Frontend;
+
 use App\DataTables\BaseDataTable;
 
 /**

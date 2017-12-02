@@ -25,14 +25,6 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * @return string
-     */
-    protected function redirectTo()
-    {
-        return route(home_route());
-    }
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -40,5 +32,13 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * @return string
+     */
+    protected function redirectTo()
+    {
+        return route(home_route());
     }
 }

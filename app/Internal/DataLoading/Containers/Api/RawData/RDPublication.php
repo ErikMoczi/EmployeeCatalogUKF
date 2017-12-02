@@ -127,24 +127,6 @@ class RDPublication implements IRDPublication
     /**
      * @return string
      */
-    public function getAllAuthors(): string
-    {
-        return $this->allAuthors;
-    }
-
-    /**
-     * @param string $allAuthors
-     * @return $this
-     */
-    public function setAllAuthors(string $allAuthors)
-    {
-        $this->allAuthors = $allAuthors;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getType(): string
     {
         return $this->type;
@@ -229,6 +211,24 @@ class RDPublication implements IRDPublication
     public function setCode(string $code)
     {
         $this->code = $code;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAllAuthors(): string
+    {
+        return $this->allAuthors;
+    }
+
+    /**
+     * @param string $allAuthors
+     * @return $this
+     */
+    public function setAllAuthors(string $allAuthors)
+    {
+        $this->allAuthors = $allAuthors;
         return $this;
     }
 }

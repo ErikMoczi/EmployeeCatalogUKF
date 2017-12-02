@@ -55,14 +55,6 @@ trait EmployeeRelationship
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function department()
-    {
-        return $this->belongsTo(Department::class);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function position()
     {
         return $this->belongsTo(Position::class);
@@ -82,6 +74,14 @@ trait EmployeeRelationship
     public function faculty()
     {
         return $this->department()
-            ->join('faculty', 'faculty.id', '=','department.faculty_id');
+            ->join('faculty', 'faculty.id', '=', 'department.faculty_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
     }
 }
