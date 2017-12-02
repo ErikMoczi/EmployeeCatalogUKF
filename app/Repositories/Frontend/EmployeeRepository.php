@@ -107,10 +107,10 @@ class EmployeeRepository extends BaseRepository implements IFrontendDataTableRep
             ->from(
                 DB::raw(
                     '(' . DB::query()
-                        ->selectRaw('p.type, employee.id, COUNT(1) as aggregate')
+                        ->selectRaw('p.type, employee.id, COUNT(publishing_id) as aggregate')
                         ->from(Employee::getTableName())
-                        ->join(
-                            DB::raw('(' . $this->publishings()->toSql() . ') p'),
+                        ->leftJoin(
+                            DB::raw('(' . $this->publishingsWithEmployee()->toSql() . ') p'),
                             function ($join) {
                                 $join->on('employee.id', '=', 'p.employee_id');
                             }
@@ -121,6 +121,75 @@ class EmployeeRepository extends BaseRepository implements IFrontendDataTableRep
             )
             ->orderBy('type')
             ->groupBy('type')
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function publishingsWithEmployee()
+    {
+        $publications = DB::query()
+            ->select(
+                'employee.id AS employee_id',
+                'publication_id AS publishing_id',
+                DB::raw("'publication' AS type")
+            )
+            ->from(Employee::getTableName())
+            ->leftJoin(
+                DB::raw(EmployeeHasPublication::getTableName() . ' AS pub'),
+                'employee.id', '=', 'pub.employee_id'
+            );
+
+        $projects = DB::query()
+            ->select(
+                'employee.id AS employee_id',
+                'project_id AS publishing_id',
+                DB::raw("'project' AS type")
+            )
+            ->from(Employee::getTableName())
+            ->leftJoin(
+                DB::raw(EmployeeHasProject::getTableName() . ' AS pub'),
+                'employee.id', '=', 'pub.employee_id'
+            );
+
+        $activities = DB::query()
+            ->select(
+                'employee.id AS employee_id',
+                'activity_id AS publishing_id',
+                DB::raw("'activity' AS type")
+            )
+            ->from(Employee::getTableName())
+            ->leftJoin(
+                DB::raw(EmployeeHasActivity::getTableName() . ' AS pub'),
+                'employee.id', '=', 'pub.employee_id'
+            );
+
+        return $publications->unionAll($projects)->unionAll($activities);
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function getPublishingStats()
+    {
+        return DB::query()
+            ->select(
+                'faculty.name AS faculty_name',
+                'p.type',
+                'p.publishing_id'
+            )
+            ->from(Employee::getTableName())
+            ->join(
+                DB::raw('(' . $this->publishings()->toSql() . ') p'),
+                function ($join) {
+                    $join->on('employee.id', '=', 'p.employee_id');
+                }
+            )
+            ->join(Department::getTableName(), 'department.id', '=', 'employee.department_id')
+            ->rightJoin(Faculty::getTableName(), 'faculty.id', '=', 'department.faculty_id')
+            ->groupBy('faculty_name', 'p.type', 'p.publishing_id')
+            ->orderBy('faculty_name')
             ->get();
     }
 
@@ -154,30 +223,5 @@ class EmployeeRepository extends BaseRepository implements IFrontendDataTableRep
             ->from(EmployeeHasActivity::getTableName());
 
         return $publications->unionAll($projects)->unionAll($activities);
-    }
-
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    public function getPublishingStats()
-    {
-        return DB::query()
-            ->select(
-                'faculty.name AS faculty_name',
-                'p.type',
-                'p.publishing_id'
-            )
-            ->from(Employee::getTableName())
-            ->join(
-                DB::raw('(' . $this->publishings()->toSql() . ') p'),
-                function ($join) {
-                    $join->on('employee.id', '=', 'p.employee_id');
-                }
-            )
-            ->join(Department::getTableName(), 'department.id', '=', 'employee.department_id')
-            ->rightJoin(Faculty::getTableName(), 'faculty.id', '=', 'department.faculty_id')
-            ->groupBy('faculty_name', 'p.type', 'p.publishing_id')
-            ->orderBy('faculty_name')
-            ->get();
     }
 }
