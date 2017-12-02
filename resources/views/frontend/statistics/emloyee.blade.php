@@ -42,7 +42,7 @@
 
                                     <div class="progress sm">
                                         <div class="progress-bar progress-bar-red"
-                                             style="width: {{ round(100*$value->aggregate_avg/$value->aggregate_max,2) }}%"></div>
+                                             style="width: {{ round(100 * $value->aggregate_avg / ($value->aggregate_max - $value->aggregate_min), 2) }}%"></div>
                                     </div>
                                 </div>
                                 <!-- /.progress-group -->
