@@ -82,24 +82,28 @@ class RDTeacher implements IRDTeacher
         $names = explode(' ', $names);
 
         switch (count($names)) {
-            case 0: {
-                break;
-            }
-            case 1: {
-                $explodeName['last_name'] = $names[0];
-                break;
-            }
-            case 2: {
-                $explodeName['first_name'] = $names[0];
-                $explodeName['last_name'] = $names[1];
-                break;
-            }
-            default: {
-                $explodeName['first_name'] = $names[0];
-                $explodeName['middle_name'] = $names[1];
-                $explodeName['last_name'] = $names[2];
-                break;
-            }
+            case 0:
+                {
+                    break;
+                }
+            case 1:
+                {
+                    $explodeName['last_name'] = $names[0];
+                    break;
+                }
+            case 2:
+                {
+                    $explodeName['first_name'] = $names[0];
+                    $explodeName['last_name'] = $names[1];
+                    break;
+                }
+            default:
+                {
+                    $explodeName['first_name'] = $names[0];
+                    $explodeName['middle_name'] = $names[1];
+                    $explodeName['last_name'] = $names[2];
+                    break;
+                }
         }
 
         return $explodeName;
