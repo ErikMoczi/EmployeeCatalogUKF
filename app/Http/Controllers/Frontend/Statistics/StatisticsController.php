@@ -43,6 +43,7 @@ class StatisticsController extends Controller
     }
 
     /**
+     * @param EmployeeRepository $employeeRepository
      * @return \Illuminate\View\View
      */
     public function employee(EmployeeRepository $employeeRepository)
@@ -125,6 +126,7 @@ class StatisticsController extends Controller
     }
 
     /**
+     * @param PublicationRepository $publicationRepository
      * @return \Illuminate\View\View
      */
     public function publication(PublicationRepository $publicationRepository)
@@ -200,6 +202,7 @@ class StatisticsController extends Controller
     }
 
     /**
+     * @param ProjectRepository $projectRepository
      * @return \Illuminate\View\View
      */
     public function project(ProjectRepository $projectRepository)
@@ -244,6 +247,7 @@ class StatisticsController extends Controller
     }
 
     /**
+     * @param ActivityRepository $activityRepository
      * @return \Illuminate\View\View
      */
     public function activity(ActivityRepository $activityRepository)
@@ -276,6 +280,7 @@ class StatisticsController extends Controller
     }
 
     /**
+     * @param FacultyRepository $facultyRepository
      * @return \Illuminate\View\View
      */
     public function faculty(FacultyRepository $facultyRepository)
