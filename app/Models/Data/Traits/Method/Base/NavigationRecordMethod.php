@@ -13,6 +13,7 @@ trait NavigationRecordMethod
     /**
      * @param string $columnName
      * @return \Illuminate\Database\Eloquent\Model|null
+     * @throws GeneralException
      */
     public function getNextRecordByColumn(string $columnName = 'id')
     {
@@ -52,6 +53,7 @@ trait NavigationRecordMethod
     /**
      * @param string $columnName
      * @return \Illuminate\Database\Eloquent\Model|null
+     * @throws GeneralException
      */
     public function getPreviousRecordByColumn(string $columnName = 'id')
     {

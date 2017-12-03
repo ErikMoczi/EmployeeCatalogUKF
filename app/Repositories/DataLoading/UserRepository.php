@@ -23,6 +23,8 @@ class UserRepository extends BaseRepository
     /**
      * @param array $data
      * @return User
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function createUnique(array $data)
     {

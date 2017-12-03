@@ -118,7 +118,7 @@ class StatisticsController extends Controller
             ->labels($dataStats->keys())
             ->values($dataStats->pluck('total'));
 
-        return view('frontend.statistics.emloyee', compact([
+        return view('frontend.statistics.employee', compact([
             'publishingChart',
             'dataStats',
             'publishingAggregate'

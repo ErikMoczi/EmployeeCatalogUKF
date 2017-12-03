@@ -23,6 +23,8 @@ class CommentRepository extends BaseRepository
      * @param array $data
      * @param int $employeeId
      * @return Comment
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function createWithEmployeeRelation(array $data, int $employeeId)
     {

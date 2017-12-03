@@ -80,6 +80,7 @@ class PublicationRepository extends BaseRepository implements IFrontendDataTable
     }
 
     /**
+     * @param string $search
      * @return \Illuminate\Support\Collection
      */
     public function getFullTextSearch(string $search)

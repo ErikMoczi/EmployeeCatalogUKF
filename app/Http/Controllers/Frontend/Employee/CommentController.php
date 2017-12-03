@@ -30,10 +30,12 @@ class CommentController extends Controller
      * @param StoreComment $request
      * @param int $employeeId
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function store(StoreComment $request, int $employeeId)
     {
-        $output = $this->commentRepository->createWithEmployeeRelation($request->only('name','email','comment'), $employeeId);
+        $this->commentRepository->createWithEmployeeRelation($request->only('name', 'email', 'comment'), $employeeId);
 
         flash('Comment was added, but wait for administrator to approve it.')->important();
 

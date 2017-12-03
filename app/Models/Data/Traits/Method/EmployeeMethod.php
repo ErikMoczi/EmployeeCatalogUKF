@@ -26,6 +26,7 @@ trait EmployeeMethod
 
     /**
      * @return \Illuminate\Database\Eloquent\Model|null
+     * @throws \App\Exceptions\GeneralException
      */
     public function getNextRecord()
     {
@@ -34,6 +35,7 @@ trait EmployeeMethod
 
     /**
      * @return \Illuminate\Database\Eloquent\Model|null
+     * @throws \App\Exceptions\GeneralException
      */
     public function getPreviousRecord()
     {

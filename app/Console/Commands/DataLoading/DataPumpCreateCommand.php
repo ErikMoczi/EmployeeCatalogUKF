@@ -29,7 +29,7 @@ class DataPumpCreateCommand extends DataPumpBaseCommand
     protected $description = 'Command description';
 
     /**
-     *
+     * @throws \Throwable
      */
     public function runPump(): void
     {
@@ -90,6 +90,8 @@ class DataPumpCreateCommand extends DataPumpBaseCommand
     /**
      * @param array $data
      * @return int
+     * @throws \Exception
+     * @throws \Throwable
      */
     private function createPosition(array $data): int
     {
@@ -99,6 +101,8 @@ class DataPumpCreateCommand extends DataPumpBaseCommand
     /**
      * @param array $data
      * @return int
+     * @throws \Exception
+     * @throws \Throwable
      */
     private function createFaculty(array $data): int
     {
@@ -109,6 +113,8 @@ class DataPumpCreateCommand extends DataPumpBaseCommand
      * @param array $data
      * @param int $facultyId
      * @return int
+     * @throws \Exception
+     * @throws \Throwable
      */
     private function createDepartment(array $data, int $facultyId): int
     {
@@ -126,6 +132,8 @@ class DataPumpCreateCommand extends DataPumpBaseCommand
 
     /**
      * @param array $data
+     * @throws \Exception
+     * @throws \Throwable
      */
     private function createUserEmployee(array $data): void
     {
@@ -135,6 +143,8 @@ class DataPumpCreateCommand extends DataPumpBaseCommand
     /**
      * @param IRDProfile|null $data
      * @param int $employeeId
+     * @throws \Exception
+     * @throws \Throwable
      */
     private function createProfile(?IRDProfile $data, int $employeeId): void
     {
@@ -146,6 +156,8 @@ class DataPumpCreateCommand extends DataPumpBaseCommand
     /**
      * @param IRDProject[] $data
      * @param int $employeeId
+     * @throws \Exception
+     * @throws \Throwable
      */
     private function createProjects(array $data, int $employeeId): void
     {
@@ -157,6 +169,8 @@ class DataPumpCreateCommand extends DataPumpBaseCommand
     /**
      * @param IRDPublication[] $data
      * @param int $employeeId
+     * @throws \Exception
+     * @throws \Throwable
      */
     private function createPublications(array $data, int $employeeId): void
     {
@@ -168,6 +182,8 @@ class DataPumpCreateCommand extends DataPumpBaseCommand
     /**
      * @param IRDActivity[] $data
      * @param int $employeeId
+     * @throws \Exception
+     * @throws \Throwable
      */
     private function createActivities(array $data, int $employeeId): void
     {

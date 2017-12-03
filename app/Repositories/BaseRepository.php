@@ -69,6 +69,7 @@ abstract class BaseRepository implements RepositoryContract
 
     /**
      * BaseRepository constructor.
+     * @throws GeneralException
      */
     public function __construct()
     {

@@ -10,6 +10,7 @@ namespace App\Repositories\Frontend\Traits;
 trait FullTextSearch
 {
     /**
+     * @param string $search
      * @return \Illuminate\Database\Eloquent\Builder
      */
     private function fullTextSearch(string $search)

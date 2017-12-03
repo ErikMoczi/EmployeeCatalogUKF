@@ -23,6 +23,8 @@ class PublicationRepository extends BaseRepository
      * @param array $data
      * @param int $employeeId
      * @return Publication
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function createWithEmployeeRelation(array $data, int $employeeId)
     {

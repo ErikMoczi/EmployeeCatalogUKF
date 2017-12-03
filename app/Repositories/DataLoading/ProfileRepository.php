@@ -25,6 +25,8 @@ class ProfileRepository extends BaseRepository
      * @param array $data
      * @param int $employeeId
      * @return \Illuminate\Database\Eloquent\Collection
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function createMultipleWithEmployeeRelation(array $data, int $employeeId)
     {

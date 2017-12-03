@@ -195,7 +195,7 @@ abstract class DataPumpBaseCommand extends Command implements IDataPump
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(): void
     {
         $this->info('-----> start time ' . date("h:i:sa"));
 

@@ -21,6 +21,8 @@ class FacultyRepository extends BaseRepository
     /**
      * @param array $data
      * @return Faculty
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function createUnique(array $data)
     {

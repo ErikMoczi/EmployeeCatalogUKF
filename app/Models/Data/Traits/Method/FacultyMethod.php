@@ -36,6 +36,7 @@ trait FacultyMethod
 
     /**
      * @return \Illuminate\Database\Eloquent\Model|null
+     * @throws \App\Exceptions\GeneralException
      */
     public function getNextRecord()
     {
@@ -44,6 +45,7 @@ trait FacultyMethod
 
     /**
      * @return \Illuminate\Database\Eloquent\Model|null
+     * @throws \App\Exceptions\GeneralException
      */
     public function getPreviousRecord()
     {

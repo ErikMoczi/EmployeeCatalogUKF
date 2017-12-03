@@ -22,6 +22,8 @@ class ActivityRepository extends BaseRepository
      * @param array $data
      * @param int $employeeId
      * @return Activity
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function createWithEmployeeRelation(array $data, int $employeeId)
     {

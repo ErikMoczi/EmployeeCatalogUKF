@@ -14,6 +14,7 @@ trait DepartmentMethod
 
     /**
      * @return \Illuminate\Database\Eloquent\Model|null
+     * @throws \App\Exceptions\GeneralException
      */
     public function getNextRecord()
     {
@@ -22,6 +23,7 @@ trait DepartmentMethod
 
     /**
      * @return \Illuminate\Database\Eloquent\Model|null
+     * @throws \App\Exceptions\GeneralException
      */
     public function getPreviousRecord()
     {

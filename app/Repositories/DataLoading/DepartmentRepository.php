@@ -23,6 +23,8 @@ class DepartmentRepository extends BaseRepository
      * @param array $data
      * @param int $facultyId
      * @return Department
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function createWithFacultyRelation(array $data, int $facultyId)
     {

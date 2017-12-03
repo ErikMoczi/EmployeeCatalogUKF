@@ -21,6 +21,8 @@ class PositionRepository extends BaseRepository
     /**
      * @param array $data
      * @return Position
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function createUnique(array $data)
     {

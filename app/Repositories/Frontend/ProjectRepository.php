@@ -59,6 +59,7 @@ class ProjectRepository extends BaseRepository implements IFrontendDataTableRepo
     }
 
     /**
+     * @param string $search
      * @return \Illuminate\Support\Collection
      */
     public function getFullTextSearch(string $search)

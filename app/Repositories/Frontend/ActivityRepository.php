@@ -60,6 +60,7 @@ class ActivityRepository extends BaseRepository implements IFrontendDataTableRep
     }
 
     /**
+     * @param string $search
      * @return \Illuminate\Support\Collection
      */
     public function getFullTextSearch(string $search)

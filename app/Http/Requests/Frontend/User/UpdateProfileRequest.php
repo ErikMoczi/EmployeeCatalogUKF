@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests\Frontend\User;
 
-use Illuminate\Validation\Rule;
-use App\Helpers\Frontend\Auth\Socialite;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
@@ -30,7 +28,7 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'  => 'required|max:255',
+            'name' => 'required|max:255',
             'email' => 'required|email|max:255'
         ];
     }

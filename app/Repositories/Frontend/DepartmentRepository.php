@@ -36,6 +36,7 @@ class DepartmentRepository extends BaseRepository implements IFrontendDataTableR
     }
 
     /**
+     * @param string $search
      * @return \Illuminate\Support\Collection
      */
     public function getFullTextSearch(string $search)

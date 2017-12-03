@@ -23,6 +23,8 @@ class ProjectRepository extends BaseRepository
      * @param array $data
      * @param int $employeeId
      * @return Project
+     * @throws \Exception
+     * @throws \Throwable
      */
     public function createWithEmployeeRelation(array $data, int $employeeId)
     {

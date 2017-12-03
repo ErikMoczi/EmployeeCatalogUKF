@@ -29,7 +29,7 @@ class UpdatePasswordRequest extends FormRequest
     {
         return [
             'oldPassword' => 'required',
-            'password'     => 'required|min:6|confirmed',
+            'password' => 'required|min:6|confirmed',
         ];
     }
 }

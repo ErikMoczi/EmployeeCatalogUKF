@@ -2,6 +2,8 @@
 
 namespace App\Models\Data\Traits\Method;
 
+use Illuminate\Database\Eloquent\Builder;
+
 /**
  * Trait FullTextSearchMethod
  * @package App\Models\Data\Traits\Method
@@ -9,11 +11,11 @@ namespace App\Models\Data\Traits\Method;
 trait FullTextSearchMethod
 {
     /**
-     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param Builder $query
      * @param string $search
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeFullTextSearch(\Illuminate\Database\Eloquent\Builder $query, string $search)
+    public function scopeFullTextSearch(Builder $query, string $search)
     {
         $columns = implode(',', $this->seachIndexColumn);
 
