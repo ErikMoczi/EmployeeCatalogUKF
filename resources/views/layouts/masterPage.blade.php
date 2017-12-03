@@ -1,5 +1,11 @@
 @extends('layouts.master')
 
+@push('js')
+    <script>
+        $('#flash-overlay-modal').modal();
+    </script>
+@endpush
+
 @section('body')
     <div class="wrapper">
 
@@ -17,6 +23,7 @@
                 </section>
                 <!-- Main content -->
                 <section class="content">
+                    @include('flash::message')
                     @yield('content')
                 </section>
                 <!-- /.content -->
