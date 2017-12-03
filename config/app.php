@@ -170,6 +170,7 @@ return [
         Yajra\DataTables\DataTablesServiceProvider::class,
         HieuLe\Active\ActiveServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        Thomaswelton\LaravelGravatar\LaravelGravatarServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -236,6 +237,7 @@ return [
          */
         'Active' => HieuLe\Active\Facades\Active::class,
         'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        'Gravatar' => Thomaswelton\LaravelGravatar\Facades\Gravatar::class,
 
         /*
          * Application Aliases

@@ -42,9 +42,11 @@ class EmployeeController extends Controller
     public function show(int $id)
     {
         $dataShow = $this->employeeRepository->getById($id);
+        $userEmail = $dataShow->user()->first()->email;
 
         return view('frontend.employee.show')
             ->withDataShow($dataShow)
+            ->withUserEmail($userEmail)
             ->withNavigationRecord(record_navigation_init('frontend.employee.show', $dataShow));
     }
 }

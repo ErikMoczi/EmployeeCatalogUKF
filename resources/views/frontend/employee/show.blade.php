@@ -12,7 +12,7 @@
             <div class="box box-primary">
                 <div class="box-body box-profile">
                     <img class="profile-user-img img-responsive img-circle"
-                         src="{{ asset('img/user/unknown-user.ico') }}" alt="User profile picture">
+                         src="{{ Gravatar::src($userEmail) }}" alt="User profile picture">
                     <h3 class="profile-username text-center">{{ $dataShow->full_name }}</h3>
 
                     <p class="text-muted text-center">
