@@ -20,10 +20,10 @@ use App\Repositories\IDataTableRepository;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class FrontendDataTableRepositoryServiceProvider
+ * Class DataTableRepositoryServiceProvider
  * @package App\Providers
  */
-class FrontendDataTableRepositoryServiceProvider extends ServiceProvider
+class DataTableRepositoryServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.

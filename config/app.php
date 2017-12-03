@@ -182,7 +182,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
-        App\Providers\FrontendDataTableRepositoryServiceProvider::class,
+        App\Providers\DataTableRepositoryServiceProvider::class,
         
     ],
 

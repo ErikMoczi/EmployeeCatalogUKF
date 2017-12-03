@@ -7,13 +7,14 @@ use App\Models\Data\Activity;
 use App\Repositories\BaseRepository;
 use App\Repositories\Frontend\Traits\DataTableRepository;
 use App\Repositories\Frontend\Traits\FullTextSearch;
+use App\Repositories\IDataTableRepository;
 use Illuminate\Support\Facades\DB;
 
 /**
  * Class ActivityRepository
  * @package App\Repositories\Frontend
  */
-class ActivityRepository extends BaseRepository implements IFrontendDataTableRepository, IFullTextSearch
+class ActivityRepository extends BaseRepository implements IDataTableRepository, IFullTextSearch
 {
     use DataTableRepository,
         FullTextSearch;

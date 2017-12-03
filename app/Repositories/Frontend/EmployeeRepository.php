@@ -11,13 +11,14 @@ use App\Models\Data\EmployeeHasPublication;
 use App\Models\Data\Faculty;
 use App\Repositories\BaseRepository;
 use App\Repositories\Frontend\Traits\FullTextSearch;
+use App\Repositories\IDataTableRepository;
 use Illuminate\Support\Facades\DB;
 
 /**
  * Class EmployeeRepository
  * @package App\Repositories\Frontend
  */
-class EmployeeRepository extends BaseRepository implements IFrontendDataTableRepository, IFullTextSearch
+class EmployeeRepository extends BaseRepository implements IDataTableRepository, IFullTextSearch
 {
     use FullTextSearch;
 

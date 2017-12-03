@@ -8,13 +8,14 @@ use App\Models\Data\Publication;
 use App\Repositories\BaseRepository;
 use App\Repositories\Frontend\Traits\DataTableRepository;
 use App\Repositories\Frontend\Traits\FullTextSearch;
+use App\Repositories\IDataTableRepository;
 use Illuminate\Support\Facades\DB;
 
 /**
  * Class PublicationRepository
  * @package App\Repositories\Frontend
  */
-class PublicationRepository extends BaseRepository implements IFrontendDataTableRepository, IFullTextSearch
+class PublicationRepository extends BaseRepository implements IDataTableRepository, IFullTextSearch
 {
     use DataTableRepository,
         FullTextSearch;

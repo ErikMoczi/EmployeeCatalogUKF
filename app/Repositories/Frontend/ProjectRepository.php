@@ -7,12 +7,13 @@ use App\Models\Data\Project;
 use App\Repositories\BaseRepository;
 use App\Repositories\Frontend\Traits\DataTableRepository;
 use App\Repositories\Frontend\Traits\FullTextSearch;
+use App\Repositories\IDataTableRepository;
 
 /**
  * Class ProjectRepository
  * @package App\Repositories\Frontend
  */
-class ProjectRepository extends BaseRepository implements IFrontendDataTableRepository, IFullTextSearch
+class ProjectRepository extends BaseRepository implements IDataTableRepository, IFullTextSearch
 {
     use DataTableRepository,
         FullTextSearch;

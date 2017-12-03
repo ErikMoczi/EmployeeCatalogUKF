@@ -6,12 +6,13 @@ namespace App\Repositories\Frontend;
 use App\Models\Data\Department;
 use App\Repositories\BaseRepository;
 use App\Repositories\Frontend\Traits\FullTextSearch;
+use App\Repositories\IDataTableRepository;
 
 /**
  * Class DepartmentRepository
  * @package App\Repositories\Frontend
  */
-class DepartmentRepository extends BaseRepository implements IFrontendDataTableRepository, IFullTextSearch
+class DepartmentRepository extends BaseRepository implements IDataTableRepository, IFullTextSearch
 {
     use FullTextSearch;
 
