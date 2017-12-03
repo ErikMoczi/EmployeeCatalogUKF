@@ -3,7 +3,7 @@
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
 
-        {{-- @include('includes.sidebar.user') --}}
+        @include('includes.sidebar.user')
 
         {{-- @include('includes.sidebar.search') --}}
 

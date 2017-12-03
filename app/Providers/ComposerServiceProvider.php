@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Composers\Backend\SidebarComposer;
 use App\Http\Composers\GlobalComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -19,7 +20,19 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /*
+         * Global
+         */
         View::composer('*', GlobalComposer::class);
+
+        /*
+         * Frontend
+         */
+
+        /*
+         * Backend
+         */
+        View::composer('backend.includes.sidebar', SidebarComposer::class);
     }
 
     /**
