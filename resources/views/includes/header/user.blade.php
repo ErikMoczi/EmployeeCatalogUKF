@@ -16,6 +16,7 @@
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
+                            <img src="{{ Gravatar::src($logged_in_user->email) }}" class="img-circle" alt="User Image">
                             <p>
                                 {{ $logged_in_user->name }}
                                 <small>Member since {{ $logged_in_user->getAccountCreateMonthYear() }}</small>
@@ -35,7 +36,10 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="{{ route('frontend.user.dashboard') }}" class="btn btn-default btn-flat">Profile</a>
+                                <a href="{{ route('frontend.user.dashboard') }}" class="btn btn-default btn-flat">Dashboard</a>
+                            </div>
+                            <div class="pull-left">
+                                <a href="{{ route('frontend.user.account') }}" class="btn btn-default btn-flat">Account</a>
                             </div>
                             <div class="pull-right">
                                 <a href="{{ route('auth.logout') }}" class="btn btn-default btn-flat">Sign out</a>

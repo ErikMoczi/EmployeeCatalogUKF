@@ -11,6 +11,12 @@ Breadcrumbs::register('frontend.user.dashboard', function ($breadcrumbs) {
     $breadcrumbs->push('Dashboard', route('frontend.user.dashboard'));
 });
 
+// Home > Dashboard > Account
+Breadcrumbs::register('frontend.user.account', function ($breadcrumbs) {
+    $breadcrumbs->parent('frontend.user.dashboard');
+    $breadcrumbs->push('Account', route('frontend.user.account'));
+});
+
 // Home > Employees
 Breadcrumbs::register('frontend.employee.index', function ($breadcrumbs) {
     $breadcrumbs->parent('frontend.home');

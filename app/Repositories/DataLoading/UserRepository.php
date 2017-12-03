@@ -2,10 +2,12 @@
 
 namespace App\Repositories\DataLoading;
 
+use App\Exceptions\GeneralException;
 use App\Facades\General\EmailHelper;
 use App\Models\Auth\User;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class UserRepository
@@ -56,5 +58,51 @@ class UserRepository extends BaseRepository
         return $this->model
                 ->where('email', $email)
                 ->count() > 0;
+    }
+
+    /**
+     * @param array $input
+     * @return bool
+     * @throws GeneralException
+     */
+    public function updatePassword(array $input)
+    {
+        $user = $this->getById(auth()->id());
+
+        if (Hash::check($input['oldPassword'], $user->password)) {
+            $user->password = bcrypt($input['password']);
+
+            return $user->save();
+        }
+
+        throw new GeneralException('That is not your old password.');
+    }
+
+    /**
+     * @param int $id
+     * @param array $input
+     * @return array|bool
+     * @throws GeneralException
+     */
+    public function update(int $id, array $input)
+    {
+        $user = $this->getById($id);
+        $user->name = $input['name'];
+
+        if ($user->email != $input['email']) {
+            if ($this->getByColumn($input['email'], 'email')) {
+                throw new GeneralException('That e-mail address is already taken.');
+            }
+
+            $user->email = $input['email'];
+            $updated = $user->save();
+
+            return [
+                'success' => $updated,
+                'email_changed' => true,
+            ];
+        }
+
+        return $user->save();
     }
 }
