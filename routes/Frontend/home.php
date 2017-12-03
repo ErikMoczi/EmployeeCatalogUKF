@@ -5,6 +5,8 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['namespace' => 'Employee', 'prefix' => 'employee', 'as' => 'employee.'], function () {
     Route::get('', 'EmployeeController@index')->name('index');
     Route::get('{employee}', 'EmployeeController@show')->name('show');
+
+    Route::post('{employee}', 'CommentController@store')->name('comment.store');
 });
 
 Route::group(['namespace' => 'Publication', 'prefix' => 'publication', 'as' => 'publication.'], function () {
