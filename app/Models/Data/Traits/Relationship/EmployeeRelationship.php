@@ -4,6 +4,7 @@ namespace App\Models\Data\Traits\Relationship;
 
 use App\Models\Auth\User;
 use App\Models\Data\Activity;
+use App\Models\Data\Comment;
 use App\Models\Data\Department;
 use App\Models\Data\EmployeeHasActivity;
 use App\Models\Data\EmployeeHasProfileType;
@@ -83,5 +84,22 @@ trait EmployeeRelationship
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function approvedComments()
+    {
+        return $this->hasMany(Comment::class)
+            ->where('approved', '=', 1);
     }
 }
