@@ -279,7 +279,7 @@ class RDTeacher implements IRDTeacher
         return [
             'name' => $this->getName(),
             'email' => strtolower($prefix . $suffix . config('datapump.email')),
-            'password' => bcrypt(str_random(6)),
+            'password' => bcrypt(config('datapump.default_password')),
             'employee_id' => $this->getId()
         ];
     }

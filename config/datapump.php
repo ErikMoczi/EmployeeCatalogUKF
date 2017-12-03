@@ -5,5 +5,6 @@ return [
         'teachers' => 'https://ukfprofil.teacher.sk/get-teachers',
         'teacher' => 'https://ukfprofil.teacher.sk/get-teacher/'
     ],
-    'email' => '@ukf.sk'
+    'email' => '@ukf.sk',
+    'default_password' => 'secret'
 ];
