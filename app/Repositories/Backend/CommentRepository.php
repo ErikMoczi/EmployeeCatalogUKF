@@ -45,4 +45,17 @@ class CommentRepository extends BaseRepository implements IDataTableRepository
                 'employee.full_name'
             );
     }
+
+    /**
+     * @param int $id
+     * @param bool $state
+     * @return bool
+     */
+    public function approve(int $id, bool $state)
+    {
+        $comment = $this->getById($id);
+        $comment->approved = $state;
+
+        return $comment->save();
+    }
 }
