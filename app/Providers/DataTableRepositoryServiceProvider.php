@@ -42,6 +42,9 @@ class DataTableRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        /*
+         * Frontend
+         */
         $this->app->when(PublicationDataTable::class)
             ->needs(IDataTableRepository::class)
             ->give(PublicationRepository::class);
@@ -69,5 +72,9 @@ class DataTableRepositoryServiceProvider extends ServiceProvider
         $this->app->when(ActivityDataTable::class)
             ->needs(IDataTableRepository::class)
             ->give(ActivityRepository::class);
+
+        /*
+         * Backend
+         */
     }
 }

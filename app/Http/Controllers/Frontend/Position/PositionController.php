@@ -28,7 +28,7 @@ class PositionController extends Controller
 
     /**
      * @param PositionDataTable $dataTable
-     * @return mixed
+     * @return \Illuminate\View\View
      */
     public function index(PositionDataTable $dataTable)
     {

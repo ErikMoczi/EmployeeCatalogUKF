@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-lg-12">
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Total record of specifics dataset</h3>

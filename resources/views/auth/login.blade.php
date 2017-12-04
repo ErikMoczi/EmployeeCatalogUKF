@@ -1,10 +1,12 @@
 @extends('layouts.master')
 
 @push('css')
+    <!-- iCheck for checkboxes and radio inputs -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/plugins/iCheck/square/blue.css') }}">
 @endpush
 
 @push('js')
+    <!-- iCheck 1.0.1 -->
     <script src="{{ asset('vendor/adminlte/plugins/iCheck/icheck.min.js') }}"></script>
     <script>
         $(function () {

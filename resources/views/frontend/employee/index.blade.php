@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-lg-12">
             @include('includes.datatable', ['dataTableBoxHeader' => 'List of employees'])
         </div>
     </div>

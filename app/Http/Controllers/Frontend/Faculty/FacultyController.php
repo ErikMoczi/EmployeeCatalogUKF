@@ -28,7 +28,7 @@ class FacultyController extends Controller
 
     /**
      * @param FacultyDataTable $dataTable
-     * @return mixed
+     * @return \Illuminate\View\View
      */
     public function index(FacultyDataTable $dataTable)
     {

@@ -28,7 +28,7 @@ class PublicationController extends Controller
 
     /**
      * @param PublicationDataTable $dataTable
-     * @return mixed
+     * @return \Illuminate\View\View
      */
     public function index(PublicationDataTable $dataTable)
     {

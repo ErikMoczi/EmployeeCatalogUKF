@@ -28,7 +28,7 @@ class ActivityController extends Controller
 
     /**
      * @param ActivityDataTable $dataTable
-     * @return mixed
+     * @return \Illuminate\View\View
      */
     public function index(ActivityDataTable $dataTable)
     {

@@ -28,7 +28,7 @@ class ProjectController extends Controller
 
     /**
      * @param ProjectDataTable $dataTable
-     * @return mixed
+     * @return \Illuminate\View\View
      */
     public function index(ProjectDataTable $dataTable)
     {

@@ -28,7 +28,7 @@ class DepartmentController extends Controller
 
     /**
      * @param DepartmentDataTable $dataTable
-     * @return mixed
+     * @return \Illuminate\View\View
      */
     public function index(DepartmentDataTable $dataTable)
     {

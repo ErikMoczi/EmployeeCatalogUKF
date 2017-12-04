@@ -28,7 +28,7 @@ class EmployeeController extends Controller
 
     /**
      * @param EmployeeDataTable $dataTable
-     * @return mixed
+     * @return \Illuminate\View\View
      */
     public function index(EmployeeDataTable $dataTable)
     {
