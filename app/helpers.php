@@ -115,3 +115,30 @@ if (!function_exists('record_navigation_get_previous')) {
         return $navigationRecord['previous_record'];
     }
 }
+
+if (!function_exists('form_cancel')) {
+
+    /**
+     * @param string $cancel_to
+     * @param string $title
+     * @param string $class
+     * @return string
+     */
+    function form_cancel(string $cancel_to, string $title, string $class = 'btn btn-danger btn-sm')
+    {
+        return '<a class="' . $class . '" href="' . $cancel_to . '">' . $title . '</a>';
+    }
+}
+
+if (!function_exists('form_submit')) {
+
+    /**
+     * @param string $title
+     * @param string $class
+     * @return string
+     */
+    function form_submit(string $title, string $class = 'btn btn-success btn-sm pull-right')
+    {
+        return '<button class="' . $class . '" type="submit">' . $title . '</button>';
+    }
+}
