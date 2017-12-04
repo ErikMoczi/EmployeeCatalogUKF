@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\DataTables\Backend\CommentDataTable;
 use App\DataTables\Frontend\ActivityDataTable;
 use App\DataTables\Frontend\DepartmentDataTable;
 use App\DataTables\Frontend\EmployeeDataTable;
@@ -9,6 +10,7 @@ use App\DataTables\Frontend\FacultyDataTable;
 use App\DataTables\Frontend\PositionDataTable;
 use App\DataTables\Frontend\ProjectDataTable;
 use App\DataTables\Frontend\PublicationDataTable;
+use App\Repositories\Backend\CommentRepository;
 use App\Repositories\Frontend\ActivityRepository;
 use App\Repositories\Frontend\DepartmentRepository;
 use App\Repositories\Frontend\EmployeeRepository;
@@ -76,5 +78,8 @@ class DataTableRepositoryServiceProvider extends ServiceProvider
         /*
          * Backend
          */
+        $this->app->when(CommentDataTable::class)
+            ->needs(IDataTableRepository::class)
+            ->give(CommentRepository::class);
     }
 }
