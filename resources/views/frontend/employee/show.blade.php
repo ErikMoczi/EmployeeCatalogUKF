@@ -301,13 +301,18 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group has-feedback" {{ $errors->has('comment') ? 'has-error' : '' }}>
                                     <div class="input-group input-group-sm">
-                                        <textarea type="text" name="comment" class="form-control"
-                                                  placeholder="text" required></textarea>
+                                        <textarea name="comment" class="form-control"
+                                                  placeholder="text" required>{{ old('comment') }}</textarea>
                                         <span class="input-group-btn">
                                             <button type="submit" class="btn btn-info btn-flat">Comment</button>
                                         </span>
+                                        @if ($errors->has('comment'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('comment') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                             </form>
