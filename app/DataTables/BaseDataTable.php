@@ -46,7 +46,15 @@ abstract class BaseDataTable extends DataTable
      */
     public function query()
     {
-        return $this->applyScopes($this->repository->getForDataTable());
+        return $this->applyScopes($this->queryBuilder());
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function queryBuilder()
+    {
+        return $this->repository->getForDataTable();
     }
 
     /**
