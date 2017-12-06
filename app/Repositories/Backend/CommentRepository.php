@@ -4,6 +4,7 @@ namespace App\Repositories\Backend;
 
 
 use App\Models\Data\Comment;
+use App\Models\Data\Employee;
 use App\Repositories\BaseRepository;
 use App\Repositories\IDataTableRepository;
 use Illuminate\Support\Facades\DB;
@@ -35,7 +36,7 @@ class CommentRepository extends BaseRepository implements IDataTableRepository
     public function getForDataTable()
     {
         return $this->model
-            ->leftJoin('employee', 'employee.id', '=', 'comment.employee_id')
+            ->leftJoin(Employee::getTableName(), 'employee.id', '=', 'comment.employee_id')
             ->select(
                 DB::raw("CONCAT(comment.email, ' - ', comment.name) AS name"),
                 'comment.id',
