@@ -28,3 +28,33 @@ Breadcrumbs::register('admin.comment.show', function ($breadcrumbs, $comment) {
     $breadcrumbs->parent('admin.comment.index');
     $breadcrumbs->push('Show', route('admin.comment.show', $comment));
 });
+
+// Home > User
+Breadcrumbs::register('admin.user.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin.dashboard');
+    $breadcrumbs->push('User', route('admin.user.index'));
+});
+
+// Home > User > Create
+Breadcrumbs::register('admin.user.create', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin.user.index');
+    $breadcrumbs->push('Create', route('admin.user.create'));
+});
+
+// Home > User > Edit
+Breadcrumbs::register('admin.user.edit', function ($breadcrumbs, $user) {
+    $breadcrumbs->parent('admin.user.index');
+    $breadcrumbs->push('Edit', route('admin.user.edit', $user));
+});
+
+// Home > User > Show
+Breadcrumbs::register('admin.user.show', function ($breadcrumbs, $user) {
+    $breadcrumbs->parent('admin.user.index');
+    $breadcrumbs->push('Show', route('admin.user.show', $user));
+});
+
+// Home > User > Password
+Breadcrumbs::register('admin.user.password', function ($breadcrumbs, $user) {
+    $breadcrumbs->parent('admin.user.index');
+    $breadcrumbs->push('Password', route('admin.user.password', $user));
+});

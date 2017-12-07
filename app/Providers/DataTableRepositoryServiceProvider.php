@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\DataTables\Backend\CommentDataTable;
+use App\DataTables\Backend\UserDataTable;
 use App\DataTables\Frontend\ActivityDataTable;
 use App\DataTables\Frontend\DepartmentDataTable;
 use App\DataTables\Frontend\EmployeeDataTable;
@@ -11,6 +12,7 @@ use App\DataTables\Frontend\PositionDataTable;
 use App\DataTables\Frontend\ProjectDataTable;
 use App\DataTables\Frontend\PublicationDataTable;
 use App\Repositories\Backend\CommentRepository;
+use App\Repositories\Backend\UserRepository;
 use App\Repositories\Frontend\ActivityRepository;
 use App\Repositories\Frontend\DepartmentRepository;
 use App\Repositories\Frontend\EmployeeRepository;
@@ -81,5 +83,9 @@ class DataTableRepositoryServiceProvider extends ServiceProvider
         $this->app->when(CommentDataTable::class)
             ->needs(IDataTableRepository::class)
             ->give(CommentRepository::class);
+
+        $this->app->when(UserDataTable::class)
+            ->needs(IDataTableRepository::class)
+            ->give(UserRepository::class);
     }
 }

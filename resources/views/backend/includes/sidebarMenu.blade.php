@@ -1,4 +1,10 @@
 <li class="header">Administration panel</li>
+<li class="{{ active_class(Active::checkUriPattern('admin/user*')) }}">
+    <a href="{{ route('admin.user.index') }}">
+        <i class="fa fa-user-o"></i>
+        <span>Manage users</span>
+    </a>
+</li>
 <li class="{{ active_class(Active::checkUriPattern('admin/comment*')) }}">
     <a href="{{ route('admin.comment.index') }}">
         <i class="fa fa-comment-o"></i>
