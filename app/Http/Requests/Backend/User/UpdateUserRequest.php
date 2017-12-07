@@ -30,7 +30,7 @@ class UpdateUserRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'email' => 'required|unique:user,id|email|max:255',
-            'employee_id' => 'nullable|unique:user',
+            'employee_id' => 'nullable|unique:user,id',
             'admin_flag' => 'boolean'
         ];
     }
