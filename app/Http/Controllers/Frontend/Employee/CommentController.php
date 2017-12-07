@@ -35,9 +35,13 @@ class CommentController extends Controller
      */
     public function store(StoreComment $request, int $employeeId)
     {
-        $this->commentRepository->createWithEmployeeRelation($request->only('name', 'email', 'comment'), $employeeId);
+        $this->commentRepository->createWithEmployeeRelation($request->only('name', 'email', 'comment', auth()->user() ? 'approved' : ''), $employeeId);
 
-        flash('Comment was added, but wait for administrator to approve it.')->important();
+        if (auth()->user()) {
+            flash('Comment was added.')->success()->important();
+        } else {
+            flash('Comment was added, but wait for administrator to approve it.')->important();
+        }
 
         return redirect()->route('frontend.employee.show', $employeeId);
     }

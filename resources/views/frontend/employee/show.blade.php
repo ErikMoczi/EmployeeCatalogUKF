@@ -252,8 +252,8 @@
                     </div>
                     <!-- /.tab-pane -->
                     <div class="tab-pane" id="comments">
-                        @foreach($dataShow->approvedComments as $comment)
-                            <!-- Post -->
+                    @foreach($dataShow->approvedComments as $comment)
+                        <!-- Post -->
                             <div class="post">
                                 <div class="user-block">
                                     <img class="img-circle img-bordered-sm" src="{{ Gravatar::src($comment->email) }}"
@@ -273,34 +273,40 @@
                             <form role="form" method="post"
                                   action="{{ route('frontend.employee.comment.store', $dataShow->id) }}">
                                 {{ csrf_field() }}
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group has-feedback" {{ $errors->has('name') ? 'has-error' : '' }}>
-                                            <input type="text" name="name" class="form-control"
-                                                   value="{{ old('name') }}"
-                                                   placeholder="Name" required>
-                                            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                                            @if ($errors->has('name'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('name') }}</strong>
-                                                </span>
-                                            @endif
+                                @if(!auth()->user())
+                                    <div class="row">
+                                        <div class="col-lg-6 {{ $logged_in_user ? 'hidden' : '' }}">
+                                            <div class="form-group has-feedback" {{ $errors->has('name') ? 'has-error' : '' }}>
+                                                <input type="text" name="name" class="form-control"
+                                                       value="{{ old('name') }}"
+                                                       placeholder="Name" required>
+                                                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                                                @if ($errors->has('name'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('name') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 {{ $logged_in_user ? 'hidden' : '' }}">
+                                            <div class="form-group has-feedback" {{ $errors->has('email') ? 'has-error' : '' }}>
+                                                <input type="email" name="email" class="form-control"
+                                                       value="{{ old('email') }}"
+                                                       placeholder="Email" required>
+                                                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                                @if ($errors->has('email'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('email') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group has-feedback" {{ $errors->has('email') ? 'has-error' : '' }}>
-                                            <input type="email" name="email" class="form-control"
-                                                   value="{{ old('email') }}"
-                                                   placeholder="Email" required>
-                                            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                                            @if ($errors->has('email'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
+                                @else
+                                    <input type="hidden" name="name" value="{{ $logged_in_user->name }}" required>
+                                    <input type="hidden" name="email" value="{{ $logged_in_user->email }}" required>
+                                    <input type="hidden" name="approved" value="1">
+                                @endif
                                 <div class="form-group has-feedback" {{ $errors->has('comment') ? 'has-error' : '' }}>
                                     <div class="input-group input-group-sm">
                                         <textarea name="comment" class="form-control"

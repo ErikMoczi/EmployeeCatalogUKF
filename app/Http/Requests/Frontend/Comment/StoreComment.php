@@ -31,6 +31,7 @@ class StoreComment extends FormRequest
             'name' => 'required|max:255',
             'email' => 'required|email|max:255',
             'comment' => 'required|min:5|max:2000',
+            'approved' => 'sometimes|bool'
         ];
     }
 }
