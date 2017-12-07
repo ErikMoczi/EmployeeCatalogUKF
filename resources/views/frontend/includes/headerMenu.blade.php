@@ -60,9 +60,11 @@
     </ul>
     <form class="navbar-form navbar-left" role="search" action="{{ route('frontend.search.result') }}" method="post">
         {{ csrf_field() }}
-        <div class="form-group">
-            <input type="text" name="searchWord" class="form-control" id="navbar-search-input" placeholder="Search"
-                   required>
+        <div class="input-group input-group-sm">
+            <input type="text" name="searchWord" class="form-control" id="navbar-search-input" placeholder="Search">
+            <span class="input-group-btn">
+                <a href="{{ route('frontend.search.index') }}" class="btn btn-info btn-flat">More</a>
+            </span>
         </div>
     </form>
 </div>

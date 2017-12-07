@@ -3,11 +3,16 @@
 namespace App\Repositories\Frontend;
 
 
+use App\Models\Data\Department;
+use App\Models\Data\Employee;
+use App\Models\Data\EmployeeHasProject;
+use App\Models\Data\Faculty;
 use App\Models\Data\Project;
 use App\Repositories\BaseRepository;
 use App\Repositories\Frontend\Traits\DataTableRepository;
 use App\Repositories\Frontend\Traits\FullTextSearch;
 use App\Repositories\IDataTableRepository;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class ProjectRepository
@@ -61,15 +66,30 @@ class ProjectRepository extends BaseRepository implements IDataTableRepository, 
 
     /**
      * @param string $search
-     * @return \Illuminate\Support\Collection
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function getFullTextSearch(string $search)
+    public function baseFullTextSearch(string $search)
     {
         return $this->fullTextSearch($search)
             ->select(
                 'title AS display_value',
                 'id'
-            )
-            ->get();
+            );
+    }
+
+    /**
+     * @param array $facultyId
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function injectFacultyFullTextSearch(array $facultyId)
+    {
+        return DB::query()
+            ->selectRaw('1')
+            ->from(Faculty::getTableName())
+            ->join(Department::getTableName(), 'department.faculty_id', '=', 'faculty.id')
+            ->join(Employee::getTableName(), 'employee.department_id', '=', 'department.id')
+            ->join(EmployeeHasProject::getTableName(), 'employee_has_project.employee_id', '=', 'employee.id')
+            ->whereIn('faculty.id', $facultyId)
+            ->whereRaw('employee_has_project.project_id = project.id');
     }
 }

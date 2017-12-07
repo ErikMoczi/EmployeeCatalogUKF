@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Search;
 
 use App\Http\Controllers\Controller;
+use App\Internal\SearchComponent\SearchBuilder;
 use App\Repositories\Frontend\ActivityRepository;
 use App\Repositories\Frontend\DepartmentRepository;
 use App\Repositories\Frontend\EmployeeRepository;
@@ -89,6 +90,10 @@ class SearchController extends Controller
         return view('frontend.search.index');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
     public function search(Request $request)
     {
         $searchWord = null;
@@ -97,18 +102,31 @@ class SearchController extends Controller
         if ($request->filled('searchWord')) {
             $searchWord = $request->input('searchWord');
 
-            $results->put('employee', $this->employeeRepository->getFullTextSearch($searchWord));
-            $results->put('publication', $this->publicationRepository->getFullTextSearch($searchWord));
-            $results->put('project', $this->projectRepository->getFullTextSearch($searchWord));
-            $results->put('activity', $this->activityRepository->getFullTextSearch($searchWord));
-            $results->put('department', $this->departmentRepository->getFullTextSearch($searchWord));
-            $results->put('faculty', $this->facultyRepository->getFullTextSearch($searchWord));
-            $results->put('position', $this->positionRepository->getFullTextSearch($searchWord));
+            $searchQuery = collect([
+                'employee' => new SearchBuilder($this->employeeRepository, $searchWord),
+                'publication' => new SearchBuilder($this->publicationRepository, $searchWord),
+                'project' => new SearchBuilder($this->projectRepository, $searchWord),
+                'activity' => new SearchBuilder($this->activityRepository, $searchWord),
+                'department' => new SearchBuilder($this->departmentRepository, $searchWord),
+                'faculty' => new SearchBuilder($this->facultyRepository, $searchWord),
+                'position' => new SearchBuilder($this->positionRepository, $searchWord)
+            ]);
+
+            if ($request->filled('faculty')) {
+                $faculties = $request->input('faculty');
+
+                $searchQuery->map(function ($item, $key) use ($faculties) {
+                    return $item->injectFaculty($faculties);
+                });
+            }
+
+            $results = $searchQuery->map(function ($item, $key) {
+                return $item->get();
+            });
         }
 
-        return view('frontend.search.index', compact([
-            'results',
-            'searchWord'
-        ]));
+        return view('frontend.search.result')
+            ->withInput($request->only('searchWord', 'faculty'))
+            ->withResults($results);
     }
 }

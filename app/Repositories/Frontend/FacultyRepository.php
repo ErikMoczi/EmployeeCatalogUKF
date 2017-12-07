@@ -7,6 +7,7 @@ use App\Models\Data\Faculty;
 use App\Repositories\BaseRepository;
 use App\Repositories\Frontend\Traits\FullTextSearch;
 use App\Repositories\IDataTableRepository;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class FacultyRepository
@@ -69,15 +70,27 @@ class FacultyRepository extends BaseRepository implements IDataTableRepository, 
 
     /**
      * @param string $search
-     * @return \Illuminate\Support\Collection
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function getFullTextSearch(string $search)
+    public function baseFullTextSearch(string $search)
     {
         return $this->fullTextSearch($search)
             ->select(
                 'name AS display_value',
                 'id'
-            )
-            ->get();
+            );
+    }
+
+    /**
+     * @param array $facultyId
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function injectFacultyFullTextSearch(array $facultyId)
+    {
+        return DB::query()
+            ->selectRaw('1')
+            ->from(Faculty::getTableName())
+            ->whereIn('faculty.id', $facultyId)
+            ->whereRaw('faculty.id = faculty.id');
     }
 }

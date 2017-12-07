@@ -231,15 +231,28 @@ class EmployeeRepository extends BaseRepository implements IDataTableRepository,
 
     /**
      * @param string $search
-     * @return \Illuminate\Support\Collection
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function getFullTextSearch(string $search)
+    public function baseFullTextSearch(string $search)
     {
         return $this->fullTextSearch($search)
             ->select(
                 'full_name AS display_value',
                 'id'
-            )
-            ->get();
+            );
+    }
+
+    /**
+     * @param array $facultyId
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function injectFacultyFullTextSearch(array $facultyId)
+    {
+        return DB::query()
+            ->selectRaw('1')
+            ->from(Faculty::getTableName())
+            ->join(Department::getTableName(), 'department.faculty_id', '=', 'faculty.id')
+            ->whereIn('faculty.id', $facultyId)
+            ->whereRaw('employee.department_id = department.id');
     }
 }

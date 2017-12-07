@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Http\Composers\Backend\SidebarComposer;
+use App\Http\Composers\Frontend\SearchComposer;
 use App\Http\Composers\GlobalComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -28,6 +29,7 @@ class ComposerServiceProvider extends ServiceProvider
         /*
          * Frontend
          */
+        View::composer('frontend.search.index', SearchComposer::class);
 
         /*
          * Backend

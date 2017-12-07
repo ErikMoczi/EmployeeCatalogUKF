@@ -12,7 +12,13 @@ interface IFullTextSearch
 {
     /**
      * @param string $search
-     * @return \Illuminate\Support\Collection
+     * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function getFullTextSearch(string $search);
+    public function baseFullTextSearch(string $search);
+
+    /**
+     * @param array $facultyId
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function injectFacultyFullTextSearch(array $facultyId);
 }
