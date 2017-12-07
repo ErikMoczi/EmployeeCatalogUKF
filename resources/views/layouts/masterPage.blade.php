@@ -15,6 +15,7 @@
 
         <!-- Full Width Column -->
         <div class="content-wrapper">
+            @include('includes.partials.logged-in-as')
             <div class="container">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">

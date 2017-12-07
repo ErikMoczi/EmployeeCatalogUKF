@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Helpers\Auth\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -25,20 +26,36 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-    }
-
-    /**
      * @return string
      */
     protected function redirectTo()
     {
         return route(home_route());
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function logoutAs()
+    {
+        if (!auth()->user()) {
+            return redirect()->route('auth.login');
+        }
+
+        if (session()->has('observer_user_id') && session()->has('temp_user_id')) {
+            $observerId = session()->get('observer_user_id');
+
+            app()->make(Auth::class)->flushTempSession();
+
+            auth()->loginUsingId((int)$observerId);
+
+            return redirect()->route('admin.user.index');
+        } else {
+            app()->make(Auth::class)->flushTempSession();
+
+            auth()->logout();
+
+            return redirect()->route('auth.login');
+        }
     }
 }

@@ -5,6 +5,7 @@
 */
 Route::group(['middleware' => 'auth'], function () {
     Route::get('logout', 'LoginController@logout')->name('logout');
+    Route::get('logout-as', 'LoginController@logoutAs')->name('logout-as');
     Route::patch('password/update', 'UpdatePasswordController@update')->name('password.update');
 });
 

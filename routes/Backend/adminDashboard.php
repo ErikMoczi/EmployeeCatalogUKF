@@ -16,5 +16,6 @@ Route::group(['namespace' => 'User'], function () {
     Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
         Route::get('{user}/password', 'UserPasswordController@edit')->name('password');
         Route::patch('{user}/password', 'UserPasswordController@update')->name('password.update');
+        Route::get('{user}/login-as', 'UserAccessController@loginAs')->name('login-as');
     });
 });
