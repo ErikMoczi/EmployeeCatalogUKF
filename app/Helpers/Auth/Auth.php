@@ -8,7 +8,7 @@ namespace App\Helpers\Auth;
  */
 class Auth
 {
-    public function flushTempSession()
+    public function flushTempSession(): void
     {
         session()->forget('observer_user_id');
         session()->forget('observer_user_name');

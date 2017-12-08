@@ -8,8 +8,5 @@ namespace App\Console\Commands\DataLoading;
  */
 interface IDataPump
 {
-    /**
-     *
-     */
     public function runPump(): void;
 }

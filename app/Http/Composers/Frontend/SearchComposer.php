@@ -14,7 +14,7 @@ class SearchComposer
     /**
      * @var FacultyRepository
      */
-    protected $facultyRepository;
+    private $facultyRepository;
 
     /**
      * SearchComposer constructor.
@@ -28,9 +28,9 @@ class SearchComposer
     /**
      * @param View $view
      *
-     * @return bool|mixed
+     * @return void
      */
-    public function compose(View $view)
+    public function compose(View $view): void
     {
         $view->with('faculties', $this->facultyRepository->all());
     }

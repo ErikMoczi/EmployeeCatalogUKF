@@ -13,7 +13,7 @@ trait UserMethod
     /**
      * @return string
      */
-    public function getAccountCreateMonthYear()
+    public function getAccountCreateMonthYear(): string
     {
         return $this->getAccountCreate('M. Y');
     }
@@ -22,7 +22,7 @@ trait UserMethod
      * @param string $format
      * @return string
      */
-    public function getAccountCreate(string $format)
+    public function getAccountCreate(string $format): string
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format($format);
     }

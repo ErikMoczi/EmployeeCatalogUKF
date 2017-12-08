@@ -32,7 +32,7 @@ class GeneralException extends Exception
      *
      * @return void
      */
-    public function report()
+    public function report(): void
     {
         //
     }

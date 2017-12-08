@@ -191,7 +191,7 @@ class EmployeeRepository extends BaseRepository implements IDataTableRepository,
                 }
             )
             ->join(Department::getTableName(), 'department.id', '=', 'employee.department_id')
-            ->rightJoin(Faculty::getTableName(), 'faculty.id', '=', 'department.faculty_id')
+            ->join(Faculty::getTableName(), 'faculty.id', '=', 'department.faculty_id')
             ->groupBy('faculty_name', 'p.type', 'p.publishing_id')
             ->orderBy('faculty_name')
             ->get();

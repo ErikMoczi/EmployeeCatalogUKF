@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class BaseRepository.
+ * Class BaseRepository
+ * @package App\Repositories
  */
 abstract class BaseRepository implements RepositoryContract
 {

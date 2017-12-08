@@ -4,6 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Class CreatePublicationTable
+ */
 class CreatePublicationTable extends Migration
 {
     /**
@@ -37,7 +40,6 @@ class CreatePublicationTable extends Migration
         });
 
         DB::statement('ALTER TABLE ' . $this->set_schema_table . ' ADD FULLTEXT fulltext_title_idx(title, sub_title)');
-        //DB::statement('ALTER TABLE ' . $this->set_schema_table . ' ADD FULLTEXT fulltext_isbn_idx(ISBN)');
     }
 
     /**

@@ -14,7 +14,7 @@ class SidebarComposer
     /**
      * @var CommentRepository
      */
-    protected $commentRepository;
+    private $commentRepository;
 
     /**
      * SidebarComposer constructor.
@@ -28,9 +28,9 @@ class SidebarComposer
     /**
      * @param View $view
      *
-     * @return bool|mixed
+     * @return void
      */
-    public function compose(View $view)
+    public function compose(View $view): void
     {
         $view->with('comment_notapproved', $this->commentRepository->getNotApprovedCount());
     }

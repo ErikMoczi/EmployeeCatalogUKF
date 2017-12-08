@@ -26,14 +26,6 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
-     * @return string
-     */
-    protected function redirectTo()
-    {
-        return route(home_route());
-    }
-
-    /**
      * @return \Illuminate\Http\RedirectResponse
      */
     public function logoutAs()
@@ -57,5 +49,13 @@ class LoginController extends Controller
 
             return redirect()->route('auth.login');
         }
+    }
+
+    /**
+     * @return string
+     */
+    protected function redirectTo()
+    {
+        return route(home_route());
     }
 }
